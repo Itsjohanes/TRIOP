@@ -12,47 +12,27 @@
           <div class="row justify-content-center">
             <!-- Video 1 -->
                 <!-- Video 1 -->
-                <div class="col-md-5 col-lg-4">
-                    <div class="clean-pricing-item">
-                        <h4>Video Title 1</h4>
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe
-                                class="embed-responsive-item"
-                                src="https://www.youtube.com/embed/your-video-id-1"
-                                allowfullscreen
-                            ></iframe>
+               <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <div class="row">
+                    <?php foreach ($video as $v): ?>
+                        <div class="col-md-5 col-lg-4">
+                            <div class="clean-pricing-item">
+                                <h4><?= htmlspecialchars($v['judul']); ?></h4>
+                                <div class="embed-responsive embed-responsive-16by9">
+                                 
+                                    <iframe
+                                        class="embed-responsive-item"
+                                        src="https://www.youtube.com/embed/<?= $v['link']; ?>"
+                                        allowfullscreen
+                                    ></iframe>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Video 2 -->
-                <div class="col-md-5 col-lg-4">
-                    <div class="clean-pricing-item">
-                        <h4>Video Title 2</h4>
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe
-                                class="embed-responsive-item"
-                                src="https://www.youtube.com/embed/your-video-id-2"
-                                allowfullscreen
-                            ></iframe>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Video 3 -->
-                <div class="col-md-5 col-lg-4">
-                    <div class="clean-pricing-item">
-                        <h4>Video Title 3</h4>
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe
-                                class="embed-responsive-item"
-                                src="https://www.youtube.com/embed/your-video-id-3"
-                                allowfullscreen
-                            ></iframe>
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
+<!-- End of Page Content -->
 
           </div>
         </div>

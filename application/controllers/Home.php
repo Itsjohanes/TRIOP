@@ -43,6 +43,8 @@ class Home extends CI_Controller
   public function video(){
     $data['title'] = "Trinitas Open-Video";
     $data['menu'] = "Video";
+    //Menarik tb_video
+    $data['video'] = $this->db->get('tb_video')->result_array();
     $this->load->view('home/header', $data);
     $this->load->view('home/video', $data);
     $this->load->view('home/footer', $data);

@@ -26,32 +26,24 @@
                         echo '<a class="nav-link" href="' . base_url('admin/video') . '">';
                     }
                     ?>
-                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                    Data Siswa
+                    <div class="sb-nav-link-icon"><i class="fas fa-video"></i></div>
+                    Video Youtube
                     </a>
-                    <div class="sb-sidenav-menu-heading">Laporan Keterlambatan</div>
+
+                     <div class="sb-sidenav-menu-heading">Video Youtube</div>
 
                     <?php
-                    if ($title == 'Mencatat Keterlambatan') {
+                    if ($title == 'Berita') {
                         //arahih ke controller admin
-                        echo '<a class="nav-link active" href="' . base_url('Admin/terlambat') . '">';
+                        echo '<a class="nav-link active" href="' . base_url('admin/berita') . '">';
                     } else {
-                        echo '<a class="nav-link" href="' . base_url('Admin/terlambat') . '">';
+                        echo '<a class="nav-link" href="' . base_url('admin/berita') . '">';
                     }
-                    ?> <div class="sb-nav-link-icon"><i class="fas fa-pencil-alt"></i></div>
-                    Mencatat Keterlambatan
+                    ?>
+                    <div class="sb-nav-link-icon"><i class="fas fa-newspaper"></i></div>
+                    Berita
                     </a>
-                    <?php
-                    if ($title == 'Cetak Laporan') {
-                        //arahih ke controller admin
-                        echo '<a class="nav-link active" href="' . base_url('Admin/laporan') . '">';
-                    } else {
-                        echo '<a class="nav-link" href="' . base_url('Admin/laporan') . '">';
-                    }
-                    ?> <div class="sb-nav-link-icon"><i class="fas fa-file-alt"></i></div>
-                    Cetak Laporan
-                    </a>
-                </div>
+                    
             </div>
             <div class="sb-sidenav-footer">
                 <div class="small">Logged in as:</div>
