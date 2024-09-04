@@ -1,6 +1,6 @@
     <footer class="page-footer dark">
       <div class="footer-copyright">
-        <p>© 2025 TIM IT SMA TRINITAS</p>
+        <h5>© 2025 TIM IT SMA TRINITAS</h5>
       </div>
     </footer>
     <script src="<?php base_url().'assets/bootstrap/js/bootstrap.min.js'?>"></script>

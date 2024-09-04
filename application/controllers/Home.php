@@ -36,8 +36,17 @@ class Home extends CI_Controller
   public function berita(){
     $data['title'] = "Trinitas Open-Berita";
     $data['menu'] = "Berita";
+    $data['berita'] = $this->db->get('tb_berita')->result_array();
     $this->load->view('home/header', $data);
     $this->load->view('home/berita', $data);
+    $this->load->view('home/footer', $data);
+  }
+  public function detail_berita($id){
+    $data['title'] = "Trinitas Open-Detail Berita";
+    $data['menu'] = "Berita";
+    $data['berita'] = $this->db->get_where('tb_berita', ['id_berita' => $id])->row_array();
+    $this->load->view('home/header', $data);
+    $this->load->view('home/detail_berita', $data);
     $this->load->view('home/footer', $data);
   }
   public function video(){

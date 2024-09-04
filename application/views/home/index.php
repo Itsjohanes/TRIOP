@@ -163,6 +163,62 @@
       <section class="clean-block">
         <div class="container">
           <div class="block-heading">
+            <h2 class="text-info">Daftar Sekolah</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam
+              urna, dignissim nec auctor in, mattis vitae leo.
+            </p>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-sm-6 col-lg-4">
+              <div class="card text-center clean-card">
+                <img
+                  class="card-img-top w-100 d-block"
+                  src="assets/img/avatars/avatar1.jpg"
+                />
+                <div class="card-body info">
+                  <h4 class="card-title">John Smith</h4>
+                  <div class="icons">
+                    <a href="#"></a><a href="#"></a><a href="#"></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+              <div class="card text-center clean-card">
+                <img
+                  class="card-img-top w-100 d-block"
+                  src="assets/img/avatars/avatar2.jpg"
+                />
+                <div class="card-body info">
+                  <h4 class="card-title">Robert Downturn</h4>
+                  <div class="icons">
+                    <a href="#"></a><a href="#"></a><a href="#"></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+              <div class="card text-center clean-card">
+                <img
+                  class="card-img-top w-100 d-block"
+                  src="assets/img/avatars/avatar3.jpg"
+                />
+                <div class="card-body info">
+                  <h4 class="card-title">Ally Sanders</h4>
+                  <div class="icons">
+                    <a href="#"></a><a href="#"></a><a href="#"></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="clean-block">
+        <div class="container">
+          <div class="block-heading">
             <h2 class="text-info">Sponsor</h2>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam

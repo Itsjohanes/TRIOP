@@ -7,32 +7,22 @@
                 </div>
                <div class="row justify-content-center">
 				<!-- News Post 1 -->
+				<?php foreach ($berita as $berita): ?>
 				<div class="col-md-5 feature-box">
-					<img src="path-to-image-1.jpg" alt="News Image 1" class="img-fluid">
-					<h4>News Title 1</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo. <a href="news-link-1.html">Read more</a></p>
+					<img src="<?= base_url('assets/img/berita/').$berita['gambar']; ?>" alt="<?= $berita['judul']; ?>" class="img-fluid">
+					<h4><?= $berita['judul']; ?></h4>
+					<p>
+						<?php 
+							// Display the first 20 words of the content
+							$words = explode(' ', $berita['isi']);
+							$shortContent = implode(' ', array_slice($words, 0, 20));
+							echo $shortContent . '...';
+						?>
+						<a href="<?php echo base_url('home/detail_berita/').$berita['id_berita'];?>">Baca Selengkapnya</a>
+					</p>
 				</div>
+			<?php endforeach; ?>
 
-				<!-- News Post 2 -->
-				<div class="col-md-5 feature-box">
-					<img src="path-to-image-2.jpg" alt="News Image 2" class="img-fluid">
-					<h4>News Title 2</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo. <a href="news-link-2.html">Read more</a></p>
-				</div>
-
-				<!-- News Post 3 -->
-				<div class="col-md-5 feature-box">
-					<img src="path-to-image-3.jpg" alt="News Image 3" class="img-fluid">
-					<h4>News Title 3</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo. <a href="news-link-3.html">Read more</a></p>
-				</div>
-
-				<!-- News Post 4 -->
-				<div class="col-md-5 feature-box">
-					<img src="path-to-image-4.jpg" alt="News Image 4" class="img-fluid">
-					<h4>News Title 4</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo. <a href="news-link-4.html">Read more</a></p>
-				</div>
 			</div>
 
             </div>

@@ -142,30 +142,36 @@ class Admin extends CI_Controller
       $this->load->view('admin/footer');
     }
   }
-  public function submit_berita(){
-    $judul = $this->input->post('judul');
-    $isi = $this->input->post('isi');
-    //Foto Berita
-    $config['upload_path']          = './assets/img/berita/';
-    $config['allowed_types']        = 'gif|jpg|png';
-    $config['max_size']             = 10000;
-    $this->load->library('upload', $config);
-    if ($this->upload->do_upload('gambar')) {
-      $gambar = $this->upload->data('file_name');
-    } else {
-      $this->session->set_flashdata('error', $this->upload->display_errors());
-      redirect('admin/tambah_berita');
-    }
+    public function submit_berita() {
+      $judul = $this->input->post('judul');
+      $isi = $this->input->post('isi');
 
-    $data = [
-      'judul' => $judul,
-      'isi' => $isi,
-      'gambar' => $gambar
-    ];
-    $this->db->insert('tb_berita', $data);
-    $this->session->set_flashdata('success', 'Data berhasil ditambahkan');
-    redirect('admin/berita');
+      // Configuration for file upload
+      $config['upload_path']          = './assets/img/berita/';
+      $config['allowed_types']        = 'gif|jpg|png';
+      $config['max_size']             = 10000;
+      $config['encrypt_name']         = TRUE; // Encrypt the file name to make it unique
+
+      $this->load->library('upload', $config);
+
+      if ($this->upload->do_upload('gambar')) {
+          $gambar = $this->upload->data('file_name');
+      } else {
+          $this->session->set_flashdata('error', $this->upload->display_errors());
+          redirect('admin/tambah_berita');
+      }
+
+      $data = [
+          'judul' => $judul,
+          'isi'   => $isi,
+          'gambar' => $gambar
+      ];
+
+      $this->db->insert('tb_berita', $data);
+      $this->session->set_flashdata('success', 'Data berhasil ditambahkan');
+      redirect('admin/berita');
   }
+
 
   public function hapus_berita($id){
     //pastikan sudah login
@@ -193,40 +199,58 @@ class Admin extends CI_Controller
       $this->load->view('admin/footer');
     }
   }
-  public function update_berita(){
-
+  public function update_berita() {
       $id = $this->input->post('id');
       $judul = $this->input->post('judul');
       $isi = $this->input->post('isi');
-      //upload dan ganti gambar sebelum
+
+      // Configuration for file upload
       $config['upload_path']          = './assets/img/berita/';
       $config['allowed_types']        = 'gif|jpg|png';
       $config['max_size']             = 10000;
-      $this->load->library('upload', $config);
-      if ($this->upload->do_upload('gambar')) {
-        $gambar = $this->upload->data('file_name');
-        //unlink dulu gambar yang lama
-        $gambar_lama = $this->db->get_where('tb_berita', ['id_berita' => $id])->row_array();
-        unlink(FCPATH . 'assets/img/berita/' . $gambar_lama['gambar']);
-        $data = [
-          'judul' => $judul,
-          'isi' => $isi,
-          'gambar' => $gambar
-        ];
-        var_dump($data);
-     
+      $config['encrypt_name']         = TRUE; // Encrypt the file name to make it unique
 
-        $this->db->where('id_berita', $id);
-        $this->db->update('tb_berita', $data);
-        $this->session->set_flashdata('success', 'Data berhasil diupdate');
-        redirect('admin/berita');
-       
+      $this->load->library('upload', $config);
+
+      // Get current berita data to check for existing gambar
+      $gambar_lama = $this->db->get_where('tb_berita', ['id_berita' => $id])->row_array();
+      
+      if ($_FILES['gambar']['name']) { // Check if a new file is uploaded
+          if ($this->upload->do_upload('gambar')) {
+              $gambar = $this->upload->data('file_name');
+              
+              // Delete the old image file if it exists
+              if (file_exists(FCPATH . 'assets/img/berita/' . $gambar_lama['gambar'])) {
+                  unlink(FCPATH . 'assets/img/berita/' . $gambar_lama['gambar']);
+              }
+
+              // Prepare data with new gambar
+              $data = [
+                  'judul' => $judul,
+                  'isi' => $isi,
+                  'gambar' => $gambar
+              ];
+          } else {
+              $this->session->set_flashdata('error', $this->upload->display_errors());
+              redirect('admin/berita/' . $id);
+              return;
+          }
       } else {
-        $this->session->set_flashdata('error', $this->upload->display_errors());
-        redirect('admin/berita/' . $id);
+          // If no new file is uploaded, keep the old gambar
+          $data = [
+              'judul' => $judul,
+              'isi' => $isi,
+              'gambar' => $gambar_lama['gambar']
+          ];
       }
-    
+
+      // Update the berita record
+      $this->db->where('id_berita', $id);
+      $this->db->update('tb_berita', $data);
+      $this->session->set_flashdata('success', 'Data berhasil diupdate');
+      redirect('admin/berita');
   }
+
  
   
 }
