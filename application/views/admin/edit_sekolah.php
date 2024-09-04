@@ -3,7 +3,7 @@
 
     <!-- Page Heading -->
     <div class="container-fluid">
-        <h1 class="h3 mb-4 text-gray-800">Edit Berita</h1>
+        <h1 class="h3 mb-4 text-gray-800">Edit Sekolah</h1>
 
         <!-- Flash messages for success or error -->
         <?php if ($this->session->flashdata('success')): ?>
@@ -21,25 +21,18 @@
         <!-- Form for adding a new video -->
         <div class="card shadow mb-4">
             <div class="card-body">
-                <?= form_open_multipart('admin/update_berita'); ?>
+                <?= form_open_multipart('admin/update_sekolah'); ?>
                     <div class="form-group">
-                        <input type = "hidden" name = "id" value = "<?php echo $berita['id_berita'];?>" >
-                        <label for="judul">Judul Berita</label>
-                        <input type="text" value = "<?php echo $berita['judul'];?>" class="form-control" id="judul" name="judul" required>
+                        <input type = "hidden" name = "id" value = "<?php echo $sekolah['id_sekolah'];?>" >
+                        <label for="nama">Nama Sekolah</label>
+                        <input type="text" value = "<?php echo $sekolah['nama'];?>" class="form-control" id="nama" name="nama" required>
                     </div>
+                   
                     <div class="form-group">
-                        <label for="link">Isi Berita</label>
-                        <div id="editor">
-                            <?php echo $berita['isi'];?>
-                        </div>
-                        <input type="hidden" name="isi" id="hidden_isi">
-                    </div>
-
-                    <div class="form-group">
-                     <label class="form-label" for="message">Gambar Berita</label
+                     <label class="form-label" for="message">Gambar Sekolah</label
                         >
                     <br>
-                    <img width = "300px" height = "100px" src = "<?php echo base_url('assets/img/berita/').$berita['gambar'];?>">
+                    <img width = "300px" height = "100px" src = "<?php echo base_url('assets/img/sekolah/').$sekolah['gambar'];?>">
                         <input
                             class="form-control"
                             id="file-upload"
@@ -51,7 +44,7 @@
                     </div>
 
                      <br>
-                    <button type="submit" class="btn btn-primary">Edit Berita</button>
+                    <button type="submit" class="btn btn-primary">Edit Sekolah</button>
                 <?= form_close(); ?>
             </div>
         </div>

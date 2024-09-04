@@ -2,7 +2,7 @@
       <section class="clean-block clean-form dark">
         <div class="container">
           <div class="block-heading">
-            <h2 class="text-info">Pendaftaran Lomba</h2>
+            <h2 class="text-info">Pendaftaran Trinitas Open</h2>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam
               urna, dignissim nec auctor in, mattis vitae leo.

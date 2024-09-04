@@ -29,6 +29,8 @@ class Home extends CI_Controller
   {
     $data['title'] = "Trinitas Open-Home";
     $data['menu'] = "Home";
+    //ambil data sekolah
+    $data['sekolah'] = $this->db->get('tb_sekolah')->result_array();
     $this->load->view('home/header', $data);
     $this->load->view('home/index', $data);
     $this->load->view('home/footer', $data);
@@ -51,7 +53,7 @@ class Home extends CI_Controller
   }
   public function video(){
     $data['title'] = "Trinitas Open-Video";
-    $data['menu'] = "Video";
+    $data['menu'] = "Video Pertandingan";
     //Menarik tb_video
     $data['video'] = $this->db->get('tb_video')->result_array();
     $this->load->view('home/header', $data);
@@ -60,7 +62,7 @@ class Home extends CI_Controller
   }
   public function jadwal(){
     $data['title'] = "Trinitas Open-Jadwal";
-    $data['menu'] = "Jadwal";
+    $data['menu'] = "Jadwal Pertandingan";
     $this->load->view('home/header', $data);
     $this->load->view('home/jadwal', $data);
     $this->load->view('home/footer', $data);

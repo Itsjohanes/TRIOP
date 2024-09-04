@@ -43,7 +43,7 @@ class Admin extends CI_Controller
     }
   }
   public function video(){
-    $data['title'] = "Video Youtube";
+    $data['title'] = "Video Pertandingan";
     //ambil data dari tb_youtube
     $data['video'] = $this->db->get('tb_video')->result_array();
     
@@ -116,7 +116,7 @@ class Admin extends CI_Controller
     redirect('admin/video');
   }
 
-    public function berita(){
+  public function berita(){
     $data['title'] = "Berita Seputar TRIOP";
     //ambil data dari tb_youtube
     $data['video'] = $this->db->get('tb_berita')->result_array();
@@ -251,6 +251,136 @@ class Admin extends CI_Controller
       redirect('admin/berita');
   }
 
+
+  public function sekolah(){
+    $data['title'] = "Sekolah";
+    //ambil data dari tb_youtube
+    $data['sekolah'] = $this->db->get('tb_sekolah')->result_array();
+    
+    if ($this->session->userdata('email') == '') {
+      redirect('auth');
+    } else {
+      $this->load->view('admin/header', $data);
+      $this->load->view('admin/sidebar');
+      $this->load->view('admin/sekolah');
+      $this->load->view('admin/footer');
+    }
+  }
+  public function tambah_sekolah(){
+    $data['title'] = "Tambah Sekolah";
+    if ($this->session->userdata('email') == '') {
+      redirect('auth');
+    } else {
+    
+      $this->load->view('admin/header', $data);
+      $this->load->view('admin/sidebar');
+      $this->load->view('admin/tambah_sekolah');
+      $this->load->view('admin/footer');
+    }
+  }
+    public function submit_sekolah() {
+      $nama = $this->input->post('nama');
+
+      // Configuration for file upload
+      $config['upload_path']          = './assets/img/sekolah/';
+      $config['allowed_types']        = 'gif|jpg|png';
+      $config['max_size']             = 10000;
+      $config['encrypt_name']         = TRUE; // Encrypt the file name to make it unique
+
+      $this->load->library('upload', $config);
+
+      if ($this->upload->do_upload('gambar')) {
+          $gambar = $this->upload->data('file_name');
+      } else {
+          $this->session->set_flashdata('error', $this->upload->display_errors());
+          redirect('admin/tambah_berita');
+      }
+
+      $data = [
+          'nama' => $nama,
+          'gambar' => $gambar
+      ];
+
+      $this->db->insert('tb_sekolah', $data);
+      $this->session->set_flashdata('success', 'Data berhasil ditambahkan');
+      redirect('admin/sekolah');
+  }
+
+
+  public function hapus_sekolah($id){
+    //pastikan sudah login
+    if ($this->session->userdata('email') == '') {
+      redirect('auth');
+    } else {
+      //querykan untuk mencari gambar berita dan unlink
+      $gambar = $this->db->get_where('tb_sekolah', ['id_sekolah' => $id])->row_array();
+      unlink(FCPATH . 'assets/img/sekolah/' . $gambar['gambar']);
+      $this->db->delete('tb_sekolah', ['id_sekolah' => $id]);
+      $this->session->set_flashdata('success', 'Data berhasil dihapus');
+      redirect('admin/sekolah');
+    }
+    
+  }
+  public function edit_sekolah($id){
+    $data['title'] = "Edit Berita";
+    $data['sekolah'] = $this->db->get_where('tb_sekolah', ['id_sekolah' => $id])->row_array();
+    if ($this->session->userdata('email') == '') {
+      redirect('auth');
+    } else {
+      $this->load->view('admin/header', $data);
+      $this->load->view('admin/sidebar');
+      $this->load->view('admin/edit_sekolah');
+      $this->load->view('admin/footer');
+    }
+  }
+  public function update_sekolah() {
+      $id = $this->input->post('id');
+      $nama = $this->input->post('nama');
+
+      // Configuration for file upload
+      $config['upload_path']          = './assets/img/sekolah/';
+      $config['allowed_types']        = 'gif|jpg|png';
+      $config['max_size']             = 10000;
+      $config['encrypt_name']         = TRUE; // Encrypt the file name to make it unique
+
+      $this->load->library('upload', $config);
+
+      // Get current berita data to check for existing gambar
+      $gambar_lama = $this->db->get_where('tb_sekolah', ['id_sekolah' => $id])->row_array();
+      
+      if ($_FILES['gambar']['name']) { // Check if a new file is uploaded
+          if ($this->upload->do_upload('gambar')) {
+              $gambar = $this->upload->data('file_name');
+              
+              // Delete the old image file if it exists
+              if (file_exists(FCPATH . 'assets/img/sekolah/' . $gambar_lama['gambar'])) {
+                  unlink(FCPATH . 'assets/img/sekolah/' . $gambar_lama['gambar']);
+              }
+
+              // Prepare data with new gambar
+              $data = [
+                  'nama' => $nama,
+                  'gambar' => $gambar,
+              ];
+          } else {
+              $this->session->set_flashdata('error', $this->upload->display_errors());
+              redirect('admin/sekolah/' . $id);
+              return;
+          }
+      } else {
+          // If no new file is uploaded, keep the old gambar
+          $data = [
+              'nama' => $nama,
+              'gambar' => $gambar_lama['gambar']
+          ];
+      }
+
+      // Update the berita record
+      $this->db->where('id_sekolah', $id);
+      $this->db->update('tb_sekolah', $data);
+      $this->session->set_flashdata('success', 'Data berhasil diupdate');
+      redirect('admin/sekolah');
+  }
  
   
 }

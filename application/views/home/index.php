@@ -170,49 +170,23 @@
             </p>
           </div>
           <div class="row justify-content-center">
-            <div class="col-sm-6 col-lg-4">
-              <div class="card text-center clean-card">
+        <?php foreach ($sekolah as $item): ?>
+        <div class="col-sm-5 col-lg-3">
+            <div class="card text-center clean-card">
                 <img
-                  class="card-img-top w-100 d-block"
-                  src="assets/img/avatars/avatar1.jpg"
+                    class="card-img-top w-100 d-block"
+                    src="<?php echo base_url('assets/img/sekolah/' . $item['gambar']); ?>"
+                    width = "300px"
+                    height = "300px"
+                    alt="<?php echo $item['nama']; ?>"
                 />
                 <div class="card-body info">
-                  <h4 class="card-title">John Smith</h4>
-                  <div class="icons">
-                    <a href="#"></a><a href="#"></a><a href="#"></a>
-                  </div>
+                    <h4 class="card-title"><?php echo $item['nama']; ?></h4>
+                    
                 </div>
-              </div>
             </div>
-            <div class="col-sm-6 col-lg-4">
-              <div class="card text-center clean-card">
-                <img
-                  class="card-img-top w-100 d-block"
-                  src="assets/img/avatars/avatar2.jpg"
-                />
-                <div class="card-body info">
-                  <h4 class="card-title">Robert Downturn</h4>
-                  <div class="icons">
-                    <a href="#"></a><a href="#"></a><a href="#"></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-              <div class="card text-center clean-card">
-                <img
-                  class="card-img-top w-100 d-block"
-                  src="assets/img/avatars/avatar3.jpg"
-                />
-                <div class="card-body info">
-                  <h4 class="card-title">Ally Sanders</h4>
-                  <div class="icons">
-                    <a href="#"></a><a href="#"></a><a href="#"></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        </div>
+    <?php endforeach; ?>
         </div>
       </section>
 

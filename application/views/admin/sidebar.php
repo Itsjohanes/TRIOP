@@ -30,7 +30,7 @@
                     Video Youtube
                     </a>
 
-                     <div class="sb-sidenav-menu-heading">Video Youtube</div>
+                    <div class="sb-sidenav-menu-heading">Berita TRIOP</div>
 
                     <?php
                     if ($title == 'Berita Seputar TRIOP') {
@@ -42,6 +42,20 @@
                     ?>
                     <div class="sb-nav-link-icon"><i class="fas fa-newspaper"></i></div>
                     Berita
+                    </a>
+
+                    <div class="sb-sidenav-menu-heading">Sekolah</div>
+
+                    <?php
+                    if ($title == 'Sekolah') {
+                        //arahih ke controller admin
+                        echo '<a class="nav-link active" href="' . base_url('admin/sekolah') . '">';
+                    } else {
+                        echo '<a class="nav-link" href="' . base_url('admin/sekolah') . '">';
+                    }
+                    ?>
+                    <div class="sb-nav-link-icon"><i class="fas fa-school"></i></div>
+                    Sekolah
                     </a>
                     
             </div>
