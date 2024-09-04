@@ -9,64 +9,68 @@
             </p>
           </div>
           <div class="row justify-content-center">
-            <div class="col-sm-6 col-lg-4">
-              <div class="card text-center clean-card">
-                <img
-                  class="card-img-top w-100 d-block"
-                  src="assets/img/avatars/avatar1.jpg"
-                />
-                <div class="card-body info">
-                  <h4 class="card-title">John Smith</h4>
-                  <p class="card-text">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  </p>
-                  <div class="icons">
-                    <a href="#"><i class="icon-social-facebook"></i></a
-                    ><a href="#"><i class="icon-social-instagram"></i></a
-                    ><a href="#"><i class="icon-social-twitter"></i></a>
-                  </div>
-                </div>
+      <div class="card">
+       <div class="card-header">
+          Hari - Jam
+        </div>
+        <div class="card-body">
+          <blockquote class="blockquote mb-0">
+            <div class="image-container">
+              <!-- Gambar pertama -->
+              <div class="image-item">
+                <img width="300px" height="300px" src="<?= base_url('assets/img/sekolah/'); ?>6bb8f8d9316a04eefe2b400c292e20dd.png" class="img-fluid" alt="Responsive image">
+                <p class="image-text">SMA TALENTA</p>
+              </div>
+              
+              <!-- Teks vs di tengah -->
+              <span class="vs-text">vs</span>
+              
+              <!-- Gambar kedua -->
+              <div class="image-item">
+                <img width="300px" height="300px" src="<?= base_url('assets/img/sekolah/'); ?>6bb8f8d9316a04eefe2b400c292e20dd.png" class="img-fluid" alt="Responsive image">
+                <p class="image-text">SMA TALENTA</p>
               </div>
             </div>
-            <div class="col-sm-6 col-lg-4">
-              <div class="card text-center clean-card">
-                <img
-                  class="card-img-top w-100 d-block"
-                  src="assets/img/avatars/avatar2.jpg"
-                />
-                <div class="card-body info">
-                  <h4 class="card-title">Robert Downturn</h4>
-                  <p class="card-text">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  </p>
-                  <div class="icons">
-                    <a href="#"><i class="icon-social-facebook"></i></a
-                    ><a href="#"><i class="icon-social-instagram"></i></a
-                    ><a href="#"><i class="icon-social-twitter"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-              <div class="card text-center clean-card">
-                <img
-                  class="card-img-top w-100 d-block"
-                  src="assets/img/avatars/avatar3.jpg"
-                />
-                <div class="card-body info">
-                  <h4 class="card-title">Ally Sanders</h4>
-                  <p class="card-text">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  </p>
-                  <div class="icons">
-                    <a href="#"><i class="icon-social-facebook"></i></a
-                    ><a href="#"><i class="icon-social-instagram"></i></a
-                    ><a href="#"><i class="icon-social-twitter"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
+          </blockquote>
+        </div>
+        </div>
+         <br>
+             
+           
           </div>
         </div>
       </section>
     </main>
+    <style>
+  .image-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+  }
+
+  .image-item {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .vs-text {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    background: white; /* Optional: to ensure text visibility over images */
+    padding: 0 10px; /* Optional: to add space around the text */
+  }
+
+  .image-text {
+    margin-top: 8px; /* Space between image and text */
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
+</style>

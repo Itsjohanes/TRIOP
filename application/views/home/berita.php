@@ -5,26 +5,36 @@
                     <h2 class="text-info">Berita Seputar Triop</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo.</p>
                 </div>
-               <div class="row justify-content-center">
-				<!-- News Post 1 -->
-				<?php foreach ($berita as $berita): ?>
-				<div class="col-md-5 feature-box">
-					<img src="<?= base_url('assets/img/berita/').$berita['gambar']; ?>" alt="<?= $berita['judul']; ?>" class="img-fluid">
-					<h4><?= $berita['judul']; ?></h4>
-					<p>
-						<?php 
-							// Display the first 20 words of the content
-							$words = explode(' ', $berita['isi']);
-							$shortContent = implode(' ', array_slice($words, 0, 20));
-							echo $shortContent . '...';
-						?>
-						<a href="<?php echo base_url('home/detail_berita/').$berita['id_berita'];?>">Baca Selengkapnya</a>
-					</p>
-				</div>
-			<?php endforeach; ?>
+					<?php foreach ($berita as $a): ?>
+					<div class="row d-flex flex-wrap justify-content-center">
 
-			</div>
+						<div class="col-md-6 feature-box">
+							<img src="<?= base_url('assets/img/berita/').$a['gambar']; ?>" alt="<?= $a['judul']; ?>" class="img-fluid">
+							<h4><?= $a['judul']; ?></h4>
+							<p>
+								<?php 
+									// Clean up the content
+									$content = "";
+									$content = trim($a['isi']);
+									$content = preg_replace('/\s+/', ' ', $content);
+
+									// Display the first 10 words of the content
+									$words = explode(' ', $content);
+									$shortContent = implode(' ', array_slice($words, 0, 10));
+									echo $shortContent . '...';
+								?>
+								<a href="<?php echo base_url('home/detail_berita/').$a['id_berita'];?>">Baca Selengkapnya</a>
+							</p>
+						</div>
+					</div>
+
+					<?php endforeach; ?>
+
+
+
 
             </div>
         </section>
     </main>
+
+	

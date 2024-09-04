@@ -37,9 +37,9 @@
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                 </p>
               </div>
-              <button class="btn btn-outline-primary btn-lg" type="button">
+              <a href = "<?php echo base_url('home/pendaftaran');?>" class="btn btn-outline-primary btn-lg" type="button">
                 Daftar Sekarang
-              </button>
+              </a>
             </div>
           </div>
         </div>
