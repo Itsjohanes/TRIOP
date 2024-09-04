@@ -172,15 +172,18 @@ class Admin extends CI_Controller
     if ($this->session->userdata('email') == '') {
       redirect('auth');
     } else {
-      $this->db->delete('tb_video', ['id_youtube' => $id]);
+      //querykan untuk mencari gambar berita dan unlink
+      $gambar = $this->db->get_where('tb_berita', ['id_berita' => $id])->row_array();
+      unlink(FCPATH . 'assets/img/berita/' . $gambar['gambar']);
+      $this->db->delete('tb_berita', ['id_berita' => $id]);
       $this->session->set_flashdata('success', 'Data berhasil dihapus');
-      redirect('admin/video');
+      redirect('admin/berita');
     }
     
   }
   public function edit_berita($id){
     $data['title'] = "Edit Berita";
-    $data['video'] = $this->db->get_where('tb_video', ['id_youtube' => $id])->row_array();
+    $data['berita'] = $this->db->get_where('tb_berita', ['id_berita' => $id])->row_array();
     if ($this->session->userdata('email') == '') {
       redirect('auth');
     } else {
@@ -191,17 +194,38 @@ class Admin extends CI_Controller
     }
   }
   public function update_berita(){
-    $id = $this->input->post('id');
-    $judul = $this->input->post('judul');
-    $link = $this->input->post('link');
-    $data = [
-      'judul' => $judul,
-      'link' => $link
-    ];
-    $this->db->where('id_youtube', $id);
-    $this->db->update('tb_video', $data);
-    $this->session->set_flashdata('success', 'Data berhasil diupdate');
-    redirect('admin/video');
+
+      $id = $this->input->post('id');
+      $judul = $this->input->post('judul');
+      $isi = $this->input->post('isi');
+      //upload dan ganti gambar sebelum
+      $config['upload_path']          = './assets/img/berita/';
+      $config['allowed_types']        = 'gif|jpg|png';
+      $config['max_size']             = 10000;
+      $this->load->library('upload', $config);
+      if ($this->upload->do_upload('gambar')) {
+        $gambar = $this->upload->data('file_name');
+        //unlink dulu gambar yang lama
+        $gambar_lama = $this->db->get_where('tb_berita', ['id_berita' => $id])->row_array();
+        unlink(FCPATH . 'assets/img/berita/' . $gambar_lama['gambar']);
+        $data = [
+          'judul' => $judul,
+          'isi' => $isi,
+          'gambar' => $gambar
+        ];
+        var_dump($data);
+     
+
+        $this->db->where('id_berita', $id);
+        $this->db->update('tb_berita', $data);
+        $this->session->set_flashdata('success', 'Data berhasil diupdate');
+        redirect('admin/berita');
+       
+      } else {
+        $this->session->set_flashdata('error', $this->upload->display_errors());
+        redirect('admin/berita/' . $id);
+      }
+    
   }
  
   
