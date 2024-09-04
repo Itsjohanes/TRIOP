@@ -33,7 +33,7 @@
                      <div class="sb-sidenav-menu-heading">Video Youtube</div>
 
                     <?php
-                    if ($title == 'Berita') {
+                    if ($title == 'Berita Seputar TRIOP') {
                         //arahih ke controller admin
                         echo '<a class="nav-link active" href="' . base_url('admin/berita') . '">';
                     } else {

@@ -115,6 +115,94 @@ class Admin extends CI_Controller
     $this->session->set_flashdata('success', 'Data berhasil diupdate');
     redirect('admin/video');
   }
+
+    public function berita(){
+    $data['title'] = "Berita Seputar TRIOP";
+    //ambil data dari tb_youtube
+    $data['video'] = $this->db->get('tb_berita')->result_array();
+    
+    if ($this->session->userdata('email') == '') {
+      redirect('auth');
+    } else {
+      $this->load->view('admin/header', $data);
+      $this->load->view('admin/sidebar');
+      $this->load->view('admin/berita');
+      $this->load->view('admin/footer');
+    }
+  }
+  public function tambah_berita(){
+    $data['title'] = "Tambah Berita";
+    if ($this->session->userdata('email') == '') {
+      redirect('auth');
+    } else {
+    
+      $this->load->view('admin/header', $data);
+      $this->load->view('admin/sidebar');
+      $this->load->view('admin/tambah_berita');
+      $this->load->view('admin/footer');
+    }
+  }
+  public function submit_berita(){
+    $judul = $this->input->post('judul');
+    $isi = $this->input->post('isi');
+    //Foto Berita
+    $config['upload_path']          = './assets/img/berita/';
+    $config['allowed_types']        = 'gif|jpg|png';
+    $config['max_size']             = 10000;
+    $this->load->library('upload', $config);
+    if ($this->upload->do_upload('gambar')) {
+      $gambar = $this->upload->data('file_name');
+    } else {
+      $this->session->set_flashdata('error', $this->upload->display_errors());
+      redirect('admin/tambah_berita');
+    }
+
+    $data = [
+      'judul' => $judul,
+      'isi' => $isi,
+      'gambar' => $gambar
+    ];
+    $this->db->insert('tb_berita', $data);
+    $this->session->set_flashdata('success', 'Data berhasil ditambahkan');
+    redirect('admin/berita');
+  }
+
+  public function hapus_berita($id){
+    //pastikan sudah login
+    if ($this->session->userdata('email') == '') {
+      redirect('auth');
+    } else {
+      $this->db->delete('tb_video', ['id_youtube' => $id]);
+      $this->session->set_flashdata('success', 'Data berhasil dihapus');
+      redirect('admin/video');
+    }
+    
+  }
+  public function edit_berita($id){
+    $data['title'] = "Edit Berita";
+    $data['video'] = $this->db->get_where('tb_video', ['id_youtube' => $id])->row_array();
+    if ($this->session->userdata('email') == '') {
+      redirect('auth');
+    } else {
+      $this->load->view('admin/header', $data);
+      $this->load->view('admin/sidebar');
+      $this->load->view('admin/edit_berita');
+      $this->load->view('admin/footer');
+    }
+  }
+  public function update_berita(){
+    $id = $this->input->post('id');
+    $judul = $this->input->post('judul');
+    $link = $this->input->post('link');
+    $data = [
+      'judul' => $judul,
+      'link' => $link
+    ];
+    $this->db->where('id_youtube', $id);
+    $this->db->update('tb_video', $data);
+    $this->session->set_flashdata('success', 'Data berhasil diupdate');
+    redirect('admin/video');
+  }
  
   
 }
