@@ -44,6 +44,14 @@
                         <label for="tanggal">Tanggal</label>
                         <input type="datetime-local" class="form-control" id="tanggal" name="tanggal" required>                  
                     </div>
+                    <div class="form-group">
+                        <label for="link">Skor Sekolah 1</label>
+                        <input type="number" class="form-control" id="skor1" name="skor1" >
+                    </div>
+                    <div class="form-group">
+                        <label for="link">Skor Sekolah 2</label>
+                        <input type="number" class="form-control" id="skor2" name="skor2" >
+                    </div>                    
                     <br>
                     <button type="submit" class="btn btn-primary">Tambah Jadwal</button>
                 <?= form_close(); ?>

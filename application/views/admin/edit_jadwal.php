@@ -37,7 +37,7 @@
                     <!-- Select Sekolah 2 -->
                     <div class="form-group">
                         <label for="sekolah2">Sekolah 2</label>
-                       <select name="id_sekolah1" id="sekolah1" class="selectpicker form-control" data-live-search="true" title="Pilih Sekolah 1">
+                       <select name="id_sekolah2" id="sekolah2" class="selectpicker form-control" data-live-search="true" title="Pilih Sekolah 1">
                         <?php foreach ($sekolah as $s): ?>
                             <option value="<?= $s['id_sekolah']; ?>" <?= ($jadwal['id_sekolah2'] == $s['id_sekolah']) ? 'selected' : ''; ?>>
                                 <?= $s['nama']; ?>
@@ -45,6 +45,15 @@
                         <?php endforeach; ?>
                     </select>
                     </div>
+
+                    <div class="form-group">
+                        <label for="link">Skor Sekolah 1</label>
+                        <input type="number" value = "<?php echo $jadwal['skor1'];?>" class="form-control" id="skor1" name="skor1" >
+                    </div>
+                    <div class="form-group">
+                        <label for="link">Skor Sekolah 2</label>
+                        <input type="number" value = "<?php echo $jadwal['skor2'];?>" class="form-control" id="skor2" name="skor2" >
+                    </div>                      
                      <div class="form-group"> 
                         <label for="tanggal">Tanggal</label>
                         <input type = "hidden" name = "id" value = "<?php echo $jadwal['id_jadwal'];?>">

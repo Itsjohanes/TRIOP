@@ -33,6 +33,8 @@
                                 <th scope="col">Tanggal dan Jam</th>
                                 <th scope="col">Sekolah 1</th>
                                 <th scope="col">Sekolah 2</th>
+                                <th scope="col">Skor 1</th>
+                                <th scope="col">Sekolah 2</th>
 
                                 <th scope="col">Aksi</th>
                             </tr>
@@ -45,6 +47,8 @@
                                     <td><?= $j['tanggal']; ?></td>
                                     <td><?= $j['sekolah1']; ?></td>
                                     <td><?= $j['sekolah2']; ?></td>
+                                    <td><?= $j['skor1']; ?></td>
+                                    <td><?= $j['skor2']; ?></td>
                                     <td>
                                         
                                         <a href="<?= base_url(); ?>admin/hapus_jadwal/<?= $j['id_jadwal']; ?>" class="btn btn-danger" onclick="return confirm('Data akan dihapus');">

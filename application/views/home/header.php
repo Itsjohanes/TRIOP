@@ -53,10 +53,13 @@
               }
 
               if ($menu == "Jadwal Pertandingan") {
-                  echo '<li class="nav-item"><a class="nav-link active" href="' . base_url("home/jadwal") . '">Jadwal Pertandingan</a></li>';
+                  echo '<li class="nav-item"><a class="nav-link active" href="' . base_url("home/jadwal") . '">Jadwal & Hasil Pertandingan</a></li>';
               } else {
-                  echo '<li class="nav-item"><a class="nav-link" href="' . base_url("home/jadwal") . '">Jadwal Pertandingan</a></li>';
+                  echo '<li class="nav-item"><a class="nav-link" href="' . base_url("home/jadwal") . '">Jadwal & Hasil Pertandingan</a></li>';
               }
+              
+          
+
 
               if ($menu == "Pendaftaran") {
                   echo '<li class="nav-item"><a class="nav-link active" href="' . base_url("home/pendaftaran") . '">Pendaftaran</a></li>';

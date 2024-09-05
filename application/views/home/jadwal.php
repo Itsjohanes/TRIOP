@@ -21,6 +21,8 @@
                   <div class="image-item">
                     <img width="300px" height="300px" src="<?= base_url('assets/img/sekolah/').$item['gambar_sekolah1']; ?>"  alt="Responsive image">
                     <p class="image-text"><?= $item['sekolah1']; ?></p>
+                    <p class="image-text"><?= $item['skor1']; ?></p>
+
                   </div>
                   
                   <!-- Teks vs di tengah -->
@@ -30,6 +32,8 @@
                   <div class="image-item">
                     <img width="300px" height="300px" src="<?= base_url('assets/img/sekolah/').$item['gambar_sekolah2']; ?>"  alt="Responsive image">
                     <p class="image-text"><?= $item['sekolah2']; ?></p>
+                    <p class="image-text"><?= $item['skor2']; ?></p>
+
                   </div>
                 </div>
               </blockquote>

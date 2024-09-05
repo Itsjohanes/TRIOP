@@ -385,7 +385,7 @@ class Admin extends CI_Controller
     if ($this->session->userdata('email') == '') {
       redirect('auth');
     } else {
-      $data['title'] = "Jadwal";
+      $data['title'] = "Jadwal & Hasil";
       $this->db->select('tb_jadwal.*, s1.nama as sekolah1, s2.nama as sekolah2');
       $this->db->from('tb_jadwal');
       $this->db->join('tb_sekolah s1', 'tb_jadwal.id_sekolah1 = s1.id_sekolah', 'left'); // Relasi untuk id_sekolah1
@@ -416,11 +416,15 @@ class Admin extends CI_Controller
   public function submit_jadwal(){
     $id_sekolah1 = $this->input->post('id_sekolah1');
     $id_sekolah2 = $this->input->post('id_sekolah2');
+    $skor1 = $this->input->post('skor1');
+    $skor2 = $this->input->post('skor2');
     $tanggal = $this->input->post('tanggal');
     $data = [
       'id_sekolah1' => $id_sekolah1,
       'id_sekolah2' => $id_sekolah2,
-      'tanggal' => $tanggal
+      'tanggal' => $tanggal,
+      'skor1' => $skor1,
+      'skor2' => $skor2
     ];
     $this->db->insert('tb_jadwal', $data);
     $this->session->set_flashdata('success', 'Data berhasil ditambahkan');
@@ -454,11 +458,15 @@ class Admin extends CI_Controller
     $id = $this->input->post('id');
     $id_sekolah1 = $this->input->post('id_sekolah1');
     $id_sekolah2 = $this->input->post('id_sekolah2');
+    $skor1 = $this->input->post('skor1');
+    $skor2 = $this->input->post('skor2');
     $tanggal = $this->input->post('tanggal');
     $data = [
       'id_sekolah1' => $id_sekolah1,
       'id_sekolah2' => $id_sekolah2,
-      'tanggal' => $tanggal
+      'tanggal' => $tanggal,
+      'skor1' => $skor1,
+      'skor2' => $skor2
     ];
     $this->db->where('id_jadwal', $id);
     $this->db->update('tb_jadwal', $data);
