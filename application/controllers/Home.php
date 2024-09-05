@@ -23,6 +23,8 @@ class Home extends CI_Controller
   public function __construct()
   {
     parent::__construct();
+    $this->load->helper('tanggal'); // Load helper tanggal
+
   }
 
   public function index()
@@ -63,17 +65,22 @@ class Home extends CI_Controller
   public function jadwal(){
     $data['title'] = "Trinitas Open-Jadwal";
     $data['menu'] = "Jadwal Pertandingan";
+    $this->db->select('tb_jadwal.*, s1.nama as sekolah1, s1.gambar as gambar_sekolah1, s2.nama as sekolah2, s2.gambar as gambar_sekolah2');
+    $this->db->from('tb_jadwal');
+    $this->db->join('tb_sekolah s1', 'tb_jadwal.id_sekolah1 = s1.id_sekolah', 'left'); // Relasi untuk id_sekolah1
+    $this->db->join('tb_sekolah s2', 'tb_jadwal.id_sekolah2 = s2.id_sekolah', 'left'); // Relasi untuk id_sekolah2
+    $data['jadwal'] = $this->db->get()->result_array();
     $this->load->view('home/header', $data);
     $this->load->view('home/jadwal', $data);
     $this->load->view('home/footer', $data);
   }
-    public function pendaftaran(){
-        $data['title'] = "Trinitas Open-Pendaftaran";
-        $data['menu'] = "Pendaftaran";
-        $this->load->view('home/header', $data);
-        $this->load->view('home/pendaftaran', $data);
-        $this->load->view('home/footer', $data);
-    }
+  public function pendaftaran(){
+    $data['title'] = "Trinitas Open-Pendaftaran";
+    $data['menu'] = "Pendaftaran";
+    $this->load->view('home/header', $data);
+    $this->load->view('home/pendaftaran', $data);
+    $this->load->view('home/footer', $data);
+  }
   
   
 }

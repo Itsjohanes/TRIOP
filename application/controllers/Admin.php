@@ -381,6 +381,91 @@ class Admin extends CI_Controller
       $this->session->set_flashdata('success', 'Data berhasil diupdate');
       redirect('admin/sekolah');
   }
+  public function jadwal(){
+
+    if ($this->session->userdata('email') == '') {
+      redirect('auth');
+    } else {
+      $data['title'] = "Jadwal";
+      $this->db->select('tb_jadwal.*, s1.nama as sekolah1, s2.nama as sekolah2');
+      $this->db->from('tb_jadwal');
+      $this->db->join('tb_sekolah s1', 'tb_jadwal.id_sekolah1 = s1.id_sekolah', 'left'); // Relasi untuk id_sekolah1
+      $this->db->join('tb_sekolah s2', 'tb_jadwal.id_sekolah2 = s2.id_sekolah', 'left'); // Relasi untuk id_sekolah2
+      $data['jadwal'] = $this->db->get()->result_array();
+
+      
+      $this->load->view('admin/header', $data);
+      $this->load->view('admin/sidebar');
+      $this->load->view('admin/jadwal');
+      $this->load->view('admin/footer');
+      
+    }
+  }
+  public function tambah_jadwal(){
+    $data['title'] = "Tambah Jadwal";
+    $data['sekolah'] = $this->db->get('tb_sekolah')->result_array();
+    if ($this->session->userdata('email') == '') {
+      redirect('auth');
+    } else {
+      $this->load->view('admin/header', $data);
+      $this->load->view('admin/sidebar');
+      $this->load->view('admin/tambah_jadwal');
+      $this->load->view('admin/footer');
+    }
+
+  }
+  public function submit_jadwal(){
+    $id_sekolah1 = $this->input->post('id_sekolah1');
+    $id_sekolah2 = $this->input->post('id_sekolah2');
+    $tanggal = $this->input->post('tanggal');
+    $data = [
+      'id_sekolah1' => $id_sekolah1,
+      'id_sekolah2' => $id_sekolah2,
+      'tanggal' => $tanggal
+    ];
+    $this->db->insert('tb_jadwal', $data);
+    $this->session->set_flashdata('success', 'Data berhasil ditambahkan');
+    redirect('admin/jadwal');
+  }
+  public function hapus_jadwal($id){
+    //pastikan sudah login
+    if ($this->session->userdata('email') == '') {
+      redirect('auth');
+    } else {
+      $this->db->delete('tb_jadwal', ['id_jadwal' => $id]);
+      $this->session->set_flashdata('success', 'Data berhasil dihapus');
+      redirect('admin/jadwal');
+    }
+  }
+
+  public function edit_jadwal($id){
+    $data['title'] = "Edit Jadwal";
+    $data['jadwal'] = $this->db->get_where('tb_jadwal', ['id_jadwal' => $id])->row_array();
+    $data['sekolah'] = $this->db->get('tb_sekolah')->result_array();
+    if ($this->session->userdata('email') == '') {
+      redirect('auth');
+    } else {
+      $this->load->view('admin/header', $data);
+      $this->load->view('admin/sidebar');
+      $this->load->view('admin/edit_jadwal');
+      $this->load->view('admin/footer');
+    }
+  }
+  public function update_jadwal(){
+    $id = $this->input->post('id');
+    $id_sekolah1 = $this->input->post('id_sekolah1');
+    $id_sekolah2 = $this->input->post('id_sekolah2');
+    $tanggal = $this->input->post('tanggal');
+    $data = [
+      'id_sekolah1' => $id_sekolah1,
+      'id_sekolah2' => $id_sekolah2,
+      'tanggal' => $tanggal
+    ];
+    $this->db->where('id_jadwal', $id);
+    $this->db->update('tb_jadwal', $data);
+    $this->session->set_flashdata('success', 'Data berhasil diupdate');
+    redirect('admin/jadwal');
+  }
  
   
 }

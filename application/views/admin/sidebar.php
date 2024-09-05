@@ -57,6 +57,20 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-school"></i></div>
                     Sekolah
                     </a>
+
+                    <div class="sb-sidenav-menu-heading">Jadwal</div>
+
+                    <?php
+                    if ($title == 'Jadwal') {
+                        //arahih ke controller admin
+                        echo '<a class="nav-link active" href="' . base_url('admin/jadwal') . '">';
+                    } else {
+                        echo '<a class="nav-link" href="' . base_url('admin/jadwal') . '">';
+                    }
+                    ?>
+                    <div class="sb-nav-link-icon"><i class="fas fa-clock"></i></div>
+                    Jadwal Pertandingan
+                    </a>                    
                     
             </div>
             <div class="sb-sidenav-footer">

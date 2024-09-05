@@ -9,36 +9,37 @@
             </p>
           </div>
           <div class="row justify-content-center">
-      <div class="card">
-       <div class="card-header">
-          Hari - Jam
-        </div>
-        <div class="card-body">
-          <blockquote class="blockquote mb-0">
-            <div class="image-container">
-              <!-- Gambar pertama -->
-              <div class="image-item">
-                <img width="300px" height="300px" src="<?= base_url('assets/img/sekolah/'); ?>6bb8f8d9316a04eefe2b400c292e20dd.png" class="img-fluid" alt="Responsive image">
-                <p class="image-text">SMA TALENTA</p>
-              </div>
-              
-              <!-- Teks vs di tengah -->
-              <span class="vs-text">vs</span>
-              
-              <!-- Gambar kedua -->
-              <div class="image-item">
-                <img width="300px" height="300px" src="<?= base_url('assets/img/sekolah/'); ?>6bb8f8d9316a04eefe2b400c292e20dd.png" class="img-fluid" alt="Responsive image">
-                <p class="image-text">SMA TALENTA</p>
-              </div>
+          <?php foreach ($jadwal as $item): ?>
+          <div class="card">
+            <div class="card-header">
+              <?= tanggal_indonesia($item['tanggal']); ?> <!-- Tampilkan Hari, Tanggal, dan Waktu dalam Format Indonesia -->
             </div>
-          </blockquote>
-        </div>
-        </div>
-         <br>
-             
-           
+            <div class="card-body">
+              <blockquote class="blockquote mb-0">
+                <div class="image-container">
+                  <!-- Gambar pertama -->
+                  <div class="image-item">
+                    <img width="300px" height="300px" src="<?= base_url('assets/img/sekolah/').$item['gambar_sekolah1']; ?>"  alt="Responsive image">
+                    <p class="image-text"><?= $item['sekolah1']; ?></p>
+                  </div>
+                  
+                  <!-- Teks vs di tengah -->
+                  <span class="vs-text">vs</span>
+                  
+                  <!-- Gambar kedua -->
+                  <div class="image-item">
+                    <img width="300px" height="300px" src="<?= base_url('assets/img/sekolah/').$item['gambar_sekolah2']; ?>"  alt="Responsive image">
+                    <p class="image-text"><?= $item['sekolah2']; ?></p>
+                  </div>
+                </div>
+              </blockquote>
+            </div>
           </div>
-        </div>
+          <br>
+
+        <?php endforeach; ?>
+
+
       </section>
     </main>
     <style>
