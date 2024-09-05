@@ -596,6 +596,85 @@ public function submit_sponsor() {
       $this->session->set_flashdata('success', 'Data berhasil diupdate');
       redirect('admin/sponsor');
   }
+  public function akun(){
+    $data['title'] = "Akun";
+    $data['akun'] = $this->db->get('tb_akun')->result_array();
+    if ($this->session->userdata('email') == '') {
+      redirect('auth');
+    } else {
+      $this->load->view('admin/header', $data);
+      $this->load->view('admin/sidebar');
+      $this->load->view('admin/akun');
+      $this->load->view('admin/footer');
+    }
+  }
+  public function hapus_akun($id){
+    //pastikan sudah login
+    if ($this->session->userdata('email') == '') {
+      redirect('auth');
+    } else {
+      $this->db->delete('tb_akun', ['id_akun' => $id]);
+      $this->session->set_flashdata('success', 'Data berhasil dihapus');
+      redirect('admin/akun');
+    }
+  }
+  public function tambah_akun(){
+    $data['title'] = "Tambah Akun";
+    if ($this->session->userdata('email') == '') {
+      redirect('auth');
+    } else {
+      $this->load->view('admin/header', $data);
+      $this->load->view('admin/sidebar');
+      $this->load->view('admin/tambah_akun');
+      $this->load->view('admin/footer');
+    }
+  }
+  public function submit_akun(){
+    $email = $this->input->post('email');
+    $nama = $this->input->post('nama');
+    $password = $this->input->post('password');
+    //cek email apakah udh kedata apa blom
+    $cek = $this->db->get_where('tb_akun', ['email' => $email])->num_rows();
+    if ($cek > 0) {
+      $this->session->set_flashdata('error', 'Email sudah terdaftar');
+      redirect('admin/tambah_akun');
+    }
+    $data = [
+      'email' => $email,
+      'nama' => $nama,
+      'password' => password_hash($password, PASSWORD_DEFAULT),
+      'aktif' => 1
+    ];
+    $this->db->insert('tb_akun', $data);
+    $this->session->set_flashdata('success', 'Data berhasil ditambahkan');
+    redirect('admin/akun');
+  }
+  public function edit_akun($id){
+    $data['title'] = "Edit Akun";
+    $data['akun'] = $this->db->get_where('tb_akun', ['id_akun' => $id])->row_array();
+    if ($this->session->userdata('email') == '') {
+      redirect('auth');
+    } else {
+      $this->load->view('admin/header', $data);
+      $this->load->view('admin/sidebar');
+      $this->load->view('admin/edit_akun');
+      $this->load->view('admin/footer');
+    }
+
+  }
+  public function update_akun(){
+    $id = $this->input->post('id');
+    $nama = $this->input->post('nama');
+    $password = $this->input->post('password');
+    $data = [
+      'nama' => $nama,
+      'password' => password_hash($password, PASSWORD_DEFAULT)
+    ];
+    $this->db->where('id_akun', $id);
+    $this->db->update('tb_akun', $data);
+    $this->session->set_flashdata('success', 'Data berhasil diupdate');
+    redirect('admin/akun');
+  }
   
 }
 

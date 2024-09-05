@@ -84,7 +84,21 @@
                     ?>
                     <div class="sb-nav-link-icon"><i class="fas fa-dollar"></i></div>
                     Sponsor Pertandingan
-                    </a>              
+                    </a> 
+                    
+                    <div class="sb-sidenav-menu-heading">Akun</div>
+
+                    <?php
+                    if ($title == 'Akun') {
+                        //arahih ke controller admin
+                        echo '<a class="nav-link active" href="' . base_url('admin/akun') . '">';
+                    } else {
+                        echo '<a class="nav-link" href="' . base_url('admin/akun') . '">';
+                    }
+                    ?>
+                    <div class="sb-nav-link-icon"><i class="fas fa-key"></i></div>
+                    Akun
+                    </a>  
                     
             </div>
             <div class="sb-sidenav-footer">
