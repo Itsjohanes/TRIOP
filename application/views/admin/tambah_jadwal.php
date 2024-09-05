@@ -20,7 +20,7 @@
         <!-- Form for adding a new schedule -->
         <div class="card shadow mb-4">
             <div class="card-body">
-                <?= form_open_multipart('admin/submit_sekolah'); ?>
+                <?= form_open_multipart('admin/submit_jadwal'); ?>
                     <!-- Select Sekolah 1 -->
                     <div class="form-group">
                         <label for="sekolah1">Sekolah 1</label>

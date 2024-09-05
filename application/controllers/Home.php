@@ -41,6 +41,7 @@ class Home extends CI_Controller
   public function berita(){
     $data['title'] = "Trinitas Open-Berita";
     $data['menu'] = "Berita";
+    $this->db->order_by('id_berita', 'DESC');
     $data['berita'] = $this->db->get('tb_berita')->result_array();
     $this->load->view('home/header', $data);
     $this->load->view('home/berita', $data);
@@ -58,6 +59,8 @@ class Home extends CI_Controller
     $data['title'] = "Trinitas Open-Video";
     $data['menu'] = "Video Pertandingan";
     //Menarik tb_video
+    //order desc
+    $this->db->order_by('id_youtube', 'DESC');
     $data['video'] = $this->db->get('tb_video')->result_array();
     $this->load->view('home/header', $data);
     $this->load->view('home/video', $data);
@@ -70,6 +73,7 @@ class Home extends CI_Controller
     $this->db->from('tb_jadwal');
     $this->db->join('tb_sekolah s1', 'tb_jadwal.id_sekolah1 = s1.id_sekolah', 'left'); // Relasi untuk id_sekolah1
     $this->db->join('tb_sekolah s2', 'tb_jadwal.id_sekolah2 = s2.id_sekolah', 'left'); // Relasi untuk id_sekolah2
+    $this->db->order_by('tb_jadwal.id_jadwal', 'DESC');
     $data['jadwal'] = $this->db->get()->result_array();
     $this->load->view('home/header', $data);
     $this->load->view('home/jadwal', $data);

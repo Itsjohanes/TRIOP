@@ -44,7 +44,7 @@ class Admin extends CI_Controller
   }
   public function video(){
     $data['title'] = "Video Pertandingan";
-    //ambil data dari tb_youtube
+    //ambil data dari tb_youtube desc
     $data['video'] = $this->db->get('tb_video')->result_array();
     
     if ($this->session->userdata('email') == '') {
@@ -118,7 +118,6 @@ class Admin extends CI_Controller
 
   public function berita(){
     $data['title'] = "Berita Seputar TRIOP";
-    //ambil data dari tb_youtube
     $data['video'] = $this->db->get('tb_berita')->result_array();
     
     if ($this->session->userdata('email') == '') {
