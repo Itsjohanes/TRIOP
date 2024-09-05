@@ -70,7 +70,21 @@
                     ?>
                     <div class="sb-nav-link-icon"><i class="fas fa-clock"></i></div>
                     Jadwal Pertandingan
-                    </a>                    
+                    </a>              
+                    
+                     <div class="sb-sidenav-menu-heading">Sponsor</div>
+
+                    <?php
+                    if ($title == 'Sponsor') {
+                        //arahih ke controller admin
+                        echo '<a class="nav-link active" href="' . base_url('admin/sponsor') . '">';
+                    } else {
+                        echo '<a class="nav-link" href="' . base_url('admin/sponsor') . '">';
+                    }
+                    ?>
+                    <div class="sb-nav-link-icon"><i class="fas fa-dollar"></i></div>
+                    Sponsor Pertandingan
+                    </a>              
                     
             </div>
             <div class="sb-sidenav-footer">

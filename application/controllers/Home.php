@@ -33,6 +33,7 @@ class Home extends CI_Controller
     $data['menu'] = "Home";
     //ambil data sekolah
     $data['sekolah'] = $this->db->get('tb_sekolah')->result_array();
+    $data['sponsor'] = $this->db->get('tb_sponsor')->result_array();
     $this->load->view('home/header', $data);
     $this->load->view('home/index', $data);
     $this->load->view('home/footer', $data);

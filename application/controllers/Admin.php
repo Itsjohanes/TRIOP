@@ -293,7 +293,7 @@ class Admin extends CI_Controller
           $gambar = $this->upload->data('file_name');
       } else {
           $this->session->set_flashdata('error', $this->upload->display_errors());
-          redirect('admin/tambah_berita');
+          redirect('admin/tambah_sekolah');
       }
 
       $data = [
@@ -466,7 +466,137 @@ class Admin extends CI_Controller
     $this->session->set_flashdata('success', 'Data berhasil diupdate');
     redirect('admin/jadwal');
   }
- 
+  public function sponsor(){
+  
+    if ($this->session->userdata('email') == '') {
+      redirect('auth');
+    }else{
+     $data['title'] = "Sponsor";
+     $data['sponsor'] = $this->db->get('tb_sponsor')->result_array();
+
+      
+      $this->load->view('admin/header', $data);
+      $this->load->view('admin/sidebar');
+      $this->load->view('admin/sponsor');
+      $this->load->view('admin/footer');
+    }
+    
+  }
+
+  public function tambah_sponsor(){
+    $data['title'] = "Tambah Sponsor";
+    if ($this->session->userdata('email') == '') {
+      redirect('auth');
+    } else {
+      $this->load->view('admin/header', $data);
+      $this->load->view('admin/sidebar');
+      $this->load->view('admin/tambah_sponsor');
+      $this->load->view('admin/footer');
+    }
+
+    
+  }
+public function submit_sponsor() {
+      $nama = $this->input->post('nama');
+
+      // Configuration for file upload
+      $config['upload_path']          = './assets/img/sponsor/';
+      $config['allowed_types']        = 'gif|jpg|png|jpeg';
+      $config['max_size']             = 10000;
+      $config['encrypt_name']         = TRUE; // Encrypt the file name to make it unique
+
+      $this->load->library('upload', $config);
+
+      if ($this->upload->do_upload('gambar')) {
+          $gambar = $this->upload->data('file_name');
+      } else {
+          $this->session->set_flashdata('error', $this->upload->display_errors());
+          redirect('admin/tambah_sponsor');
+      }
+
+      $data = [
+          'nama' => $nama,
+          'gambar' => $gambar
+      ];
+
+      $this->db->insert('tb_sponsor', $data);
+      $this->session->set_flashdata('success', 'Data berhasil ditambahkan');
+      redirect('admin/sponsor');
+  }
+
+  public function hapus_sponsor($id){
+        if ($this->session->userdata('email') == '') {
+      redirect('auth');
+    } else {
+      //querykan untuk mencari gambar berita dan unlink
+      $gambar = $this->db->get_where('tb_sponsor', ['id_sponsor' => $id])->row_array();
+      unlink(FCPATH . 'assets/img/sponsor/' . $gambar['gambar']);
+      $this->db->delete('tb_sponsor', ['id_sponsor' => $id]);
+      $this->session->set_flashdata('success', 'Data berhasil dihapus');
+      redirect('admin/sponsor');
+    }
+
+  }
+   public function edit_sponsor($id){
+    $data['title'] = "Edit Sponsor";
+    $data['sponsor'] = $this->db->get_where('tb_sponsor', ['id_sponsor' => $id])->row_array();
+    if ($this->session->userdata('email') == '') {
+      redirect('auth');
+    } else {
+      $this->load->view('admin/header', $data);
+      $this->load->view('admin/sidebar');
+      $this->load->view('admin/edit_sponsor');
+      $this->load->view('admin/footer');
+    }
+  }
+  public function update_sponsor() {
+      $id = $this->input->post('id');
+      $nama = $this->input->post('nama');
+
+      // Configuration for file upload
+      $config['upload_path']          = './assets/img/sponsor/';
+      $config['allowed_types']        = 'gif|jpg|png';
+      $config['max_size']             = 10000;
+      $config['encrypt_name']         = TRUE; // Encrypt the file name to make it unique
+
+      $this->load->library('upload', $config);
+
+      // Get current berita data to check for existing gambar
+      $gambar_lama = $this->db->get_where('tb_sponsor', ['id_sponsor' => $id])->row_array();
+      
+      if ($_FILES['gambar']['name']) { // Check if a new file is uploaded
+          if ($this->upload->do_upload('gambar')) {
+              $gambar = $this->upload->data('file_name');
+              
+              // Delete the old image file if it exists
+              if (file_exists(FCPATH . 'assets/img/sponsor/' . $gambar_lama['gambar'])) {
+                  unlink(FCPATH . 'assets/img/sponsor/' . $gambar_lama['gambar']);
+              }
+
+              // Prepare data with new gambar
+              $data = [
+                  'nama' => $nama,
+                  'gambar' => $gambar,
+              ];
+          } else {
+              $this->session->set_flashdata('error', $this->upload->display_errors());
+              redirect('admin/sponsor/' . $id);
+              return;
+          }
+      } else {
+          // If no new file is uploaded, keep the old gambar
+          $data = [
+              'nama' => $nama,
+              'gambar' => $gambar_lama['gambar']
+          ];
+      }
+
+      // Update the berita record
+      $this->db->where('id_sponsor', $id);
+      $this->db->update('tb_sponsor', $data);
+      $this->session->set_flashdata('success', 'Data berhasil diupdate');
+      redirect('admin/sponsor');
+  }
   
 }
 
