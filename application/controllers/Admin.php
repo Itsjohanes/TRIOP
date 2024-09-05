@@ -675,6 +675,18 @@ public function submit_sponsor() {
     $this->session->set_flashdata('success', 'Data berhasil diupdate');
     redirect('admin/akun');
   }
+  public function pendaftaran(){
+    $data['title'] = "Pendaftaran";
+    $data['pendaftaran'] = $this->db->get('tb_pendaftaran')->result_array();
+    if ($this->session->userdata('email') == '') {
+      redirect('auth');
+    } else {
+      $this->load->view('admin/header', $data);
+      $this->load->view('admin/sidebar');
+      $this->load->view('admin/pendaftaran');
+      $this->load->view('admin/footer');
+    }
+  }
   
 }
 

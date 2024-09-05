@@ -19,7 +19,7 @@
                     <div class="sb-sidenav-menu-heading">Video Youtube</div>
 
                     <?php
-                    if ($title == 'Video Youtube') {
+                    if ($title == 'Video Pertandingan') {
                         //arahih ke controller admin
                         echo '<a class="nav-link active" href="' . base_url('admin/video') . '">';
                     } else {
@@ -85,6 +85,22 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-dollar"></i></div>
                     Sponsor Pertandingan
                     </a> 
+
+                     <div class="sb-sidenav-menu-heading">Pendaftaran</div>
+
+                    <?php
+                    if ($title == 'Pendaftaran') {
+                        //arahih ke controller admin
+                        echo '<a class="nav-link active" href="' . base_url('admin/pendaftaran') . '">';
+                    } else {
+                        echo '<a class="nav-link" href="' . base_url('admin/pendaftaran') . '">';
+                    }
+                    ?>
+                    <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
+                    Pendaftaran
+                    </a> 
+
+                    
                     
                     <div class="sb-sidenav-menu-heading">Akun</div>
 
