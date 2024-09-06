@@ -44,51 +44,7 @@
           </div>
         </div>
       </section>
-      <section class="clean-block features">
-        <div class="container">
-          <div class="block-heading">
-            <h2 class="text-info">Features</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam
-              urna, dignissim nec auctor in, mattis vitae leo.
-            </p>
-          </div>
-          <div class="row justify-content-center">
-            <div class="col-md-5 feature-box">
-              <i class="icon-star icon"></i>
-              <h4>Bootstrap 5</h4>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                quam urna, dignissim nec auctor in, mattis vitae leo.
-              </p>
-            </div>
-            <div class="col-md-5 feature-box">
-              <i class="icon-pencil icon"></i>
-              <h4>Customizable</h4>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                quam urna, dignissim nec auctor in, mattis vitae leo.
-              </p>
-            </div>
-            <div class="col-md-5 feature-box">
-              <i class="icon-screen-smartphone icon"></i>
-              <h4>Responsive</h4>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                quam urna, dignissim nec auctor in, mattis vitae leo.
-              </p>
-            </div>
-            <div class="col-md-5 feature-box">
-              <i class="icon-refresh icon"></i>
-              <h4>All Browser Compatibility</h4>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                quam urna, dignissim nec auctor in, mattis vitae leo.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+
       <section class="clean-block slider dark">
         <div class="container">
           <div class="block-heading">
@@ -100,64 +56,31 @@
           </div>
           <div class="carousel slide" data-bs-ride="carousel" id="carousel-1">
             <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img
-                  class="w-100 d-block"
-                  src="assets/img/scenery/image1.jpg"
-                  alt="Slide Image"
-                />
-              </div>
-              <div class="carousel-item">
-                <img
-                  class="w-100 d-block"
-                  src="assets/img/scenery/image4.jpg"
-                  alt="Slide Image"
-                />
-              </div>
-              <div class="carousel-item">
-                <img
-                  class="w-100 d-block"
-                  src="assets/img/scenery/image6.jpg"
-                  alt="Slide Image"
-                />
-              </div>
+              <?php $active_class = 'active'; ?>
+              <?php foreach ($content as $item): ?>
+                <div class="carousel-item <?= $active_class; ?>">
+                  <img class="w-100 d-block" src="<?= base_url('assets/img/content/') . $item['gambar']; ?>" alt="Slide Image">
+                </div>
+                <?php $active_class = ''; // Remove active class after the first item ?>
+              <?php endforeach; ?>
             </div>
             <div>
-              <a
-                class="carousel-control-prev"
-                href="#carousel-1"
-                role="button"
-                data-bs-slide="prev"
-                ><span class="carousel-control-prev-icon"></span
-                ><span class="visually-hidden">Previous</span></a
-              ><a
-                class="carousel-control-next"
-                href="#carousel-1"
-                role="button"
-                data-bs-slide="next"
-                ><span class="carousel-control-next-icon"></span
-                ><span class="visually-hidden">Next</span></a
-              >
+              <a class="carousel-control-prev" href="#carousel-1" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+                <span class="visually-hidden">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carousel-1" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+                <span class="visually-hidden">Next</span>
+              </a>
             </div>
             <div class="carousel-indicators">
-              <button
-                type="button"
-                data-bs-target="#carousel-1"
-                data-bs-slide-to="0"
-                class="active"
-              ></button>
-              <button
-                type="button"
-                data-bs-target="#carousel-1"
-                data-bs-slide-to="1"
-              ></button>
-              <button
-                type="button"
-                data-bs-target="#carousel-1"
-                data-bs-slide-to="2"
-              ></button>
+              <?php foreach ($content as $index => $item): ?>
+                <button type="button" data-bs-target="#carousel-1" data-bs-slide-to="<?= $index; ?>" class="<?= ($index === 0) ? 'active' : ''; ?>"></button>
+              <?php endforeach; ?>
             </div>
           </div>
+
         </div>
       </section>
       <section class="clean-block">
