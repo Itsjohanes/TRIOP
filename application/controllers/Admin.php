@@ -696,6 +696,134 @@ public function submit_sponsor() {
     }
   }
   
+  public function content(){
+    $data['title'] = "Content";
+    $data['content'] = $this->db->get('tb_content')->result_array();
+    if ($this->session->userdata('email') == '') {
+      redirect('auth');
+    } else {
+      $this->load->view('admin/header', $data);
+      $this->load->view('admin/sidebar');
+      $this->load->view('admin/content');
+      $this->load->view('admin/footer');
+    }
+  }
+
+  public function tambah_content(){
+    $data['title'] = "Tambah Content";
+    if ($this->session->userdata('email') == '') {
+      redirect('auth');
+    } else {
+      $this->load->view('admin/header', $data);
+      $this->load->view('admin/sidebar');
+      $this->load->view('admin/tambah_content');
+      $this->load->view('admin/footer');
+    }
+  }
+      public function submit_content() {
+      $judul = $this->input->post('judul');
+
+      // Configuration for file upload
+      $config['upload_path']          = './assets/img/content/';
+      $config['allowed_types']        = 'gif|jpg|png';
+      $config['max_size']             = 10000;
+      $config['encrypt_name']         = TRUE; // Encrypt the file name to make it unique
+
+      $this->load->library('upload', $config);
+
+      if ($this->upload->do_upload('gambar')) {
+          $gambar = $this->upload->data('file_name');
+      } else {
+          $this->session->set_flashdata('error', $this->upload->display_errors());
+          redirect('admin/tambah_content');
+      }
+
+      $data = [
+          'judul' => $judul,
+          'gambar' => $gambar
+      ];
+
+      $this->db->insert('tb_content', $data);
+      $this->session->set_flashdata('success', 'Data berhasil ditambahkan');
+      redirect('admin/content');
+  }
+  public function hapus_content($id){
+    //pastikan sudah login
+    if ($this->session->userdata('email') == '') {
+      redirect('auth');
+    } else {
+      //querykan untuk mencari gambar berita dan unlink
+      $gambar = $this->db->get_where('tb_content', ['id_content' => $id])->row_array();
+      unlink(FCPATH . 'assets/img/content/' . $gambar['gambar']);
+      $this->db->delete('tb_content', ['id_content' => $id]);
+      $this->session->set_flashdata('success', 'Data berhasil dihapus');
+      redirect('admin/content');
+    }
+  }
+
+  public function edit_content($id){
+    $data['title'] = "Edit Content";
+    $data['content'] = $this->db->get_where('tb_content', ['id_content' => $id])->row_array();
+    if ($this->session->userdata('email') == '') {
+      redirect('auth');
+    } else {
+      $this->load->view('admin/header', $data);
+      $this->load->view('admin/sidebar');
+      $this->load->view('admin/edit_content');
+      $this->load->view('admin/footer');
+    }
+  }
+  public function update_content(){
+    $id = $this->input->post('id');
+    $judul = $this->input->post('judul');
+
+    // Configuration for file upload
+    $config['upload_path']          = './assets/img/content/';
+    $config['allowed_types']        = 'gif|jpg|png';
+    $config['max_size']             = 10000;
+    $config['encrypt_name']         = TRUE; // Encrypt the file name to make it unique
+
+    $this->load->library('upload', $config);
+
+    // Get current berita data to check for existing gambar
+    $gambar_lama = $this->db->get_where('tb_content', ['id_content' => $id])->row_array();
+    
+    if ($_FILES['gambar']['name']) { // Check if a new file is uploaded
+        if ($this->upload->do_upload('gambar')) {
+            $gambar = $this->upload->data('file_name');
+            
+            // Delete the old image file if it exists
+            if (file_exists(FCPATH . 'assets/img/content/' . $gambar_lama['gambar'])) {
+                unlink(FCPATH . 'assets/img/content/' . $gambar_lama['gambar']);
+            }
+
+            // Prepare data with new gambar
+            $data = [
+                'judul' => $judul,
+                'gambar' => $gambar,
+            ];
+        } else {
+            $this->session->set_flashdata('error', $this->upload->display_errors());
+            redirect('admin/content/' . $id);
+            return;
+        }
+    } else {
+        // If no new file is uploaded, keep the old gambar
+        $data = [
+            'judul' => $judul,
+            'gambar' => $gambar_lama['gambar']
+        ];
+    }
+
+    // Update the berita record
+    $this->db->where('id_content', $id);
+    $this->db->update('tb_content', $data);
+    $this->session->set_flashdata('success', 'Data berhasil diupdate');
+    redirect('admin/content');
+    
+  }
+
+  
 }
 
 

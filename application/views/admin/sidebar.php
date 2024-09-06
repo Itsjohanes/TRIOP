@@ -15,7 +15,18 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Dashboard
                     </a>
-
+                    <div class="sb-sidenav-menu-heading">Content</div>
+                    <?php
+                    if ($title == 'Content') {
+                        //arahih ke controller admin
+                        echo '<a class="nav-link active" href="' . base_url('admin/content') . '">';
+                    } else {
+                        echo '<a class="nav-link" href="' . base_url('admin/content') . '">';
+                    }
+                    ?>
+                    <div class="sb-nav-link-icon"><i class="fas fa-image"></i></div>
+                    Content
+                    </a>
                     <div class="sb-sidenav-menu-heading">Video Youtube</div>
 
                     <?php
