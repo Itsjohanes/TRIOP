@@ -1,4 +1,4 @@
-<body class="bg-primary">
+<body src = "<?php echo base_url('assets/img/smatrinitasbg.jpg');?>">
     <div id="layoutAuthentication">
         <div id="layoutAuthentication_content">
             <main>
@@ -9,7 +9,7 @@
                             ?>
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
                                 <div class="card-header">
-                                    <h3 class="text-center font-weight-light my-4">Login Admin </h3>
+                                    <h3 class="text-center font-weight-light my-4">Login Tim Admin Pubdok </h3>
                                 </div>
                                 <div class="card-body">
                                     <form action="<?= base_url('auth/login'); ?>" method="post">
@@ -36,3 +36,12 @@
                 </div>
             </main>
         </div>
+<style>
+body {
+  background-image: url('<?php echo base_url("assets/img/smatrinitasbg.jpg");?>');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+
+}
+</style>

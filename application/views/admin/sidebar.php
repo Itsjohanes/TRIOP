@@ -69,10 +69,10 @@
                     Sekolah
                     </a>
 
-                    <div class="sb-sidenav-menu-heading">Jadwal</div>
+                    <div class="sb-sidenav-menu-heading">Jadwal & Hasil</div>
 
                     <?php
-                    if ($title == 'Jadwal') {
+                    if ($title == 'Jadwal & Hasil') {
                         //arahih ke controller admin
                         echo '<a class="nav-link active" href="' . base_url('admin/jadwal') . '">';
                     } else {
@@ -80,7 +80,7 @@
                     }
                     ?>
                     <div class="sb-nav-link-icon"><i class="fas fa-clock"></i></div>
-                    Jadwal Pertandingan
+                    Jadwal & Hasil
                     </a>              
                     
                      <div class="sb-sidenav-menu-heading">Sponsor</div>
@@ -125,7 +125,11 @@
                     ?>
                     <div class="sb-nav-link-icon"><i class="fas fa-key"></i></div>
                     Akun
-                    </a>  
+                    </a>
+                    <!-- Logout -->
+                    <a class="nav-link" href="<?php echo base_url('auth/logout'); ?>">
+                        <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
+                        Logout  
                     
             </div>
             <div class="sb-sidenav-footer">

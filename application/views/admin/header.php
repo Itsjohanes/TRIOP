@@ -24,6 +24,5 @@
         <!-- Navbar Search-->
         >
         <!-- Navbar-->
-        <a href="<?php echo base_url('Auth/logout'); ?>" class="btn btn-danger">Logout</a>
 
     </nav>
