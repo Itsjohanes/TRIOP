@@ -19,7 +19,7 @@
   <body>
     <nav class="navbar navbar-expand-lg fixed-top bg-body clean-navbar">
       <div class="container">
-        <a class="navbar-brand logo" href="#">Trinitas Open</a>
+        <a class="navbar-brand logo" href="<?php echo base_url('home');?>">Trinitas Open</a>
         <button
           class="navbar-toggler"
           type="button"

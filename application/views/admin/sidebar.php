@@ -7,9 +7,9 @@
                     <?php
                     if ($title == 'Dashboard') {
                         //arahih ke controller admin
-                        echo '<a class="nav-link active" href="' . base_url('Admin') . '">';
+                        echo '<a class="nav-link active" href="' . base_url('admin') . '">';
                     } else {
-                        echo '<a class="nav-link" href="' . base_url('Admin') . '">';
+                        echo '<a class="nav-link" href="' . base_url('admin') . '">';
                     }
                     ?>
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
