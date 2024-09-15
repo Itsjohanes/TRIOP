@@ -8,6 +8,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title><?php echo $title; ?></title>
+    <link rel="icon" type="image/png" href="<?php echo base_url('assets/img/ypii-hitam.png'); ?>">
     <link href="<?= base_url('assets/'); ?>css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>

@@ -7,6 +7,8 @@
       content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
     />
     <title><?php echo $title; ?></title>
+    <link rel="icon" type="image/png" href="<?php echo base_url('assets/img/ypii-hitam.png'); ?>">
+
     <link rel="stylesheet" href="<?php echo base_url().'assets/bootstrap/css/bootstrap.min.css'; ?>" />
     <link
       rel="stylesheet"
