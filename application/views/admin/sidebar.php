@@ -129,7 +129,7 @@
                     <!-- Logout -->
                     <a class="nav-link" href="<?php echo base_url('auth/logout'); ?>">
                         <i class="fas fa-sign-out-alt"></i>
-                        Logout  
+                         &nbsp Logout  
                 </a>
                     
             </div>

@@ -39,7 +39,7 @@
                         </thead>
                         <tbody>
                             <?php $i = 1; ?>
-                            <?php foreach ($video as $j): ?>
+                            <?php foreach ($berita as $j): ?>
                                 <tr>
                                     <th scope="row"><?= $i; ?></th>
                                     <td><?= $j['judul']; ?></td>
