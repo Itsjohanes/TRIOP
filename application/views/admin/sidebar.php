@@ -128,8 +128,9 @@
                     </a>
                     <!-- Logout -->
                     <a class="nav-link" href="<?php echo base_url('auth/logout'); ?>">
-                        <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
+                        <i class="fas fa-sign-out-alt"></i>
                         Logout  
+                </a>
                     
             </div>
             <div class="sb-sidenav-footer">
