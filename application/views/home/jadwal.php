@@ -1,52 +1,82 @@
-   <main class="page">
-      <section class="clean-block">
+<?php
+    // Fungsi untuk memotong string hingga tanda "-"
+    function sub_string($formatted_date) {
+        // Pisahkan string berdasarkan "-"
+        $parts = explode('-', $formatted_date);
+        
+        // Ambil bagian pertama saja sebelum tanda "-"
+        return trim($parts[0]); // trim untuk menghapus spasi yang tidak diinginkan
+    }
+?>
+
+
+
+<main class="page">
+    <section class="clean-block">
         <div class="container">
-          <div class="block-heading">
-            <h2 class="text-info">Jadwal</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam
-              urna, dignissim nec auctor in, mattis vitae leo.
-            </p>
-          </div>
-          <div class="row justify-content-center">
-          <?php foreach ($jadwal as $item): ?>
-          <div class="card">
-            <div class="card-header">
-              <?= tanggal_indonesia($item['tanggal']); ?> <!-- Tampilkan Hari, Tanggal, dan Waktu dalam Format Indonesia -->
+            <div class="block-heading">
+                <h2 class="text-info">Jadwal</h2>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo.
+                </p>
             </div>
-            <div class="card-body">
-              <blockquote class="blockquote mb-0">
-                <div class="image-container">
-                  <!-- Gambar pertama -->
-                  <div class="image-item">
-                    <img width="300px" height="300px" src="<?= base_url('assets/img/sekolah/').$item['gambar_sekolah1']; ?>"  alt="Responsive image">
-                    <p class="image-text"><?= $item['sekolah1']; ?></p>
-                    <p class="image-text"><?= $item['skor1']; ?></p>
+            <div class="row justify-content-center">
+                <?php 
+                $last_date = ''; // Variable untuk menyimpan tanggal sebelumnya
+                foreach ($jadwal as $item): 
+                    // Format tanggal tanpa waktu
+                    $formatted_date = tanggal_indonesia(date('Y-m-d', strtotime($item['tanggal'])));
+                    
+                    // Jika tanggal baru, tampilkan heading baru
+                    if ($formatted_date !== $last_date): 
+                        $last_date = $formatted_date; // Update last_date
 
-                  </div>
-                  
-                  <!-- Teks vs di tengah -->
-                  <span class="vs-text">vs</span>
-                  
-                  <!-- Gambar kedua -->
-                  <div class="image-item">
-                    <img width="300px" height="300px" src="<?= base_url('assets/img/sekolah/').$item['gambar_sekolah2']; ?>"  alt="Responsive image">
-                    <p class="image-text"><?= $item['sekolah2']; ?></p>
-                    <p class="image-text"><?= $item['skor2']; ?></p>
 
-                  </div>
+                    
+                ?>
+                    <div class="col-12">
+                        <h3 class="text-center"><?= sub_string($formatted_date); ?></h3> <!-- Tampilkan Tanggal sebagai Heading -->
+                        <hr>
+                    </div>
+                <?php 
+                    endif; // End pengelompokan per tanggal
+                ?>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <?= date('H:i', strtotime($item['tanggal'])); ?> <!-- Tampilkan Hanya Waktu -->
+                    </div>
+                    <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                            <div class="image-container">
+                                <!-- Gambar pertama -->
+                                <div class="image-item">
+                                    <img width="300px" height="300px" src="<?= base_url('assets/img/sekolah/').$item['gambar_sekolah1']; ?>" alt="Responsive image">
+                                    <p class="image-text"><?= $item['sekolah1']; ?></p>
+                                    <p class="image-text"><?= $item['skor1']; ?></p>
+                                </div>
+                                
+                                <!-- Teks vs di tengah -->
+                                <span class="vs-text">vs</span>
+                                
+                                <!-- Gambar kedua -->
+                                <div class="image-item">
+                                    <img width="300px" height="300px" src="<?= base_url('assets/img/sekolah/').$item['gambar_sekolah2']; ?>" alt="Responsive image">
+                                    <p class="image-text"><?= $item['sekolah2']; ?></p>
+                                    <p class="image-text"><?= $item['skor2']; ?></p>
+                                </div>
+                            </div>
+                        </blockquote>
+                    </div>
                 </div>
-              </blockquote>
+                <br>
+                <?php endforeach; ?>
             </div>
-          </div>
-          <br>
+        </div>
+    </section>
+</main>
 
-        <?php endforeach; ?>
-
-
-      </section>
-    </main>
-    <style>
+<style>
   .image-container {
     display: flex;
     align-items: center;
