@@ -42,6 +42,13 @@ class Admin extends CI_Controller
     $data['title'] = "Dashboard";
 
     $data['jumlahAdmin'] = $this->db->get_where('tb_akun', ['aktif' => 1])->num_rows();
+    $data['jumlahVideo'] = $this->db->get('tb_video')->num_rows();
+    $data['jumlahBerita'] = $this->db->get('tb_berita')->num_rows();
+    $data['jumlahSekolah'] = $this->db->get('tb_sekolah')->num_rows();
+    $data['jumlahJadwal'] = $this->db->get('tb_jadwal')->num_rows();
+    $data['jumlahSponsor'] = $this->db->get('tb_sponsor')->num_rows();
+    $data['jumlahPendaftaran'] = $this->db->get('tb_pendaftaran')->num_rows();
+    $data['jumlahContent'] = $this->db->get('tb_content')->num_rows();
     $this->load->view('admin/header', $data);
     $this->load->view('admin/sidebar');
     $this->load->view('admin/dashboard');

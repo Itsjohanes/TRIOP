@@ -30,14 +30,14 @@
                         </div>
 
             <!-- Wrapper for Horizontal Scroll -->
-                    <div class="filter-buttons-wrapper d-flex justify-content-center" style="overflow-x: auto; white-space: nowrap;">
-                                <div class="filter-buttons text-center mb-4 d-inline-block">
-                                    <button class="btn btn-secondary" onclick="filterJadwal('all')">All</button>
-                                    <?php foreach ($unique_dates as $date): ?>
-                                        <button class="btn btn-secondary" onclick="filterJadwal('<?= $date; ?>')"><?= $date; ?></button>
-                                    <?php endforeach; ?>
-                                </div>
-                     </div>
+            <div class="filter-buttons-wrapper d-flex justify-content-center" style="overflow-x: auto; white-space: nowrap;">
+                <div class="filter-buttons text-center mb-4 d-inline-block">
+                    <button class="btn btn-secondary square-button" onclick="filterJadwal('all')">All</button>
+                    <?php foreach ($unique_dates as $date): ?>
+                        <button class="btn btn-secondary square-button" onclick="filterJadwal('<?= $date; ?>')"><?= $date; ?></button>
+                    <?php endforeach; ?>
+                </div>
+            </div>
 
 
 
@@ -161,6 +161,13 @@
         color: white;
     }
 
-   
+       .square-button {
+        width: 60px;  /* Menentukan ukuran lebar */
+        height: 60px; /* Menentukan ukuran tinggi agar tombol berbentuk persegi */
+        padding: 0;
+        font-size: 8px; /* Mengatur ukuran font menjadi lebih kecil */
+        white-space: normal;
+
+    }
 
 </style>
