@@ -88,33 +88,38 @@ class Home extends CI_Controller
     $this->load->view('home/footer', $data);
   }
   public function submit_pendaftaran(){
-    $nama = $this->input->post('nama');
-    $sekolah = $this->input->post('sekolah');
-    $nomor = $this->input->post('nomor');
-    $bukti = $_FILES['bukti']['name'];
-    if ($bukti) {
-      $config['allowed_types'] = 'jpg|jpeg|png';
-      $config['max_size'] = '2048';
-      $config['upload_path'] = './assets/img/pendaftaran/';
-      $config['encrypt_name']         = TRUE; // Encrypt the file name to make it unique
-      $this->load->library('upload', $config);
-      if ($this->upload->do_upload('bukti')) {
-        $bukti = $this->upload->data('file_name');
-        $data = [
-          'nama' => $nama,
-          'sekolah' => $sekolah,
-          'nomor' => $nomor,
-          'bukti' => $bukti
-        ];
-        $this->db->insert('tb_pendaftaran', $data);
-        $this->session->set_flashdata('category_success', 'Pendaftaran Berhasil');
-        redirect('home/pendaftaran');
+      $nama = $this->input->post('nama');
+      $sekolah = $this->input->post('sekolah');
+      $nomor = $this->input->post('nomor');
+      $bukti = $_FILES['bukti']['tmp_name']; // Get the file's temporary path
+
+      if ($bukti) {
+          $allowed_types = ['image/jpg', 'image/jpeg', 'image/png'];
+          $mime_type = mime_content_type($bukti); // Check file mime type
+
+          if (in_array($mime_type, $allowed_types)) {
+              // Read file content and convert to base64
+              $bukti_content = file_get_contents($bukti);
+              $bukti_base64 = base64_encode($bukti_content);
+              $data = [
+                  'nama' => $nama,
+                  'sekolah' => $sekolah,
+                  'nomor' => $nomor,
+                  'bukti' => $bukti_base64 // Save base64 image
+              ];
+              $this->db->insert('tb_pendaftaran', $data);
+              $this->session->set_flashdata('category_success', 'Pendaftaran Berhasil');
+              redirect('home/pendaftaran');
+          } else {
+              $this->session->set_flashdata('category_error', 'Tipe file tidak didukung');
+              redirect('home/pendaftaran');
+          }
       } else {
-        $this->session->set_flashdata('category_error', 'Pendaftaran Gagal');
-        redirect('home/pendaftaran');
+          $this->session->set_flashdata('category_error', 'Pendaftaran Gagal');
+          redirect('home/pendaftaran');
       }
-    }
   }
+
   
   
 }

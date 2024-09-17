@@ -1,57 +1,73 @@
-<footer id="footer" class="footer bg-dark text-light">
-  <div class="footer-newsletter"></div>
+<footer id="footer" class="footer bg-dark text-light pt-5 pb-4">
+  <div class="container">
+    <div class="row">
+      <!-- About Section -->
+      <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+        <h5 class="text-uppercase">SMA Trinitas Bandung</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2">Jalan Kebon Jati No. 209 Bandung</li>
+          <li class="mb-2">Jawa Barat, Indonesia</li>
+          <li class="mb-2">Telp: (022) 6019854</li>
+          <li class="mb-2">Whatsapp: 081386828551 </li>
 
-  <div class="container footer-top">
-    <div class="row gy-4">
-      <div class="col-lg-4 col-md-6 footer-about">
-  
-        <div class="footer-contact pt-3">
-          <p>SMA Trinitas Bandung</p>
-          <p>Jalan Kebon Jati No. 209 Bandung</p>
-          <p>Jawa Barat, Indonesia</p>
-        </div>
-      </div>
-
-      <div class="col-lg-2 col-md-3 footer-links">
-        <h4>Useful Links</h4>
-        <ul>
-          <li>
+        </ul>
+        <ul class="list-unstyled">
+          <li class="mb-2">
             <i class="bi bi-chevron-right"></i>
-            <a href="https://smatrinitas.sch.id" class="text-light"
-              >Website SMA Trinitas Bandung</a
-            >
+            <a href="https://smatrinitas.sch.id" class="text-light">Website SMA Trinitas</a>
           </li>
-          <li>
+          <li class="mb-2">
             <i class="bi bi-chevron-right"></i>
-            <a href="https://ppdb.smatrinitas.sch.id" class="text-light"
-              >PPDB SMA Trinitas Bandung</a
-            >
+            <a href="https://ppdb.smatrinitas.sch.id" class="text-light">PPDB SMA Trinitas</a>
           </li>
         </ul>
       </div>
-
-
+ <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+        <h5>Lokasi Kami</h5>
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe 
+            class="embed-responsive-item" 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.7765400092726!2d107.5936759167249!3d-6.917297835238341!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e617342492f1%3A0xe1e7819802760b58!2sYayasan%20Penyelenggaraan%20Ilahi%20Indonesia!5e0!3m2!1sid!2sid!4v1656998883461!5m2!1sid!2sid"            width="100%" 
+            height="300" 
+            frameborder="0" 
+            style="border:0;" 
+            allowfullscreen="" 
+            aria-hidden="false" 
+            tabindex="0">
+          </iframe>
+        </div>
+      </div>
+ 
     </div>
-  </div>
 
-  <div class="container copyright text-center mt-4">
-    <p>
-      © <span>Copyright</span>
-      <strong class="px-1 sitename">Tim PUBDOK TRIOP SMA Trinitas</strong>
-      <span>All Rights Reserved</span>
-    </p>
-    <div class="credits">
-      Designed by
-      <a href="https://smatrinitas.sch.id/" class="text-light"
-        >Tim PUBDOK TRIOP Informatika SMA Trinitas</a
-      >
+    <hr class="my-4 bg-light">
+
+    <!-- Copyright and Credits -->
+    <div class="row">
+      <div class="col text-center">
+        <p class="mb-0">
+          © Copyright
+          <strong class="sitename">Tim PUBDOK TRIOP SMA Trinitas</strong>. All Rights Reserved.
+        </p>
+        <p class="credits">
+          Designed by
+          <a href="https://smatrinitas.sch.id/" class="text-light">Tim PUBDOK TRIOP SMA Trinitas</a>
+        </p>
+      </div>
     </div>
   </div>
 </footer>
 
 <a href="https://wa.me/6281934172542" class="whatsapp-float" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
 </a>
+
+<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center bg-light text-dark">
+  <i class="fas fa-chevron-up"></i>
+</a>
+
+<!-- FontAwesome Kit -->
+<script src="https://kit.fontawesome.com/40ffee17c2.js" crossorigin="anonymous"></script>
 
 <style>
   .whatsapp-float {
@@ -67,24 +83,27 @@
     font-size: 30px;
     z-index: 100;
     box-shadow: 2px 2px 5px #999;
-}
+  }
 
-.whatsapp-float img {
+  .whatsapp-float img {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-}
+  }
 
+  .scroll-top {
+    position: fixed;
+    right: 20px;
+    bottom: 80px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    z-index: 99;
+    display: none;
+    transition: all 0.3s;
+  }
+
+  .scroll-top.show {
+    display: flex;
+  }
 </style>
-
-
-<!-- Scroll Top -->
-<a
-  href="#"
-  id="scroll-top"
-  class="scroll-top d-flex align-items-center justify-content-center bg-light text-dark"
-  ><i class="fa fa-instagram" aria-hidden="true"></i>
-</a>
-<script src="https://kit.fontawesome.com/40ffee17c2.js" crossorigin="anonymous"></script>
-
-</html>
