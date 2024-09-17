@@ -9,7 +9,10 @@
                             ?>
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
                                 <div class="card-header">
-                                    <h3 class="text-center font-weight-light my-4">Login Tim Admin Pubdok </h3>
+                                    <div style="text-align: center;">
+                                        <img src="<?= base_url('assets/img/ypii-hitam.png'); ?>" width="300" height="250" alt="Responsive image">
+                                        <h3>Login Admin</h3>
+                                    </div>
                                 </div>
                                 <div class="card-body">
                                     <form action="<?= base_url('auth/login'); ?>" method="post">
