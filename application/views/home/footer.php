@@ -3,7 +3,7 @@
     <div class="row">
       <!-- About Section -->
       <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
-        <h5 class="text-uppercase">SMA Trinitas Bandung</h5>
+        <h5>SMA Trinitas Bandung</h5>
         <ul class="list-unstyled">
           <li class="mb-2">Jalan Kebon Jati No. 209 Bandung</li>
           <li class="mb-2">Jawa Barat, Indonesia</li>
@@ -43,16 +43,17 @@
     <hr class="my-4 bg-light">
 
     <!-- Copyright and Credits -->
+    
     <div class="row">
       <div class="col text-center">
-        <p class="mb-0">
+        <h6 class="mb-0">
           © Copyright
           <strong class="sitename">Tim PUBDOK TRIOP SMA Trinitas</strong>. All Rights Reserved.
-        </p>
-        <p class="credits">
+        </h6>
+        <h6 class="credits">
           Designed by
           <a href="https://smatrinitas.sch.id/" class="text-light">Tim PUBDOK TRIOP SMA Trinitas</a>
-        </p>
+        </h6>
       </div>
     </div>
   </div>
