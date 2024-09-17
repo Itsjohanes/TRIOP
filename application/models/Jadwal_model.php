@@ -10,6 +10,8 @@ class Jadwal_model extends CI_Model
         $this->db->from('tb_jadwal');
         $this->db->join('tb_sekolah s1', 'tb_jadwal.id_sekolah1 = s1.id_sekolah', 'left');
         $this->db->join('tb_sekolah s2', 'tb_jadwal.id_sekolah2 = s2.id_sekolah', 'left');
+        //order by tanggal asc
+        $this->db->order_by('tanggal', 'asc');
         return $this->db->get()->result_array();
     }
 

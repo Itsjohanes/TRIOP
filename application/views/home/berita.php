@@ -3,7 +3,6 @@
             <div class="container">
                 <div class="block-heading">
                     <h2 class="text-info">Berita Seputar Triop</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo.</p>
                 </div>
 					<?php foreach ($berita as $a): ?>
 					<div class="row d-flex flex-wrap justify-content-center">

@@ -105,10 +105,11 @@ class Admin extends CI_Controller
     }
 
     // Handle video update (if applicable)
-    public function update_video($id)
+    public function update_video()
     {
         $judul = $this->input->post('judul');
         $link = $this->input->post('link');
+        $id = $this->input->post('id');
 
         $data = [
             'judul' => $judul,
@@ -231,7 +232,8 @@ class Admin extends CI_Controller
                     'gambar' => $gambar
                 ];
             } else {
-                $this->session->set_flashdata('error', $this->upload->display_errors());
+                $this->Berita_model->update_berita($id, $data); // Update via model
+
                 redirect('admin/berita/' . $id);
                 return;
             }
@@ -246,7 +248,7 @@ class Admin extends CI_Controller
 
         $this->Berita_model->update_berita($id, $data); // Update via model
         $this->session->set_flashdata('success', 'Data berhasil diupdate');
-        redirect('admin/berita');
+        //redirect('admin/berita');
     }
     public function sekolah()
     {

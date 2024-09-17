@@ -3,7 +3,7 @@
       <section
         class="clean-block clean-hero"
         style="
-          background-image: url('assets/img/tech/image4.jpg');
+          background-image: url('assets/img/triop2023.png');
           color: rgba(9, 162, 255, 0.85);
         "
       >
@@ -19,22 +19,17 @@
         <div class="container">
           <div class="block-heading">
             <h2 class="text-info">Info</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam
-              urna, dignissim nec auctor in, mattis vitae leo.
-            </p>
+           
           </div>
           <div class="row align-items-center">
             <div class="col-md-6">
-              <img class="img-thumbnail" src="assets/img/scenery/image5.jpg" />
+              <img class="img-thumbnail" src="<?php echo base_url('assets/img/triop2023.png');?>" />
             </div>
             <div class="col-md-6">
               <h3>Pendaftaran Trinitas Open</h3>
               <div>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Untuk melakukan pendaftaran perlombaan basket Trinitas Open anda dapat menekan link berikut ini:
                 </p>
               </div>
               <a href = "<?php echo base_url('home/pendaftaran');?>" class="btn btn-outline-primary btn-lg" type="button">
@@ -49,10 +44,7 @@
         <div class="container">
           <div class="block-heading">
             <h2 class="text-info">Dokumentasi</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam
-              urna, dignissim nec auctor in, mattis vitae leo.
-            </p>
+           
           </div>
           <div class="carousel slide" data-bs-ride="carousel" id="carousel-1">
             <div class="carousel-inner">
@@ -87,10 +79,7 @@
         <div class="container">
           <div class="block-heading">
             <h2 class="text-info">Daftar Sekolah</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam
-              urna, dignissim nec auctor in, mattis vitae leo.
-            </p>
+           
           </div>
           <div class="row justify-content-center">
         <?php foreach ($sekolah as $item): ?>
@@ -117,10 +106,7 @@
         <div class="container">
           <div class="block-heading">
             <h2 class="text-info">Sponsor</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam
-              urna, dignissim nec auctor in, mattis vitae leo.
-            </p>
+           
           </div>
           <div class="row justify-content-center">
           <?php foreach ($sponsor as $i): ?>

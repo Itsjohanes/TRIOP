@@ -4,13 +4,11 @@
       <!-- About Section -->
       <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
         <h5>SMA Trinitas Bandung</h5>
-        <ul class="list-unstyled">
-          <li class="mb-2">Jalan Kebon Jati No. 209 Bandung</li>
-          <li class="mb-2">Jawa Barat, Indonesia</li>
-          <li class="mb-2">Telp: (022) 6019854</li>
-          <li class="mb-2">Whatsapp: 081386828551 </li>
+          <h6>Jalan Kebon Jati No. 209 Bandung</h6>
+          <h6>Jawa Barat, Indonesia</h6>
+          <h6>Telp: (022) 6019854</li>
+          <h6>Whatsapp: 081386828551 </h6>
 
-        </ul>
         <ul class="list-unstyled">
           <li class="mb-2">
             <i class="bi bi-chevron-right"></i>

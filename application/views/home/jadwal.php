@@ -25,10 +25,8 @@
                 <section class="clean-block">
                     <div class="container">
                         <div class="block-heading">
-                            <h2 class="text-info">Jadwal</h2>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo.
-                            </p>
+                            <h2 class="text-info">Jadwal & Hasil</h2>
+                          
                         </div>
 
             <!-- Wrapper for Horizontal Scroll -->

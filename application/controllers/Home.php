@@ -74,7 +74,7 @@ class Home extends CI_Controller
     $this->db->from('tb_jadwal');
     $this->db->join('tb_sekolah s1', 'tb_jadwal.id_sekolah1 = s1.id_sekolah', 'left'); // Relasi untuk id_sekolah1
     $this->db->join('tb_sekolah s2', 'tb_jadwal.id_sekolah2 = s2.id_sekolah', 'left'); // Relasi untuk id_sekolah2
-    $this->db->order_by('tb_jadwal.id_jadwal', 'ASC');
+    $this->db->order_by('tb_jadwal.tanggal', 'ASC');
     $data['jadwal'] = $this->db->get()->result_array();
     $this->load->view('home/header', $data);
     $this->load->view('home/jadwal', $data);
