@@ -31,8 +31,9 @@
                                 <th scope="col">No.</th>
                                 <th scope="col">Nama</th>
                                 <th scope="col">Sekolah</th>
-                                 <th scope="col">Kontak</th>
+                                <th scope="col">Kontak</th>
                                 <th scope="col">Gambar</th>
+                                <th scope="col">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -49,6 +50,9 @@
                                         $mime_type = finfo_buffer(finfo_open(), base64_decode($j['bukti']), FILEINFO_MIME_TYPE);
                                         ?>
                                         <img width="300px" height="300px" src="data:<?php echo $mime_type; ?>;base64,<?php echo $j['bukti']; ?>" />
+                                    </td>
+                                    <td>
+                                        <a href="<?= base_url('admin/hapus_pendaftaran/' . $j['id_pendaftaran']); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a>
                                     </td>
                                 </tr>
                                 <?php $i++; ?>

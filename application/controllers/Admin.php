@@ -681,6 +681,12 @@ class Admin extends CI_Controller
         $this->load->view('admin/pendaftaran');
         $this->load->view('admin/footer');
     }
+    public function hapus_pendaftaran($id){
+        $this->Pendaftaran_model->delete_pendaftaran($id);
+        $this->session->set_flashdata('success', 'Data berhasil dihapus');
+        redirect('admin/pendaftaran');
+
+    }
   
    // Display content data
     public function content()

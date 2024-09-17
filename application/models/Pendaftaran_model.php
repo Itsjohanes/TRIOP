@@ -8,4 +8,9 @@ class Pendaftaran_model extends CI_Model
     {
         return $this->db->get('tb_pendaftaran')->result_array();
     }
+
+    public function delete_pendaftaran($id){
+        $this->db->where('id_pendaftaran', $id);
+        $this->db->delete('tb_pendaftaran');
+    }
 }
