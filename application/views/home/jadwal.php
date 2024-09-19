@@ -30,14 +30,17 @@
                         </div>
 
             <!-- Wrapper for Horizontal Scroll -->
-            <div class="filter-buttons-wrapper d-flex justify-content-center" style="overflow-x: auto; white-space: nowrap;">
-                <div class="filter-buttons text-center mb-4 d-inline-block">
-                    <button class="btn btn-secondary square-button" onclick="filterJadwal('all')">All</button>
-                    <?php foreach ($unique_dates as $date): ?>
-                        <button class="btn btn-secondary square-button" onclick="filterJadwal('<?= $date; ?>')"><?= $date; ?></button>
-                    <?php endforeach; ?>
+                <div id="slider" class="filter-buttons-wrapper" style="overflow: hidden;">
+                    <div class="swipe-wrap">
+                        <div class="filter-buttons text-center mb-4 d-inline-block">
+                            <button class="btn btn-secondary square-button" onclick="filterJadwal('all')">All</button>
+                            <?php foreach ($unique_dates as $date): ?>
+                                <button class="btn btn-secondary square-button" onclick="filterJadwal('<?= $date; ?>')"><?= $date; ?></button>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
                 </div>
-            </div>
+
 
 
 
@@ -155,19 +158,113 @@
             color: #333;
         }
 
-    /* Tombol yang sedang aktif */
-    .btn-active {
-        background-color: #007bff; /* Warna biru untuk tombol aktif */
-        color: white;
-    }
+        /* Tombol yang sedang aktif */
+        .btn-active {
+            background-color: #007bff; /* Warna biru untuk tombol aktif */
+            color: white;
+        }
 
-       .square-button {
-        width: 60px;  /* Menentukan ukuran lebar */
-        height: 60px; /* Menentukan ukuran tinggi agar tombol berbentuk persegi */
-        padding: 0;
-        font-size: 8px; /* Mengatur ukuran font menjadi lebih kecil */
-        white-space: normal;
+        .square-button {
+            width: 60px;  /* Menentukan ukuran lebar */
+            height: 60px; /* Menentukan ukuran tinggi agar tombol berbentuk persegi */
+            padding: 0;
+            font-size: 8px; /* Mengatur ukuran font menjadi lebih kecil */
+            white-space: normal;
 
-    }
+        }
+        .filter-buttons-wrapper {
+            overflow-x: auto;
+            white-space: nowrap;
+            scroll-snap-type: x mandatory; /* Mengaktifkan scroll snap */
+            -webkit-overflow-scrolling: touch; /* Menghaluskan scroll pada perangkat mobile */
+            padding-left: 15px; /* Jarak dari tepi kiri */
+            padding-right: 15px; /* Jarak dari tepi kanan */
+        }
+
+        .square-button {
+            scroll-snap-align: start; /* Menjaga tombol-tombol berada pada posisi awal saat di-scroll */
+            margin-right: 10px;
+            min-width: 80px; /* Sesuaikan lebar minimum tombol */
+            flex-shrink: 0; /* Pastikan tombol tidak menyusut */
+        }
+        .filter-buttons-wrapper {
+            display: flex;
+            justify-content: flex-start; /* Mulai dari kiri */
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            width: 100%;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .filter-buttons button:first-child {
+            margin-left: 10px;
+        }
+
+        /* Wrapper harus overflow pada mobile dan responsive di desktop */
+        #slider {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .swipe-wrap {
+            display: flex;
+            width: 100%;
+            justify-content: center; /* Untuk center di desktop */
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: center; /* Untuk memastikan tombol di tengah pada desktop */
+            white-space: nowrap;
+        }
+
+        .square-button {
+            min-width: 100px; /* Sesuaikan dengan ukuran tombol */
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 768px) {
+            /* Mode mobile */
+            .filter-buttons-wrapper {
+                justify-content: flex-start; /* Mulai dari kiri pada mobile */
+                overflow-x: auto; /* Aktifkan horizontal scrolling */
+                scroll-snap-type: x mandatory; /* Aktifkan scroll snap */
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .swipe-wrap {
+                justify-content: flex-start; /* Agar swipe berjalan dari kiri ke kanan */
+            }
+
+            .filter-buttons {
+                justify-content: flex-start; /* Item mulai dari kiri */
+            }
+        }
+
+
+
 
 </style>
+
+<script>
+var slider = new Swipe(document.getElementById('slider'), {
+  startSlide: 0,
+  speed: 400,
+  draggable: true,
+  auto: false,
+  continuous: false, // Set to false if you don't want infinite looping
+  stopPropagation: true,
+  callback: function(index, element) {
+    console.log('Slide changed to ' + index);
+  },
+  transitionEnd: function(index, element) {
+    console.log('Transition ended on slide ' + index);
+  }
+});
+
+</script>
+<script src="https://unpkg.com/swipejs@2.2.1/swipe.min.js"></script>
