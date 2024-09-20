@@ -25,7 +25,7 @@
         <div class="embed-responsive embed-responsive-16by9">
           <iframe 
             class="embed-responsive-item" 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.7765400092726!2d107.5936759167249!3d-6.917297835238341!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e617342492f1%3A0xe1e7819802760b58!2sYayasan%20Penyelenggaraan%20Ilahi%20Indonesia!5e0!3m2!1sid!2sid!4v1656998883461!5m2!1sid!2sid"            width="100%" 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.7799989168757!2d107.5890947748096!3d-6.916885393082693!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e6173b68bd4d%3A0x28dece77f2a6361d!2sSMA%20TRINITAS%20BANDUNG!5e0!3m2!1sid!2sid!4v1726837133221!5m2!1sid!2sid"            width="100%" 
             height="300" 
             frameborder="0" 
             style="border:0;" 
