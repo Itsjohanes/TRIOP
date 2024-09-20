@@ -30,6 +30,7 @@
             type="text"
             id="nama"
             name="nama"
+            placeholder= "Contoh: Atep, S.T."
             data-bs-theme="light"
             required
           />
@@ -40,6 +41,7 @@
             class="form-control"
             type="text"
             id="sekolah"
+            placeholder= "Contoh: SMA Trinitas"
             name="sekolah"
             required
             
@@ -53,12 +55,13 @@
             type="text"
             id="nomor"
             name="nomor"
+            placeholder="Contoh: 08193010001032"
             required           
             data-bs-theme="light"
           />
         </div>
         <div class="mb-3">
-          <label class="form-label" for="bukti">Bukti Bayar</label>
+          <label class="form-label" for="bukti">Bukti Bayar (Format .png, .jpg, .jpeg)</label>
           <input
             class="form-control"
             id="bukti"

@@ -18,9 +18,6 @@
         }
     }
 ?>
-            <style>
-
-            </style>
             <main class="page">
                 <section class="clean-block">
                     <div class="container">
