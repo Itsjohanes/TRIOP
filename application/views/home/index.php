@@ -35,6 +35,7 @@
           </p>
         </div>
       </section>
+
       <section class="clean-block clean-info dark">
         <div class="container">
           <div class="block-heading">
@@ -59,26 +60,24 @@
           </div>
         </div>
       </section>
+      <hr class="my-4"> <!-- Garis pemisah antar section -->
 
 
       <section class="clean-block slider dark">
           <div class="block-heading">
-            <h2 class="text-info">Jadwal & Score</h2>
+            <h2 class="text-info">Jadwal & Score Terkini</h2>
              <div class="row justify-content-center" id="jadwal-container">
 
               <?php 
-                            $last_date = ''; // Variable untuk menyimpan tanggal sebelumnya
+               $last_date = ''; // Variable untuk menyimpan tanggal sebelumnya
                 foreach ($jadwal as $item): 
                     // Format tanggal tanpa waktu
                     $formatted_date = tanggal_indonesia(date('Y-m-d', strtotime($item['tanggal'])));
                     $date_only = sub_string($formatted_date); // Ambil hanya bagian tanggal
                 ?>
                     <div class="col-12 col-md-10 jadwal-item" data-date="<?= $date_only; ?>">
-                        <?php if ($formatted_date !== $last_date): 
-                            $last_date = $formatted_date; ?>
                             <h3 class="text-center"><?= $date_only; ?></h3> <!-- Tampilkan Tanggal sebagai Heading -->
                             <hr>
-                        <?php endif; ?>
                         
                         <div class="card">
                             <div class="card-header text-center">
@@ -114,6 +113,7 @@
                 <?php endforeach; ?>
                         </div>
           </div>
+          <hr class="my-4"> <!-- Garis pemisah antar section -->
 
       
       </section>
@@ -152,6 +152,8 @@
 
         </div>
       </section>
+      <hr class="my-4"> <!-- Garis pemisah antar section -->
+
       <section class="clean-block">
         <div class="container">
           <div class="block-heading">
@@ -178,6 +180,7 @@
     <?php endforeach; ?>
         </div>
       </section>
+      <hr class="my-4"> <!-- Garis pemisah antar section -->
 
       <section class="clean-block">
         <div class="container">
