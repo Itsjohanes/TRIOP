@@ -419,11 +419,18 @@ class Admin extends CI_Controller
             'id_sekolah2' => $id_sekolah2,
             'tanggal' => $tanggal,
             'skor1' => $skor1,
-            'skor2' => $skor2
+            'skor2' => $skor2,
+            'utama' => 0
         ];
 
         $this->Jadwal_model->insert_jadwal($data); // Insert via model
         $this->session->set_flashdata('success', 'Data berhasil ditambahkan');
+        redirect('admin/jadwal');
+    }
+    public function nyalakan_jadwal_utama($id){
+        $this->db->query("UPDATE tb_jadwal SET utama = 0");
+        $this->db->query("UPDATE tb_jadwal SET utama = 1 WHERE id_jadwal = $id");
+        $this->session->set_flashdata('success', 'Jadwal berhasil dijadikan utama');
         redirect('admin/jadwal');
     }
 

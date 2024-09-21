@@ -50,6 +50,13 @@
                                     <td><?= $j['skor1']; ?></td>
                                     <td><?= $j['skor2']; ?></td>
                                     <td>
+                                        <!-- buatkan percabangan dilihat aktif nya 0 apa 1 -->
+                                    <?php if ($j['utama'] == 0) : ?>
+                                        <a href="<?= base_url('admin/nyalakan_jadwal_utama/' . $j['id_jadwal']); ?>" class="btn btn-primary">
+                                            <i class="fas fa-check"></i>
+                                        </a>
+                                    <?php endif; ?>
+
                                         
                                         <a href="<?= base_url(); ?>admin/hapus_jadwal/<?= $j['id_jadwal']; ?>" class="btn btn-danger" onclick="return confirm('Data akan dihapus');">
                                             <i class="fas fa-trash-alt"></i>

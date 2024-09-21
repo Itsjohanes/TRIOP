@@ -35,6 +35,14 @@ class Home extends CI_Controller
     $data['sekolah'] = $this->db->get('tb_sekolah')->result_array();
     $data['sponsor'] = $this->db->get('tb_sponsor')->result_array();
     $data['content'] = $this->db->get('tb_content')->result_array();
+
+    $this->db->select('tb_jadwal.*, s1.nama as sekolah1, s1.gambar as gambar_sekolah1, s2.nama as sekolah2, s2.gambar as gambar_sekolah2');
+    $this->db->from('tb_jadwal');
+    $this->db->join('tb_sekolah s1', 'tb_jadwal.id_sekolah1 = s1.id_sekolah', 'left'); // Relasi untuk id_sekolah1
+    $this->db->join('tb_sekolah s2', 'tb_jadwal.id_sekolah2 = s2.id_sekolah', 'left'); // Relasi untuk id_sekolah2
+    $this->db->order_by('tb_jadwal.tanggal', 'ASC');
+    $this->db->where('tb_jadwal.utama', 1);
+    $data['jadwal'] = $this->db->get()->result_array();
     $this->load->view('home/header', $data);
     $this->load->view('home/index', $data);
     $this->load->view('home/footer', $data);
@@ -75,6 +83,8 @@ class Home extends CI_Controller
     $this->db->join('tb_sekolah s1', 'tb_jadwal.id_sekolah1 = s1.id_sekolah', 'left'); // Relasi untuk id_sekolah1
     $this->db->join('tb_sekolah s2', 'tb_jadwal.id_sekolah2 = s2.id_sekolah', 'left'); // Relasi untuk id_sekolah2
     $this->db->order_by('tb_jadwal.tanggal', 'ASC');
+    //where
+    $this->db->where('tb_jadwal.utama', 1);
     $data['jadwal'] = $this->db->get()->result_array();
     $this->load->view('home/header', $data);
     $this->load->view('home/jadwal', $data);
