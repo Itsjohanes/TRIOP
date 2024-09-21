@@ -20,21 +20,25 @@
 ?>
   
   <main class="page">
-      <section
+        <section
         class="clean-block clean-hero"
         style="
           background-image: url('assets/img/triop2023.png');
           color: rgba(9, 162, 255, 0);
+          background-position: center;
+          background-size: cover;
+          background-attachment: scroll;
         "
       >
         <div class="text">
           <h2>TRIOP SMA TRINITAS</h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam
-            urna, dignissim nec auctor in, mattis vitae leo.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna,
+            dignissim nec auctor in, mattis vitae leo.
           </p>
         </div>
       </section>
+
 
       <section class="clean-block clean-info dark">
         <div class="container">
