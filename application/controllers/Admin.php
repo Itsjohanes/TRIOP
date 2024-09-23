@@ -255,7 +255,7 @@ class Admin extends CI_Controller
 
         $this->Berita_model->update_berita($id, $data); // Update via model
         $this->session->set_flashdata('success', 'Data berhasil diupdate');
-        //redirect('admin/berita');
+        redirect('admin/berita');
     }
     public function sekolah()
     {

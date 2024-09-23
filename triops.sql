@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 17, 2024 at 03:36 PM
+-- Generation Time: Sep 21, 2024 at 02:39 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -100,16 +100,22 @@ CREATE TABLE `tb_jadwal` (
   `id_sekolah2` int NOT NULL,
   `tanggal` datetime NOT NULL,
   `skor1` varchar(11) DEFAULT NULL,
+<<<<<<< HEAD:triops (1).sql
   `skor2` varchar(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+=======
+  `skor2` varchar(11) DEFAULT NULL,
+  `utama` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+>>>>>>> cb51a5dcec3d723bfe35c7ba9eaa107a3abb4e12:triops.sql
 
 --
 -- Dumping data for table `tb_jadwal`
 --
 
-INSERT INTO `tb_jadwal` (`id_jadwal`, `id_sekolah1`, `id_sekolah2`, `tanggal`, `skor1`, `skor2`) VALUES
-(8, 1, 2, '2024-09-30 21:22:00', '', ''),
-(9, 1, 4, '2024-09-29 21:52:00', '', '');
+INSERT INTO `tb_jadwal` (`id_jadwal`, `id_sekolah1`, `id_sekolah2`, `tanggal`, `skor1`, `skor2`, `utama`) VALUES
+(8, 1, 2, '2024-09-30 21:22:00', '10', '2', 1),
+(9, 1, 4, '2024-09-29 21:52:00', '', '', 0);
 
 -- --------------------------------------------------------
 
