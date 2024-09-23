@@ -46,11 +46,11 @@
       <div class="col text-center">
         <h6 class="mb-0">
           © Copyright
-          <strong class="sitename">Tim PUBDOK TRIOP SMA Trinitas</strong>. All Rights Reserved.
+          <strong class="sitename">TRIOP SMA Trinitas</strong>. All Rights Reserved.
         </h6>
         <h6 class="credits">
           Designed by
-          <a href="https://smatrinitas.sch.id/" class="text-light">Tim PUBDOK TRIOP SMA Trinitas</a>
+          <a href="https://smatrinitas.sch.id/" class="text-light">TRIOP SMA Trinitas</a>
         </h6>
       </div>
     </div>
