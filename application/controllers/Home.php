@@ -128,6 +128,14 @@ class Home extends CI_Controller
           redirect('home/pendaftaran');
       }
   }
+  public function berkas(){
+    $data['title'] = "Trinitas Open-Berkas";
+    $data['menu'] = "Berkas";
+    $data['berkas'] = $this->db->get('tb_berkas')->result_array();
+    $this->load->view('home/header', $data);
+    $this->load->view('home/berkas', $data);
+    $this->load->view('home/footer', $data);
+  }
 
   
   

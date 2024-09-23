@@ -59,6 +59,12 @@
               } else {
                   echo '<li class="nav-item"><a class="nav-link" href="' . base_url("home/jadwal") . '">Jadwal & Hasil Pertandingan</a></li>';
               }
+
+              if ($menu == "Berkas") {
+                  echo '<li class="nav-item"><a class="nav-link active" href="' . base_url("home/berkas") . '">Berkas</a></li>';
+              } else {
+                  echo '<li class="nav-item"><a class="nav-link" href="' . base_url("home/berkas") . '">Berkas</a></li>';
+              }
               
           
 

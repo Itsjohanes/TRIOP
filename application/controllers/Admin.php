@@ -33,6 +33,7 @@ class Admin extends CI_Controller
     $this->load->model('Akun_model'); 
     $this->load->model('Pendaftaran_model'); 
     $this->load->model('Content_model'); 
+    $this->load->model('Berkas_model');
 
 
   }
@@ -831,6 +832,126 @@ class Admin extends CI_Controller
         $this->session->set_flashdata('success', 'Data berhasil diupdate');
         redirect('admin/content');
     }
+
+    //berkas
+    public function berkas()
+    {
+        $data['title'] = "Berkas";
+        $data['berkas'] = $this->Berkas_model->get_all_berkas(); // Fetch data via model
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/sidebar');
+        $this->load->view('admin/berkas');
+        $this->load->view('admin/footer');
+    }
+    //Tambah Berkas
+    public function tambah_berkas()
+    {
+        $data['title'] = "Tambah Berkas";
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/sidebar');
+        $this->load->view('admin/tambah_berkas');
+        $this->load->view('admin/footer');
+    }
+    //submit berkas
+    public function submit_berkas()
+    {
+        $nama = $this->input->post('nama');
+
+        // Configuration for file upload
+        $config['upload_path'] = './assets/berkas/';
+        $config['allowed_types'] = 'pdf';
+        $config['max_size'] = 10000;
+        $config['encrypt_name'] = TRUE;
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('berkas')) {
+            $berkas = $this->upload->data('file_name');
+        } else {
+            $this->session->set_flashdata('error', $this->upload->display_errors());
+            redirect('admin/tambah_berkas');
+        }
+
+        $data = [
+            'nama' => $nama,
+            'file' => $berkas
+        ];
+
+        $this->Berkas_model->insert_berkas($data); // Insert via model
+        $this->session->set_flashdata('success', 'Data berhasil ditambahkan');
+        redirect('admin/berkas');
+    }
+    //hapus berkas
+    public function hapus_berkas($id)
+    {
+        $berkas = $this->Berkas_model->get_berkas_by_id($id); // Get file data for deletion
+        unlink(FCPATH . 'assets/berkas/' . $berkas['file']); // Delete file
+        $this->Berkas_model->delete_berkas($id); // Delete record via model
+        $this->session->set_flashdata('success', 'Data berhasil dihapus');
+        redirect('admin/berkas');
+    }
+
+    //edit berkas
+    public function edit_berkas($id)
+    {
+        $data['title'] = "Edit Berkas";
+        $data['berkas'] = $this->Berkas_model->get_berkas_by_id($id); // Fetch data via model
+
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/sidebar');
+        $this->load->view('admin/edit_berkas');
+        $this->load->view('admin/footer');
+    }
+
+    //submit hasil edit berkas
+    public function update_berkas()
+    {
+        $id = $this->input->post('id');
+        $nama = $this->input->post('nama');
+
+        // Configuration for file upload
+        $config['upload_path'] = './assets/berkas/';
+        $config['allowed_types'] = 'pdf';
+        $config['max_size'] = 10000;
+        $config['encrypt_name'] = TRUE;
+
+        $this->load->library('upload', $config);
+
+        // Get current berkas data
+        $berkas_lama = $this->Berkas_model->get_berkas_by_id($id);
+
+        if ($_FILES['berkas']['name']) { // Check if new file is uploaded
+            if ($this->upload->do_upload('berkas')) {
+                $berkas = $this->upload->data('file_name');
+
+                // Delete old file if it exists
+                if (file_exists(FCPATH . 'assets/berkas/' . $berkas_lama['file'])) {
+                    unlink(FCPATH . 'assets/berkas/' . $berkas_lama['file']);
+                }
+
+                // Prepare data with new file
+                $data = [
+                    'nama' => $nama,
+                    'file' => $berkas
+                ];
+            } else {
+                $this->session->set_flashdata('error', $this->upload->display_errors());
+                redirect('admin/edit_berkas/' . $id);
+                return;
+            }
+        } else {
+            // Update without changing the file
+            $data = [
+                'nama' => $nama,
+                'file' => $berkas_lama['file']
+            ];
+        }
+
+        $this->Berkas_model->update_berkas($id, $data); // Update via model
+        $this->session->set_flashdata('success', 'Data berhasil diupdate');
+        redirect('admin/berkas');
+    }
+
 
   
 }

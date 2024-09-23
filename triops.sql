@@ -106,7 +106,7 @@ CREATE TABLE `tb_jadwal` (
 =======
   `skor2` varchar(11) DEFAULT NULL,
   `utama` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 >>>>>>> cb51a5dcec3d723bfe35c7ba9eaa107a3abb4e12:triops.sql
 
 --

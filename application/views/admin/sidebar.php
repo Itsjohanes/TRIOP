@@ -107,11 +107,23 @@
                         echo '<a class="nav-link" href="' . base_url('admin/pendaftaran') . '">';
                     }
                     ?>
-                    <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                     Pendaftaran
                     </a> 
 
-                    
+                     <div class="sb-sidenav-menu-heading">Berkas</div>
+
+                    <?php
+                    if ($title == 'Berkas') {
+                        //arahih ke controller admin
+                        echo '<a class="nav-link active" href="' . base_url('admin/berkas') . '">';
+                    } else {
+                        echo '<a class="nav-link" href="' . base_url('admin/berkas') . '">';
+                    }
+                    ?>
+                    <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
+                    Berkas
+                    </a> 
                     
                     <div class="sb-sidenav-menu-heading">Akun</div>
 

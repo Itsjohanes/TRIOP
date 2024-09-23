@@ -30,7 +30,7 @@
             type="text"
             id="nama"
             name="nama"
-            placeholder= "Contoh: Atep, S.T."
+            placeholder= "Contoh: Suro Mulyono, M.Kom."
             data-bs-theme="light"
             required
           />
