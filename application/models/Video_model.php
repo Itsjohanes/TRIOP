@@ -12,7 +12,7 @@ class Video_model extends CI_Model
     // Get a specific video by ID
     public function get_video_by_id($id)
     {
-        return $this->db->get_where('tb_video', ['id_youtube' => $id])->row_array();
+        return $this->db->get_where('tb_video', ['id_video' => $id])->row_array();
     }
 
     // Insert new video data
@@ -24,13 +24,13 @@ class Video_model extends CI_Model
     // Delete a video by ID
     public function delete_video($id)
     {
-        return $this->db->delete('tb_video', ['id_youtube' => $id]);
+        return $this->db->delete('tb_video', ['id_video' => $id]);
     }
 
     // Update a video record
     public function update_video($id, $data)
     {
-        $this->db->where('id_youtube', $id);
+        $this->db->where('id_video', $id);
         return $this->db->update('tb_video', $data);
     }
 }

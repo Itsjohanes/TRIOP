@@ -44,10 +44,10 @@
                                     <td><?= $j['link']; ?></td>
                                     <td>
                                         
-                                        <a href="<?= base_url(); ?>admin/hapus_video/<?= $j['id_youtube']; ?>" class="btn btn-danger" onclick="return confirm('Data akan dihapus');">
+                                        <a href="<?= base_url(); ?>admin/hapus_video/<?= $j['id_video']; ?>" class="btn btn-danger" onclick="return confirm('Data akan dihapus');">
                                             <i class="fas fa-trash-alt"></i>
                                         </a>
-                                        <a href="<?= base_url(); ?>admin/edit_video/<?= $j['id_youtube']; ?>" class="btn btn-success">
+                                        <a href="<?= base_url(); ?>admin/edit_video/<?= $j['id_video']; ?>" class="btn btn-success">
                                             <i class="fas fa-edit"></i>
                                         </a>
                                     </td>

@@ -24,7 +24,7 @@
                 <?= form_open('admin/update_video'); ?>
                     <div class="form-group">
                         <label for="judul">Judul Video</label>
-                        <input type="hidden" class="form-control" id="id" name="id" value = "<?php echo $video['id_youtube'];?>" required>
+                        <input type="hidden" class="form-control" id="id" name="id" value = "<?php echo $video['id_video'];?>" required>
                         <input type="text" class="form-control" id="judul" name="judul" value = "<?php echo $video['judul'];?>" required>
                     </div>
                     <div class="form-group">

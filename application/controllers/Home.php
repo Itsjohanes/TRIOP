@@ -70,7 +70,7 @@ class Home extends CI_Controller
     $data['menu'] = "Video Pertandingan";
     //Menarik tb_video
     //order desc
-    $this->db->order_by('id_youtube', 'DESC');
+    $this->db->order_by('id_video', 'DESC');
     $data['video'] = $this->db->get('tb_video')->result_array();
     $this->load->view('home/header', $data);
     $this->load->view('home/video', $data);
