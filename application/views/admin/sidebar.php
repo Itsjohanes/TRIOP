@@ -40,7 +40,17 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-video"></i></div>
                     Video Youtube
                     </a>
-
+                    <?php
+                    if ($title == 'Video Sejarah') {
+                        //arahih ke controller admin
+                        echo '<a class="nav-link active" href="' . base_url('admin/video_sejarah') . '">';
+                    } else {
+                        echo '<a class="nav-link" href="' . base_url('admin/video_sejarah') . '">';
+                    }
+                    ?>
+                    <div class="sb-nav-link-icon"><i class="fas fa-video"></i></div>
+                    Video Khusus Sejarah Triop
+                    </a>
                     <div class="sb-sidenav-menu-heading">Berita TRIOP</div>
 
                     <?php

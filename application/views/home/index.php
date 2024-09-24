@@ -64,8 +64,42 @@
           </div>
         </div>
       </section>
-      <hr class="my-4"> <!-- Garis pemisah antar section -->
+      <hr class="my-4"> 
+      <!-- Garis pemisah antar section -->
+      <section class="clean-block clean-info dark">
+        <div class="container">
+          <div class="block-heading">
+            <h2 class="text-info">Sejarah Trinitas Open</h2>
+           
+          </div>
+          <h6 style="text-align: justify;">Trinitas Open, atau sering disingkat TRIOP, adalah kejuaraan bola basket tahunan yang diselenggarakan oleh SMA Trinitas Bandung. Acara ini dimulai pada tahun [tahun mulai] dan sejak saat itu telah menjadi salah satu event olahraga bergengsi di wilayah ini. TRIOP tidak hanya berfungsi sebagai ajang kompetisi antar sekolah, tetapi juga sebagai platform untuk mempererat persahabatan dan mempromosikan semangat sportivitas di kalangan pelajar.
 
+Kejuaraan ini menarik berbagai tim dari berbagai sekolah, yang bersaing dalam pertandingan yang sengit dan penuh semangat. TRIOP bertujuan untuk mengembangkan bakat olahraga, membangun karakter, dan memupuk kerjasama tim di antara para peserta. Selain pertandingan, acara ini juga dilengkapi dengan berbagai kegiatan dan hiburan yang membuat suasana semakin meriah.
+
+Dengan komitmen untuk terus meningkatkan kualitas dan pengalaman acara, TRIOP berfungsi sebagai simbol prestasi dan dedikasi SMA Trinitas dalam memajukan olahraga di tingkat pelajar</h6>
+    <section class="container my-5">
+    <div class="row">
+
+        <?php foreach ($videosejarah as $video): ?>
+        <div class="col-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <iframe class="w-100" height="315" src="https://www.youtube.com/embed/<?= $video['link'] ?>" title="<?= $video['judul'] ?>" allowfullscreen></iframe>
+                    <h5 class="mt-3"><?= $video['judul'] ?></h5>
+                    <p class="text-muted">Tahun: <?= $video['tahun'] ?></p>
+                </div>
+            </div>
+        </div>
+        <?php endforeach; ?>
+    </div>
+  </section>
+
+
+
+
+        </div>
+      </section>
+      <hr class="my-4"> <!-- Garis pemisah antar section -->
 
       <section class="clean-block slider dark">
           <div class="block-heading">

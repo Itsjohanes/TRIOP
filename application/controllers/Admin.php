@@ -34,6 +34,7 @@ class Admin extends CI_Controller
     $this->load->model('Pendaftaran_model'); 
     $this->load->model('Content_model'); 
     $this->load->model('Berkas_model');
+    $this->load->model('Video_sejarah_model');
 
 
   }
@@ -950,6 +951,77 @@ class Admin extends CI_Controller
         $this->Berkas_model->update_berkas($id, $data); // Update via model
         $this->session->set_flashdata('success', 'Data berhasil diupdate');
         redirect('admin/berkas');
+    }
+    //video sejarah
+    public function video_sejarah()
+    {
+        $data['title'] = "Video Sejarah";
+        $data['video_sejarah'] = $this->Video_sejarah_model->get_all_video_sejarah(); // Fetch data via model
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/sidebar');
+        $this->load->view('admin/video_sejarah');
+        $this->load->view('admin/footer');
+    }
+    //tambah video sejarah
+    public function tambah_video_sejarah()
+    {
+        $data['title'] = "Tambah Video Sejarah";
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/sidebar');
+        $this->load->view('admin/tambah_video_sejarah');
+        $this->load->view('admin/footer');
+    }
+    //submit video sejarah
+    public function submit_video_sejarah()
+    {
+        $judul = $this->input->post('judul');
+        $link = $this->input->post('link');
+        $tahun = $this->input->post('tahun');
+        $data = [
+            'judul' => $judul,
+            'link' => $link,
+            'tahun' => $tahun
+        ];
+
+        $this->Video_sejarah_model->insert_video_sejarah($data); // Insert via model
+        $this->session->set_flashdata('success', 'Data berhasil ditambahkan');
+        redirect('admin/video_sejarah');
+    }
+    //hapus video sejarah
+    public function hapus_video_sejarah($id)
+    {
+        $this->Video_sejarah_model->delete_video_sejarah($id); // Delete via model
+        $this->session->set_flashdata('success', 'Data berhasil dihapus');
+        redirect('admin/video_sejarah');
+    }
+    //edit video sejarah
+    public function edit_video_sejarah($id)
+    {
+        $data['title'] = "Edit Video Sejarah";
+        $data['video_sejarah'] = $this->Video_sejarah_model->get_video_sejarah_by_id($id); // Fetch data via model
+
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/sidebar');
+        $this->load->view('admin/edit_video_sejarah');
+        $this->load->view('admin/footer');
+    }
+    //submit hasil edit video sejarah
+    public function update_video_sejarah()
+    {
+        $id = $this->input->post('id');
+        $judul = $this->input->post('judul');
+        $tahun = $this->input->post('tahun');
+        $link = $this->input->post('link');
+
+        $data = [
+            'judul' => $judul,
+            'link' => $link,
+            'tahun' => $tahun
+        ];
+
+        $this->Video_sejarah_model->update_video_sejarah($id, $data); // Update via model
+        $this->session->set_flashdata('success', 'Data berhasil diupdate');
+        redirect('admin/video_sejarah');
     }
 
 

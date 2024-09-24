@@ -35,6 +35,7 @@ class Home extends CI_Controller
     $data['sekolah'] = $this->db->get('tb_sekolah')->result_array();
     $data['sponsor'] = $this->db->get('tb_sponsor')->result_array();
     $data['content'] = $this->db->get('tb_content')->result_array();
+    $data['videosejarah'] = $this->db->get('tb_videosejarah')->result_array();
 
     $this->db->select('tb_jadwal.*, s1.nama as sekolah1, s1.gambar as gambar_sekolah1, s2.nama as sekolah2, s2.gambar as gambar_sekolah2');
     $this->db->from('tb_jadwal');
