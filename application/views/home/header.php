@@ -7,6 +7,15 @@
       content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
     />
     <title><?php echo $title; ?></title>
+    <meta
+      name="description"
+      content="Trinitas Open (TRIOP) adalah kejuaraan basket tahunan yang diselenggarakan oleh SMA Trinitas Bandung, menampilkan tim-tim basket terbaik antar SMA. Bergabunglah dalam keseruan dan dukung tim favoritmu!"
+    />
+    <meta
+      name="keywords"
+      content="Trinitas Open, TRIOP, kejuaraan basket, SMA Trinitas, basket antar SMA, basket antar SMP, Bandung, turnamen basket, SMA Trinitas Bandung, kompetisi olahraga"
+    />
+    <meta name="author" content="SMA Trinitas Bandung" />    
     <link rel="icon" type="image/png" href="<?php echo base_url('assets/img/ypii-hitam.png'); ?>">
 
     <link rel="stylesheet" href="<?php echo base_url().'assets/bootstrap/css/bootstrap.min.css'; ?>" />
