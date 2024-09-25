@@ -27,6 +27,7 @@
           color: rgba(9, 162, 255, 0);
           background-position: center;
           background-size: cover;
+          background-size: contain;
           background-attachment: scroll;
         "
       >

@@ -137,6 +137,16 @@ class Home extends CI_Controller
     $this->load->view('home/berkas', $data);
     $this->load->view('home/footer', $data);
   }
+  public function instagram(){
+    $data['title'] = "Trinitas Open-Instagram";
+    $data['menu'] = "Instagram";
+    //ambil data dari tb_instagram order desc by id_instagram
+    $this->db->order_by('id_instagram', 'DESC');
+    $data['instagram'] = $this->db->get('tb_instagram')->result_array();
+    $this->load->view('home/header', $data);
+    $this->load->view('home/instagram', $data);
+    $this->load->view('home/footer', $data);
+  }
 
   
   

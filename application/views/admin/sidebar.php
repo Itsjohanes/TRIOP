@@ -134,7 +134,19 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
                     Berkas
                     </a> 
-                    
+                      <div class="sb-sidenav-menu-heading">Instagram</div>
+
+                    <?php
+                    if ($title == 'Instagram') {
+                        //arahih ke controller admin
+                        echo '<a class="nav-link active" href="' . base_url('admin/instagram') . '">';
+                    } else {
+                        echo '<a class="nav-link" href="' . base_url('admin/instagram') . '">';
+                    }
+                    ?>
+                    <div class="sb-nav-link-icon"><i class="fas fa-phone"></i></div>
+                    Instagram
+                    </a>                    
                     <div class="sb-sidenav-menu-heading">Akun</div>
 
                     <?php

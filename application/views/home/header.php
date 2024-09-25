@@ -56,7 +56,11 @@
               } else {
                   echo '<li class="nav-item"><a class="nav-link" href="' . base_url("home/berita") . '">Berita</a></li>';
               }
-
+              if ($menu == "Instagran") {
+                  echo '<li class="nav-item"><a class="nav-link active" href="' . base_url("home/instagram") . '">Instagram</a></li>';
+              } else {
+                  echo '<li class="nav-item"><a class="nav-link" href="' . base_url("home/instagram") . '">Instagram</a></li>';
+              }
               if ($menu == "Video Pertandingan") {
                   echo '<li class="nav-item"><a class="nav-link active" href="' . base_url("home/video") . '">Video Pertandingan</a></li>';
               } else {

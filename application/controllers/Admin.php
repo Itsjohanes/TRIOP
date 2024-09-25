@@ -26,6 +26,7 @@ class Admin extends CI_Controller
     $this->load->library('Cetak_pdf');
     auths();
     $this->load->model('Video_model'); 
+    $this->load->model('Instagram_model');
     $this->load->model('Berita_model'); 
     $this->load->model('Sekolah_model');
     $this->load->model('Jadwal_model');
@@ -1023,7 +1024,75 @@ class Admin extends CI_Controller
         $this->session->set_flashdata('success', 'Data berhasil diupdate');
         redirect('admin/video_sejarah');
     }
+    public function instagram()
+    {
+        $data['title'] = "Instagram";
+        $data['instagram'] = $this->Instagram_model->get_all_instagram(); // Fetch from model
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/sidebar');
+        $this->load->view('admin/instagram');
+        $this->load->view('admin/footer');
+    }
 
+    // Load the form to add a new video
+    public function tambah_instagram()
+    {
+        $data['title'] = "Tambah Instagram";
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/sidebar');
+        $this->load->view('admin/tambah_instagram');
+        $this->load->view('admin/footer');
+    }
+
+    // Handle the submission of a new video
+    public function submit_instagram()
+    {
+        $link = $this->input->post('link');
+
+        $data = [
+            'link' => $link
+        ];
+
+        $this->Instagram_model->insert_instagram($data); // Insert through the model
+        $this->session->set_flashdata('success', 'Data berhasil ditambahkan');
+        redirect('admin/instagram');
+    }
+
+    // Delete a video
+    public function hapus_instagram($id)
+    {
+        $this->Instagram_model->delete_instagram($id); // Delete via the model
+        $this->session->set_flashdata('success', 'Data berhasil dihapus');
+        redirect('admin/instagram');
+    }
+
+    // Load the form to edit a instagram
+    public function edit_instagram($id)
+    {
+        $data['title'] = "Edit Instagram";
+        $data['instagram'] = $this->Instagram_model->get_instagram_by_id($id); // Fetch specific video via model
+
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/sidebar');
+        $this->load->view('admin/edit_instagram');
+        $this->load->view('admin/footer');
+    }
+
+    // Handle instagram update (if applicable)
+    public function update_instagram()
+    {
+        $link = $this->input->post('link');
+        $id = $this->input->post('id');
+
+        $data = [
+            'link' => $link
+        ];
+
+        $this->Instagram_model->update_instagram($id, $data); // Update via the model
+        $this->session->set_flashdata('success', 'Data berhasil diupdate');
+        redirect('admin/instagram');
+    }
+  
 
   
 }
