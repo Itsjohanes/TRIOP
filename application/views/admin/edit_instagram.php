@@ -23,6 +23,7 @@
             <div class="card-body">
                 <?= form_open('admin/update_instagram'); ?>
                     <div class="form-group">
+                        <input type="hidden" name="id" value = "<?php echo $instagram['id_instagram'];?>">
                         <label for="link">Link</label>
                         <input type="text" class="form-control" id="link" name="link" value = "<?php echo $instagram['link'];?>" required>
                     </div>

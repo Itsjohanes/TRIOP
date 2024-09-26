@@ -35,7 +35,7 @@
                                 <th scope="col">Sekolah 2</th>
                                 <th scope="col">Skor 1</th>
                                 <th scope="col">Sekolah 2</th>
-
+                                <th scope="col">Link Tiket</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
@@ -49,6 +49,7 @@
                                     <td><?= $j['sekolah2']; ?></td>
                                     <td><?= $j['skor1']; ?></td>
                                     <td><?= $j['skor2']; ?></td>
+                                    <td><?= $j['tiket']; ?></td>
                                     <td>
                                         <!-- buatkan percabangan dilihat aktif nya 0 apa 1 -->
                                     <?php if ($j['utama'] == 0) : ?>

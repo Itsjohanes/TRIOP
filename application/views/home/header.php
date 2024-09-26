@@ -56,7 +56,13 @@
               } else {
                   echo '<li class="nav-item"><a class="nav-link" href="' . base_url("home/berita") . '">Berita</a></li>';
               }
-              if ($menu == "Instagran") {
+
+              if ($menu == "Content") {
+                  echo '<li class="nav-item"><a class="nav-link active" href="' . base_url("home/content") . '">Content</a></li>';
+              } else {
+                  echo '<li class="nav-item"><a class="nav-link" href="' . base_url("home/content") . '">Content</a></li>';
+              }              
+              if ($menu == "Instagram") {
                   echo '<li class="nav-item"><a class="nav-link active" href="' . base_url("home/instagram") . '">Instagram</a></li>';
               } else {
                   echo '<li class="nav-item"><a class="nav-link" href="' . base_url("home/instagram") . '">Instagram</a></li>';

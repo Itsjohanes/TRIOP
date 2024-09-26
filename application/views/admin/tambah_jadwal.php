@@ -51,7 +51,11 @@
                     <div class="form-group">
                         <label for="link">Skor Sekolah 2</label>
                         <input type="number" class="form-control" id="skor2" name="skor2" >
-                    </div>                    
+                    </div>
+                    <div class="form-group">
+                        <label for="link">Tiket</label>
+                        <input type="text" class="form-control" id="tiket" name="tiket" >
+                    </div>                      
                     <br>
                     <button type="submit" class="btn btn-primary">Tambah Jadwal</button>
                 <?= form_close(); ?>

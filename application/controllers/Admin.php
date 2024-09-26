@@ -416,6 +416,7 @@ class Admin extends CI_Controller
         $skor1 = $this->input->post('skor1');
         $skor2 = $this->input->post('skor2');
         $tanggal = $this->input->post('tanggal');
+        $tiket = $this->input->post('tiket');
 
         $data = [
             'id_sekolah1' => $id_sekolah1,
@@ -423,6 +424,7 @@ class Admin extends CI_Controller
             'tanggal' => $tanggal,
             'skor1' => $skor1,
             'skor2' => $skor2,
+            'tiket' => $tiket,
             'utama' => 0
         ];
 
@@ -467,13 +469,15 @@ class Admin extends CI_Controller
         $skor1 = $this->input->post('skor1');
         $skor2 = $this->input->post('skor2');
         $tanggal = $this->input->post('tanggal');
+        $tiket = $this->input->post('tiket');
 
         $data = [
             'id_sekolah1' => $id_sekolah1,
             'id_sekolah2' => $id_sekolah2,
             'tanggal' => $tanggal,
             'skor1' => $skor1,
-            'skor2' => $skor2
+            'skor2' => $skor2,
+            'tiket' => $tiket
         ];
 
         $this->Jadwal_model->update_jadwal($id, $data); // Update via model

@@ -59,6 +59,10 @@
                         <input type = "hidden" name = "id" value = "<?php echo $jadwal['id_jadwal'];?>">
                         <input type="datetime-local" value = "<?= $jadwal['tanggal'];?>" class="form-control" id="tanggal" name="tanggal" required>                  
                     </div>
+                    <div class="form-group">
+                        <label for="link">Tiket</label>
+                        <input type="text" value = "<?php echo $jadwal['tiket'];?>" class="form-control" id="tiket" name="tiket" >
+                    </div>   
                     <br>
                     <button type="submit" class="btn btn-primary">Edit Jadwal</button>
                 <?= form_close(); ?>
