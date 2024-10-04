@@ -97,38 +97,40 @@ class Home extends CI_Controller
     $this->load->view('home/pendaftaran', $data);
     $this->load->view('home/footer', $data);
   }
-  public function submit_pendaftaran(){
-      $nama = $this->input->post('nama');
-      $sekolah = $this->input->post('sekolah');
-      $nomor = $this->input->post('nomor');
-      $bukti = $_FILES['bukti']['tmp_name']; // Get the file's temporary path
+   public function submit_pendaftaran(){
+    $nama = $this->input->post('nama');
+    $sekolah = $this->input->post('sekolah');
+    $nomor = $this->input->post('nomor');
+    $bukti = $_FILES['bukti']['name']; // Get the file's original name
+    $bukti_tmp = $_FILES['bukti']['tmp_name']; // Get the file's temporary path
 
-      if ($bukti) {
-          $allowed_types = ['image/jpg', 'image/jpeg', 'image/png'];
-          $mime_type = mime_content_type($bukti); // Check file mime type
+    if ($bukti) {
+        // Check if the file extension is allowed
+        $allowed_types = ['jpg', 'jpeg', 'png'];
+        $ext = pathinfo($bukti, PATHINFO_EXTENSION); // Get file extension
 
-          if (in_array($mime_type, $allowed_types)) {
-              // Read file content and convert to base64
-              $bukti_content = file_get_contents($bukti);
-              $bukti_base64 = base64_encode($bukti_content);
-              $data = [
-                  'nama' => $nama,
-                  'sekolah' => $sekolah,
-                  'nomor' => $nomor,
-                  'bukti' => $bukti_base64 // Save base64 image
-              ];
-              $this->db->insert('tb_pendaftaran', $data);
-              $this->session->set_flashdata('category_success', 'Pendaftaran Berhasil');
-              redirect('home/pendaftaran');
-          } else {
-              $this->session->set_flashdata('category_error', 'Tipe file tidak didukung');
-              redirect('home/pendaftaran');
-          }
-      } else {
-          $this->session->set_flashdata('category_error', 'Pendaftaran Gagal');
-          redirect('home/pendaftaran');
-      }
-  }
+        if (in_array(strtolower($ext), $allowed_types)) {
+            // Read file content and convert to base64
+            $bukti_content = file_get_contents($bukti_tmp);
+            $bukti_base64 = base64_encode($bukti_content);
+            $data = [
+                'nama' => $nama,
+                'sekolah' => $sekolah,
+                'nomor' => $nomor,
+                'bukti' => $bukti_base64 // Save base64 image
+            ];
+            $this->db->insert('tb_pendaftaran', $data);
+            $this->session->set_flashdata('category_success', 'Pendaftaran Berhasil');
+            redirect('home/pendaftaran');
+        } else {
+            $this->session->set_flashdata('category_error', 'Tipe file tidak didukung');
+            redirect('home/pendaftaran');
+        }
+    } else {
+        $this->session->set_flashdata('category_error', 'Pendaftaran Gagal');
+        redirect('home/pendaftaran');
+    }
+}
   public function berkas(){
     $data['title'] = "Trinitas Open-Berkas";
     $data['menu'] = "Berkas";
