@@ -78,7 +78,19 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-school"></i></div>
                     Sekolah
                     </a>
+<div class="sb-sidenav-menu-heading">Pendaftaran</div>
 
+                    <?php
+                    if ($title == 'Pendaftaran') {
+                        //arahih ke controller admin
+                        echo '<a class="nav-link active" href="' . base_url('admin_humas/pendaftaran') . '">';
+                    } else {
+                        echo '<a class="nav-link" href="' . base_url('admin_humas/pendaftaran') . '">';
+                    }
+                    ?>
+                    <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                    Pendaftaran
+                    </a> 
                     <div class="sb-sidenav-menu-heading">Jadwal & Hasil</div>
 
                     <?php

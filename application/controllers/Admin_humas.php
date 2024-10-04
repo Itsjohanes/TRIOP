@@ -915,15 +915,15 @@ class Admin_humas extends CI_Controller
         $data['title'] = "Pendaftaran";
         $data['pendaftaran'] = $this->Pendaftaran_model->get_all_pendaftaran(); // Fetch data via model
 
-        $this->load->view('admin/header', $data);
-        $this->load->view('admin/sidebar');
-        $this->load->view('admin/pendaftaran');
-        $this->load->view('admin/footer');
+        $this->load->view('admin_humas/header', $data);
+        $this->load->view('admin_humas/sidebar');
+        $this->load->view('admin_humas/pendaftaran');
+        $this->load->view('admin_humas/footer');
     }
     public function hapus_pendaftaran($id){
         $this->Pendaftaran_model->delete_pendaftaran($id);
         $this->session->set_flashdata('success', 'Data berhasil dihapus');
-        redirect('admin/pendaftaran');
+        redirect('admin_humas/pendaftaran');
 
     }
     //submit hasil edit video sejarah
