@@ -4,8 +4,7 @@
       <div class="block-heading">
         <h2 class="text-info">Pendaftaran Trinitas Open</h2>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam
-          urna, dignissim nec auctor in, mattis vitae leo.
+          Berikut adalah form untuk pendaftaran Trinitas Open
         </p>
       </div>
 
@@ -61,7 +60,7 @@
           />
         </div>
         <div class="mb-3">
-          <label class="form-label" for="bukti">Bukti Bayar (Format .png, .jpg, .jpeg)</label>
+          <label class="form-label" for="bukti">Bukti Bayar (Format .png, .jpg, .jpeg max 5mb)</label>
           <input
             class="form-control"
             id="bukti"
