@@ -19,7 +19,7 @@
             </div>
         <?php endif; ?>
 
-        <!-- Button for adding new video -->
+        <!-- Button for adding new account -->
         <a href="<?= base_url('admin/tambah_akun'); ?>" class="btn btn-primary mb-3">Tambah Baru</a>
 
         <!-- DataTales Example -->
@@ -32,7 +32,7 @@
                                 <th scope="col">No.</th>
                                 <th scope="col">Nama</th>
                                 <th scope="col">Email</th>
-
+                                <th scope="col">Role</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
@@ -43,8 +43,18 @@
                                     <th scope="row"><?= $i; ?></th>
                                     <td><?= $j['nama']; ?></td>
                                     <td><?= $j['email']; ?></td>
+
+                                    <?php if ($j['role_id'] == 1) : ?>
+                                        <td>Super Admin</td>
+                                    <?php elseif ($j['role_id'] == 2) : ?>
+                                        <td>Admin Humas</td>
+                                    <?php elseif ($j['role_id'] == 3) : ?>
+                                        <td>Admin Pendaftaran</td>
+                                    <?php else: ?>
+                                        <td>User</td>
+                                    <?php endif; ?>
+
                                     <td>
-                                        
                                         <a href="<?= base_url(); ?>admin/hapus_akun/<?= $j['id_akun']; ?>" class="btn btn-danger" onclick="return confirm('Data akan dihapus');">
                                             <i class="fas fa-trash-alt"></i>
                                         </a>
@@ -64,7 +74,6 @@
     </div>
     <!-- /.container-fluid -->
 
-</div>
 </div>
 <!-- End of Main Content -->
 

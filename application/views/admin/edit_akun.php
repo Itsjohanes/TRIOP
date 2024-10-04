@@ -36,6 +36,14 @@
                         <label for="judul">Password</label>
                         <input type="text" class="form-control" id="password" name="password" required>
                     </div>
+                    <div class="form-group">
+                        <label for="judul">Role</label>
+                        <select class="form-control" id="role_id" name="role_id" required>
+                            <option value="1" <?php if($akun['role_id'] == 1) echo 'selected'; ?>>Super Admin</option>
+                            <option value="2" <?php if($akun['role_id'] == 2) echo 'selected'; ?>>Admin Humas</option>
+                            <option value="3" <?php if($akun['role_id'] == 3) echo 'selected'; ?>>Admin Pendaftaran</option>
+                        </select>
+                    </div>
 
                     
                      <br>

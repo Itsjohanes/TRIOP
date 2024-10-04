@@ -34,6 +34,14 @@
                         <label for="judul">Password</label>
                         <input type="text" class="form-control" id="password" name="password" required>
                     </div>
+                    <div class="form-group">
+                        <label for="judul">Role</label>
+                        <select class="form-control" id="role_id" name="role_id" required>
+                            <option value="1">Super Admin</option>
+                            <option value="2">Admin Humas</option>
+                            <option value="3">Admin Pendaftaran</option>
+                        </select>
+                    </div>
 
                     
                      <br>

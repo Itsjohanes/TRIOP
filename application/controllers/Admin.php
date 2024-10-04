@@ -641,6 +641,7 @@ class Admin extends CI_Controller
         $email = $this->input->post('email');
         $nama = $this->input->post('nama');
         $password = $this->input->post('password');
+        $role_id = $this->input->post('role_id');
 
         // Check if email is already registered
         $cek = $this->Akun_model->check_email_exists($email);
@@ -653,7 +654,8 @@ class Admin extends CI_Controller
             'email' => $email,
             'nama' => $nama,
             'password' => password_hash($password, PASSWORD_DEFAULT),
-            'aktif' => 1
+            'aktif' => 1,
+            'role_id' => $role_id
         ];
 
         $this->Akun_model->insert_akun($data); // Insert account via model
