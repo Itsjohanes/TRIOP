@@ -920,12 +920,33 @@ class Admin_humas extends CI_Controller
         $this->load->view('admin_humas/pendaftaran');
         $this->load->view('admin_humas/footer');
     }
-    public function hapus_pendaftaran($id){
-        $this->Pendaftaran_model->delete_pendaftaran($id);
-        $this->session->set_flashdata('success', 'Data berhasil dihapus');
-        redirect('admin_humas/pendaftaran');
+ public function hapus_pendaftaran($id) {
+    // Ambil data pendaftaran berdasarkan ID
+    $pendaftaran = $this->Pendaftaran_model->get_pendaftaran_by_id($id);
+    
+    if ($pendaftaran) {
+        $file_path = './assets/img/pendaftaran/' . $pendaftaran['bukti']; // Lokasi gambar
+        
+        // Cek apakah file gambar ada di direktori
+        if (file_exists($file_path)) {
+            // Hapus file gambar dari direktori
+            unlink($file_path);
+        }
 
+        // Hapus data pendaftaran dari database
+        $this->Pendaftaran_model->delete_pendaftaran($id);
+
+        // Set flashdata untuk pesan sukses
+        $this->session->set_flashdata('success', 'Data dan file gambar berhasil dihapus');
+    } else {
+        // Jika data tidak ditemukan
+        $this->session->set_flashdata('error', 'Data tidak ditemukan');
     }
+
+    // Redirect kembali ke halaman admin pendaftaran
+    redirect('admin_humas/pendaftaran');
+}
+
     //submit hasil edit video sejarah
     public function update_video_sejarah()
     {
