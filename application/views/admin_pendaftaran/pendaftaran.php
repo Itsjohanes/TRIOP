@@ -45,11 +45,8 @@
                                     <td><?= $j['sekolah']; ?></td>
                                     <td><?= $j['nomor']; ?></td>
                                     <td>
-                                        <?php
-                                        // Tentukan tipe MIME berdasarkan data base64
-                                        $mime_type = finfo_buffer(finfo_open(), base64_decode($j['bukti']), FILEINFO_MIME_TYPE);
-                                        ?>
-                                        <img width="300px" height="300px" src="data:<?php echo $mime_type; ?>;base64,<?php echo $j['bukti']; ?>" />
+                                    <img width="300px" height="300px" src="<?php echo base_url('assets/img/pendaftaran/').$j['bukti'];?>" />
+
                                     </td>
                                     <td>
                                         <a href="<?= base_url('admin_pendaftaran/hapus_pendaftaran/' . $j['id_pendaftaran']); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a>
