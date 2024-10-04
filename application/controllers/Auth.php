@@ -44,6 +44,7 @@ class Auth extends CI_Controller
     $this->session->unset_userdata('email');
     $this->session->unset_userdata('nama');
     $this->session->unset_userdata('aktif');
+    $this->session->unset_userdata('role_id');
     $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">You have been logged out!</div>');
     redirect('auth');
   }
@@ -61,11 +62,19 @@ class Auth extends CI_Controller
           'id' => $user['id_akun'],
           'email' => $user['email'],
           'nama' => $user['nama'],
-          'aktif' => $user['aktif']
+          'aktif' => $user['aktif'],
+          'role_id' => $user['role_id']
         ];
         if ($data['aktif'] == 1) {
           $this->session->set_userdata($data);
-          redirect('admin');
+          if ($user['role_id'] == 1) {
+            redirect('admin');
+          } else if ($user['role_id'] == 2) {
+            redirect('admin_humas');
+          } else if ($user['role_id'] == 3) {
+            redirect('admin_pendaftaran');
+          }
+         
         } else {
           $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
                 Akunmu Belum diaktifkan!</div>');
