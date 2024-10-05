@@ -32,10 +32,9 @@
         "
       >
         <div class="text">
-          <h2>TRIOP SMA TRINITAS</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna,
-            dignissim nec auctor in, mattis vitae leo.
+          <h2>TRIOP SMA TRINITAS 2025</h2>
+       		<p>
+            Pertandingan Basket Tingkat SMP dan SMA Se-Bandung Raya
           </p>
         </div>
       </section>
