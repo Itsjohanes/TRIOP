@@ -36,6 +36,7 @@
 <main class="page">
   <section class="clean-block clean-form dark">
  <div class="container">
+  <br>
     <h1>Pendaftaran TRIOP Belum Dibuka</h1>
     <p>Terima kasih atas minat Anda untuk mengikuti Trinitas Open (TRIOP)!</p>
     <p class="info">Pendaftaran untuk <strong>TRIOP SMA Trinitas 2025</strong> belum dibuka. Silakan kembali lagi nanti untuk informasi lebih lanjut mengenai jadwal pendaftaran dan persyaratan lomba.</p>

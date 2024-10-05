@@ -95,7 +95,7 @@ class Home extends CI_Controller
     $data['menu'] = "Pendaftaran";
     $this->load->view('home/header', $data);
         // Retrieve the registration status from the database
-    $status = $this->db->get_where('pendaftaran_status', ['id' => 1])->row_array()['status'];
+    $status = $this->db->get_where('tb_aktifpendaftaran', ['id_aktifpendaftaran' => 1])->row_array()['status'];
     
     // Load the appropriate view based on the status
     $this->load->view('home/header', $data);
@@ -115,27 +115,41 @@ class Home extends CI_Controller
     $nomor = $this->input->post('nomor');
     $bukti = $_FILES['bukti']['name']; // Get the file's original name
     $bukti_tmp = $_FILES['bukti']['tmp_name']; // Get the file's temporary path
+    $bukti_size = $_FILES['bukti']['size']; // Get the file's size
 
     if ($bukti) {
         // Check if the file extension is allowed
         $allowed_types = ['jpg', 'jpeg', 'png'];
         $ext = pathinfo($bukti, PATHINFO_EXTENSION); // Get file extension
 
-        if (in_array(strtolower($ext), $allowed_types)) {
-            // Read file content and convert to base64
-            $bukti_content = file_get_contents($bukti_tmp);
-            $bukti_base64 = base64_encode($bukti_content);
-            $data = [
-                'nama' => $nama,
-                'sekolah' => $sekolah,
-                'nomor' => $nomor,
-                'bukti' => $bukti_base64 // Save base64 image
-            ];
-            $this->db->insert('tb_pendaftaran', $data);
-            $this->session->set_flashdata('category_success', 'Pendaftaran Berhasil');
-            redirect('home/pendaftaran');
+        // Check file size (maximum 5MB)
+        if ($bukti_size <= 5242880) { // 5MB in bytes
+            if (in_array(strtolower($ext), $allowed_types)) {
+                // Generate an encrypted file name
+                $encrypted_name = md5(time() . $bukti) . '.' . $ext;
+                $upload_path = 'assets/img/pendaftaran/' . $encrypted_name;
+
+                // Move uploaded file to the destination directory
+                if (move_uploaded_file($bukti_tmp, $upload_path)) {
+                    $data = [
+                        'nama' => $nama,
+                        'sekolah' => $sekolah,
+                        'nomor' => $nomor,
+                        'bukti' => $encrypted_name // Save encrypted file name
+                    ];
+                    $this->db->insert('tb_pendaftaran', $data);
+                    $this->session->set_flashdata('category_success', 'Pendaftaran Berhasil');
+                    redirect('home/pendaftaran');
+                } else {
+                    $this->session->set_flashdata('category_error', 'Gagal menyimpan file');
+                    redirect('home/pendaftaran');
+                }
+            } else {
+                $this->session->set_flashdata('category_error', 'Tipe file tidak didukung');
+                redirect('home/pendaftaran');
+            }
         } else {
-            $this->session->set_flashdata('category_error', 'Tipe file tidak didukung');
+            $this->session->set_flashdata('category_error', 'Ukuran file terlalu besar (maksimal 5MB)');
             redirect('home/pendaftaran');
         }
     } else {
@@ -143,6 +157,7 @@ class Home extends CI_Controller
         redirect('home/pendaftaran');
     }
 }
+
   public function berkas(){
     $data['title'] = "Trinitas Open-Berkas";
     $data['menu'] = "Berkas";
