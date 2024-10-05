@@ -94,7 +94,8 @@ class Home extends CI_Controller
     $data['title'] = "Trinitas Open-Pendaftaran";
     $data['menu'] = "Pendaftaran";
     $this->load->view('home/header', $data);
-    $this->load->view('home/pendaftaran', $data);
+    //$this->load->view('home/pendaftaran', $data);
+		$this->load->view('home/pendaftaran_belum');
     $this->load->view('home/footer', $data);
   }
    public function submit_pendaftaran(){
