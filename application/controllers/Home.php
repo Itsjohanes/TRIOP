@@ -101,27 +101,35 @@ class Home extends CI_Controller
     $nama = $this->input->post('nama');
     $sekolah = $this->input->post('sekolah');
     $nomor = $this->input->post('nomor');
-    $bukti = $_FILES['bukti']['name']; // Get the file's original name
-    $bukti_tmp = $_FILES['bukti']['tmp_name']; // Get the file's temporary path
+    $bukti = $_FILES['bukti']['name']; // Nama file asli
+    $bukti_tmp = $_FILES['bukti']['tmp_name']; // Lokasi file sementara
 
     if ($bukti) {
-        // Check if the file extension is allowed
+        // Cek tipe file yang diizinkan
         $allowed_types = ['jpg', 'jpeg', 'png'];
-        $ext = pathinfo($bukti, PATHINFO_EXTENSION); // Get file extension
+        $ext = pathinfo($bukti, PATHINFO_EXTENSION); // Dapatkan ekstensi file
 
         if (in_array(strtolower($ext), $allowed_types)) {
-            // Read file content and convert to base64
-            $bukti_content = file_get_contents($bukti_tmp);
-            $bukti_base64 = base64_encode($bukti_content);
-            $data = [
-                'nama' => $nama,
-                'sekolah' => $sekolah,
-                'nomor' => $nomor,
-                'bukti' => $bukti_base64 // Save base64 image
-            ];
-            $this->db->insert('tb_pendaftaran', $data);
-            $this->session->set_flashdata('category_success', 'Pendaftaran Berhasil');
-            redirect('home/pendaftaran');
+            // Set folder tujuan
+            $upload_path = 'assets/img/pendaftaran/';
+            $new_bukti_name = uniqid() . '.' . $ext; // Buat nama file unik untuk menghindari duplikasi
+            $destination = $upload_path . $new_bukti_name; // Path lengkap tujuan file
+
+            // Pindahkan file dari folder sementara ke folder tujuan
+            if (move_uploaded_file($bukti_tmp, $destination)) {
+                $data = [
+                    'nama' => $nama,
+                    'sekolah' => $sekolah,
+                    'nomor' => $nomor,
+                    'bukti' => $new_bukti_name // Simpan nama file ke database
+                ];
+                $this->db->insert('tb_pendaftaran', $data);
+                $this->session->set_flashdata('category_success', 'Pendaftaran Berhasil');
+                redirect('home/pendaftaran');
+            } else {
+                $this->session->set_flashdata('category_error', 'Gagal mengupload bukti');
+                redirect('home/pendaftaran');
+            }
         } else {
             $this->session->set_flashdata('category_error', 'Tipe file tidak didukung');
             redirect('home/pendaftaran');
@@ -131,6 +139,7 @@ class Home extends CI_Controller
         redirect('home/pendaftaran');
     }
 }
+
   public function berkas(){
     $data['title'] = "Trinitas Open-Berkas";
     $data['menu'] = "Berkas";
