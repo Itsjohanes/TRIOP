@@ -24,6 +24,7 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-body">
+				
                 <div class="table-responsive">
                     <table class="table table-striped" id="dataTable" width="100%" cellspacing="0">
                         <thead>
@@ -33,7 +34,6 @@
                                 <th scope="col">Sekolah</th>
                                 <th scope="col">Kontak</th>
                                 <th scope="col">Gambar</th>
-                                <th scope="col">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -48,9 +48,7 @@
                                     <img width="300px" height="300px" src="<?php echo base_url('assets/img/pendaftaran/').$j['bukti'];?>" />
 
                                     </td>
-                                    <td>
-                                        <a href="<?= base_url('admin_humas/hapus_pendaftaran/' . $j['id_pendaftaran']); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a>
-                                    </td>
+                                    
                                 </tr>
                                 <?php $i++; ?>
                             <?php endforeach; ?>

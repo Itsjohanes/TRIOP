@@ -24,6 +24,21 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-body">
+				 <?php
+                // Assuming the status is retrieved from the database
+                $status = $this->db->get_where('tb_aktifpendaftaran', ['id_aktifpendaftaran' => 1])->row_array()['status'];
+                $btnText = $status == 1 ? 'Matikan Pendaftaran' : 'Nyalakan Pendaftaran';
+                $btnClass = $status == 1 ? 'btn-danger' : 'btn-success';
+            ?>
+            <div class="mb-3">
+                <form action="<?= base_url('admin/ubahstatuspendaftaran'); ?>" method="post">
+                    <input type="hidden" name="status" value="<?= $status; ?>">
+                    <button type="submit" class="btn <?= $btnClass; ?>">
+                        <?= $btnText; ?>
+                    </button>
+                </form>
+            </div>
+
                 <div class="table-responsive">
                     <table class="table table-striped" id="dataTable" width="100%" cellspacing="0">
                         <thead>

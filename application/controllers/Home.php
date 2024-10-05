@@ -94,7 +94,19 @@ class Home extends CI_Controller
     $data['title'] = "Trinitas Open-Pendaftaran";
     $data['menu'] = "Pendaftaran";
     $this->load->view('home/header', $data);
-    $this->load->view('home/pendaftaran', $data);
+        // Retrieve the registration status from the database
+    $status = $this->db->get_where('pendaftaran_status', ['id' => 1])->row_array()['status'];
+    
+    // Load the appropriate view based on the status
+    $this->load->view('home/header', $data);
+    
+    if ($status == 1) {
+        // If status is 1, load the registration form view
+        $this->load->view('home/pendaftaran', $data);
+    } else {
+        // If status is 0, load the 'registration closed' view
+        $this->load->view('home/pendaftaran_belum', $data);
+    }
     $this->load->view('home/footer', $data);
   }
    public function submit_pendaftaran(){
