@@ -32,11 +32,12 @@
         "
       >
         <div class="text">
-          <h2>TRIOP SMA TRINITAS 2025</h2>
-       		<p>
-            Pertandingan Basket Tingkat SMP dan SMA Se-Bandung Raya
-          </p>
-        </div>
+		  <h2 style="background-color: black; color: white;">TRIOP SMA TRINITAS 2025</h2>
+		  <p style="background-color: black; color: white;">
+		    Pertandingan Basket Tingkat SMP dan SMA Se-Bandung Raya
+		  </p>
+		</div>
+
       </section>
 
 
