@@ -706,6 +706,18 @@ class Admin extends CI_Controller
         $this->load->view('admin/pendaftaran');
         $this->load->view('admin/footer');
     }
+	public function ubahStatusPendaftaran()
+    {
+        $status = $this->input->post('status');
+        $newStatus = $status == 1 ? 0 : 1;  // Toggle status
+    
+        $this->db->set('status', $newStatus);
+        $this->db->where('id_aktifpendaftaran', 1); // Assuming there’s only one entry for registration status
+        $this->db->update('tb_aktifpendaftaran'); 
+    
+        $this->session->set_flashdata('category_success', 'Status pendaftaran berhasil diubah.');
+        redirect('admin/pendaftaran');
+    }
     public function hapus_pendaftaran($id) {
     // Ambil data pendaftaran berdasarkan ID
     $pendaftaran = $this->Pendaftaran_model->get_pendaftaran_by_id($id);
