@@ -9,6 +9,8 @@
       font-size: 18px;
       color: #666;
     }
+ 
+
     .info {
       margin-top: 20px;
       padding: 10px;

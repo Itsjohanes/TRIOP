@@ -36,6 +36,9 @@ class Admin extends CI_Controller
     $this->load->model('Content_model'); 
     $this->load->model('Berkas_model');
     $this->load->model('Video_sejarah_model');
+    $this->load->model('Video_testimoni_model');
+    $this->load->model('Kampus_model');
+    $this->load->model('Media_model');
 
 
   }
@@ -604,6 +607,246 @@ class Admin extends CI_Controller
         redirect('admin/sponsor');
     }
 
+
+    public function media()
+    {
+        $data['title'] = "Media";
+        $data['media'] = $this->Media_model->get_all_medias(); // Fetch data via the model
+
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/sidebar');
+        $this->load->view('admin/media');
+        $this->load->view('admin/footer');
+    }
+
+    // Load form to add a new sponsor
+    public function tambah_media()
+    {
+        $data['title'] = "Tambah media";
+
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/sidebar');
+        $this->load->view('admin/tambah_media');
+        $this->load->view('admin/footer');
+    }
+
+    // Handle submission of a new sponsor
+    public function submit_media()
+    {
+        $nama = $this->input->post('nama');
+        
+        // File upload configuration
+        $config['upload_path']   = './assets/img/media/';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+        $config['max_size']      = 10000;
+        $config['encrypt_name']  = TRUE; // Encrypt file name to make it unique
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('gambar')) {
+            $gambar = $this->upload->data('file_name');
+        } else {
+            $this->session->set_flashdata('error', $this->upload->display_errors());
+            redirect('admin/tambah_media');
+        }
+
+        $data = [
+            'nama' => $nama,
+            'gambar' => $gambar
+        ];
+
+        $this->Media_model->insert_media($data); // Insert sponsor via model
+        $this->session->set_flashdata('success', 'Data berhasil ditambahkan');
+        redirect('admin/media');
+    }
+
+    // Delete a sponsor
+    public function hapus_media($id)
+    {
+        $this->Media_model->delete_media($id); // Delete sponsor via model
+        $this->session->set_flashdata('success', 'Data berhasil dihapus');
+        redirect('admin/media');
+    }
+
+    // Load form to edit sponsor
+    public function edit_media($id)
+    {
+        $data['title'] = "Edit media";
+        $data['media'] = $this->Media_model->get_media_by_id($id); // Fetch data via the model
+
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/sidebar');
+        $this->load->view('admin/edit_media');
+        $this->load->view('admin/footer');
+    }
+
+    // Handle updating sponsor
+    public function update_media()
+    {
+        $id = $this->input->post('id');
+        $nama = $this->input->post('nama');
+        
+        // File upload configuration
+        $config['upload_path']   = './assets/img/media/';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+        $config['max_size']      = 10000;
+        $config['encrypt_name']  = TRUE;
+
+        $this->load->library('upload', $config);
+
+        $media_lama = $this->Media_model->get_media_by_id($id); // Get the old sponsor data
+        
+        if ($_FILES['gambar']['name']) {
+            if ($this->upload->do_upload('gambar')) {
+                $gambar = $this->upload->data('file_name');
+                
+                // Delete old image file if it exists
+                if (file_exists(FCPATH . 'assets/img/media/' . $media_lama['gambar'])) {
+                    unlink(FCPATH . 'assets/img/media/' . $media_lama['gambar']);
+                }
+
+                // Update with the new image
+                $data = [
+                    'nama' => $nama,
+                    'gambar' => $gambar,
+                ];
+            } else {
+                $this->session->set_flashdata('error', $this->upload->display_errors());
+                redirect('admin/edit_media/' . $id);
+                return;
+            }
+        } else {
+            // If no new image is uploaded, keep the old image
+            $data = [
+                'nama' => $nama,
+                'gambar' => $media_lama['gambar'],
+            ];
+        }
+
+        $this->Media_model->update_media($id, $data); // Update sponsor via model
+        $this->session->set_flashdata('success', 'Data berhasil diupdate');
+        redirect('admin/media');
+    }
+
+        public function kampus()
+    {
+        $data['title'] = "Kampus";
+        $data['kampus'] = $this->Kampus_model->get_all_kampuss(); // Fetch data via the model
+
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/sidebar');
+        $this->load->view('admin/kampus');
+        $this->load->view('admin/footer');
+    }
+
+    // Load form to add a new sponsor
+    public function tambah_kampus()
+    {
+        $data['title'] = "Tambah Kampus";
+
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/sidebar');
+        $this->load->view('admin/tambah_kampus');
+        $this->load->view('admin/footer');
+    }
+
+    // Handle submission of a new sponsor
+    public function submit_kampus()
+    {
+        $nama = $this->input->post('nama');
+        
+        // File upload configuration
+        $config['upload_path']   = './assets/img/kampus/';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+        $config['max_size']      = 10000;
+        $config['encrypt_name']  = TRUE; // Encrypt file name to make it unique
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('gambar')) {
+            $gambar = $this->upload->data('file_name');
+        } else {
+            $this->session->set_flashdata('error', $this->upload->display_errors());
+            redirect('admin/tambah_kampus');
+        }
+
+        $data = [
+            'nama' => $nama,
+            'gambar' => $gambar
+        ];
+
+        $this->Kampus_model->insert_kampus($data); // Insert sponsor via model
+        $this->session->set_flashdata('success', 'Data berhasil ditambahkan');
+        redirect('admin/kampus');
+    }
+
+    // Delete a sponsor
+    public function hapus_kampus($id)
+    {
+        $this->Kampus_model->delete_kampus($id); // Delete sponsor via model
+        $this->session->set_flashdata('success', 'Data berhasil dihapus');
+        redirect('admin/kampus');
+    }
+
+    // Load form to edit sponsor
+    public function edit_kampus($id)
+    {
+        $data['title'] = "Edit kampus";
+        $data['kampus'] = $this->Kampus_model->get_kampus_by_id($id); // Fetch data via the model
+
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/sidebar');
+        $this->load->view('admin/edit_kampus');
+        $this->load->view('admin/footer');
+    }
+
+    // Handle updating sponsor
+    public function update_kampus()
+    {
+        $id = $this->input->post('id');
+        $nama = $this->input->post('nama');
+        
+        // File upload configuration
+        $config['upload_path']   = './assets/img/kampus/';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+        $config['max_size']      = 10000;
+        $config['encrypt_name']  = TRUE;
+
+        $this->load->library('upload', $config);
+
+        $kampus_lama = $this->Kampus_model->get_kampus_by_id($id); // Get the old sponsor data
+        
+        if ($_FILES['gambar']['name']) {
+            if ($this->upload->do_upload('gambar')) {
+                $gambar = $this->upload->data('file_name');
+                
+                // Delete old image file if it exists
+                if (file_exists(FCPATH . 'assets/img/kampus/' . $kampus_lama['gambar'])) {
+                    unlink(FCPATH . 'assets/img/kampus/' . $kampus_lama['gambar']);
+                }
+
+                // Update with the new image
+                $data = [
+                    'nama' => $nama,
+                    'gambar' => $gambar,
+                ];
+            } else {
+                $this->session->set_flashdata('error', $this->upload->display_errors());
+                redirect('admin/edit_kampus/' . $id);
+                return;
+            }
+        } else {
+            // If no new image is uploaded, keep the old image
+            $data = [
+                'nama' => $nama,
+                'gambar' => $kampus_lama['gambar'],
+            ];
+        }
+
+        $this->Kampus_model->update_kampus($id, $data); // Update sponsor via model
+        $this->session->set_flashdata('success', 'Data berhasil diupdate');
+        redirect('admin/kampus');
+    }
     // Display all accounts
     public function akun()
     {
@@ -1063,6 +1306,76 @@ class Admin extends CI_Controller
         $this->session->set_flashdata('success', 'Data berhasil diupdate');
         redirect('admin/video_sejarah');
     }
+    //video testimoni
+
+    public function video_testimoni()
+    {
+        $data['title'] = "Video testimoni";
+        $data['video'] = $this->Video_testimoni_model->get_all_video_testimoni(); // Fetch data via model
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/sidebar');
+        $this->load->view('admin/video_testimoni');
+        $this->load->view('admin/footer');
+    }
+
+    public function tambah_video_testimoni()
+    {
+        $data['title'] = "Tambah Video Testimoni";
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/sidebar');
+        $this->load->view('admin/tambah_video_testimoni');
+        $this->load->view('admin/footer');
+    }
+
+    public function submit_video_testimoni()
+    {
+        $judul = $this->input->post('judul');
+        $link = $this->input->post('link');
+        $data = [
+            'judul' => $judul,
+            'link' => $link,
+        ];
+
+        $this->Video_testimoni_model->insert_video_testimoni($data); // Insert via model
+        $this->session->set_flashdata('success', 'Data berhasil ditambahkan');
+        redirect('admin/video_testimoni');
+    }
+   
+    public function hapus_video_testimoni($id)
+    {
+        $this->Video_testimoni_model->delete_video_testimoni($id); // Delete via model
+        $this->session->set_flashdata('success', 'Data berhasil dihapus');
+        redirect('admin/video_testimoni');
+    }
+
+    public function edit_video_testimoni($id)
+    {
+        $data['title'] = "Edit Video Testimoni";
+        $data['video'] = $this->Video_testimoni_model->get_video_testimoni_by_id($id); // Fetch data via model
+
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/sidebar');
+        $this->load->view('admin/edit_video_testimoni');
+        $this->load->view('admin/footer');
+    }
+    //submit hasil edit video testimoni
+    public function update_video_testimoni()
+    {
+        $id = $this->input->post('id');
+        $judul = $this->input->post('judul');
+        $link = $this->input->post('link');
+
+        $data = [
+            'judul' => $judul,
+            'link' => $link,
+        ];
+
+        $this->Video_testimoni_model->update_video_testimoni($id, $data); // Update via model
+        $this->session->set_flashdata('success', 'Data berhasil diupdate');
+        redirect('admin/video_testimoni');
+    }
+
+
     public function instagram()
     {
         $data['title'] = "Instagram";

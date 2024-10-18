@@ -17,6 +17,9 @@ class Home extends CI_Controller
     $data['sponsor'] = $this->db->get('tb_sponsor')->result_array();
     $data['content'] = $this->db->get('tb_content')->result_array();
     $data['videosejarah'] = $this->db->get('tb_videosejarah')->result_array();
+    $data['videotestimoni'] = $this->db->get('tb_videotestimoni')->result_array();
+    $data['media'] = $this->db->get('tb_media')->result_array();
+    $data['kampus'] = $this->db->get('tb_kampus')->result_array();
 
     $this->db->select('tb_jadwal.*, s1.nama as sekolah1, s1.gambar as gambar_sekolah1, s2.nama as sekolah2, s2.gambar as gambar_sekolah2');
     $this->db->from('tb_jadwal');
@@ -92,10 +95,11 @@ class Home extends CI_Controller
     $status = $this->db->get_where('tb_aktifpendaftaran', ['id_aktifpendaftaran' => 1])->row_array()['status'];
 
     if ($status == 1) {
-      // Open registration form
+      
+      $this->load->view('home/header',$data);
       $this->load->view('home/pendaftaran', $data);
     } else {
-      // Registration closed view
+      $this->load->view('home/header',$data);
       $this->load->view('home/pendaftaran_belum', $data);
     }
 

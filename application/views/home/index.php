@@ -100,46 +100,21 @@ Kejuaraan ini menarik berbagai tim dari berbagai sekolah, yang bersaing dalam pe
 
 Dengan komitmen untuk terus meningkatkan kualitas dan pengalaman acara, TRIOP berfungsi sebagai simbol prestasi dan dedikasi SMA Trinitas dalam memajukan olahraga di tingkat pelajar</h6>
 
-    <section class="container my-5">
-    <div class="row">
-
-        <?php foreach ($videosejarah as $video): ?>
-        <div class="col-12 mb-4">
-            <div class="card">
-                <div class="card-body">
-                    <iframe class="w-100" height="315" src="https://www.youtube.com/embed/<?= $video['link'] ?>" title="<?= $video['judul'] ?>" allowfullscreen></iframe>
-                    <h5 class="mt-3"><?= $video['judul'] ?></h5>
-                    <p class="text-muted">Tahun: <?= $video['tahun'] ?></p>
-                </div>
-            </div>
-        </div>
-        <?php endforeach; ?>
-    </div>
-  </section>
-
-
-
-
-        </div>
-      </section>
-      <hr class="my-4"> <!-- Garis pemisah antar section -->
-
-      <section class="clean-block slider dark">
-          <div class="block-heading">
+    <?php if (!empty($jadwal)): ?>
+    <section class="clean-block slider dark">
+        <div class="block-heading">
             <h2 class="text-info">Jadwal & Score Terkini</h2>
-             <div class="row justify-content-center" id="jadwal-container">
-
-              <?php 
-               $last_date = ''; // Variable untuk menyimpan tanggal sebelumnya
-                foreach ($jadwal as $item): 
-                    // Format tanggal tanpa waktu
-                    $formatted_date = tanggal_indonesia(date('Y-m-d', strtotime($item['tanggal'])));
-                    $date_only = sub_string($formatted_date); // Ambil hanya bagian tanggal
+            <div class="row justify-content-center" id="jadwal-container">
+                <?php 
+                    $last_date = ''; // Variable untuk menyimpan tanggal sebelumnya
+                    foreach ($jadwal as $item): 
+                        // Format tanggal tanpa waktu
+                        $formatted_date = tanggal_indonesia(date('Y-m-d', strtotime($item['tanggal'])));
+                        $date_only = sub_string($formatted_date); // Ambil hanya bagian tanggal
                 ?>
                     <div class="col-12 col-md-10 jadwal-item" data-date="<?= $date_only; ?>">
-                            <h3 class="text-center"><?= $date_only; ?></h3> <!-- Tampilkan Tanggal sebagai Heading -->
-                            <hr>
-                        
+                        <h3 class="text-center"><?= $date_only; ?></h3> <!-- Tampilkan Tanggal sebagai Heading -->
+                        <hr>
                         <div class="card">
                             <div class="card-header text-center">
                                 <?= date('H:i', strtotime($item['tanggal'])); ?> <!-- Tampilkan Hanya Waktu -->
@@ -172,106 +147,190 @@ Dengan komitmen untuk terus meningkatkan kualitas dan pengalaman acara, TRIOP be
                         <br>
                     </div>
                 <?php endforeach; ?>
+            </div>
+        </div>
+    </section>
+    <?php endif; ?>
+  <hr class="my-4"> 
+
+
+
+    <?php if (!empty($content)): ?>
+    <section class="clean-block slider dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text-info">Dokumentasi</h2>
+            </div>
+            <div class="carousel slide" data-bs-ride="carousel" id="carousel-1">
+                <div class="carousel-inner">
+                    <?php $active_class = 'active'; ?>
+                    <?php foreach ($content as $item): ?>
+                        <div class="carousel-item <?= $active_class; ?>">
+                            <img class="w-100 d-block" src="<?= base_url('assets/img/content/') . $item['gambar']; ?>" alt="Slide Image">
                         </div>
-          </div>
-          <hr class="my-4"> <!-- Garis pemisah antar section -->
-
-      
-      </section>
-      <section class="clean-block slider dark">
-        <div class="container">
-          <div class="block-heading">
-            <h2 class="text-info">Dokumentasi</h2>
-           
-          </div>
-          <div class="carousel slide" data-bs-ride="carousel" id="carousel-1">
-            <div class="carousel-inner">
-              <?php $active_class = 'active'; ?>
-              <?php foreach ($content as $item): ?>
-                <div class="carousel-item <?= $active_class; ?>">
-                  <img class="w-100 d-block" src="<?= base_url('assets/img/content/') . $item['gambar']; ?>" alt="Slide Image">
+                        <?php $active_class = ''; // Remove active class after the first item ?>
+                    <?php endforeach; ?>
                 </div>
-                <?php $active_class = ''; // Remove active class after the first item ?>
-              <?php endforeach; ?>
-            </div>
-            <div>
-              <a class="carousel-control-prev" href="#carousel-1" role="button" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-                <span class="visually-hidden">Previous</span>
-              </a>
-              <a class="carousel-control-next" href="#carousel-1" role="button" data-bs-slide="next">
-                <span class="carousel-control-next-icon"></span>
-                <span class="visually-hidden">Next</span>
-              </a>
-            </div>
-            <div class="carousel-indicators">
-              <?php foreach ($content as $index => $item): ?>
-                <button type="button" data-bs-target="#carousel-1" data-bs-slide-to="<?= $index; ?>" class="<?= ($index === 0) ? 'active' : ''; ?>"></button>
-              <?php endforeach; ?>
-            </div>
-          </div>
-
-        </div>
-      </section>
-      <hr class="my-4"> <!-- Garis pemisah antar section -->
-
-      <section class="clean-block">
-        <div class="container">
-          <div class="block-heading">
-            <h2 class="text-info">Daftar Sekolah</h2>
-           
-          </div>
-          <div class="row justify-content-center">
-        <?php foreach ($sekolah as $item): ?>
-        <div class="col-sm-5 col-lg-3">
-            <div class="card text-center clean-card">
-                <img
-                    class="card-img-top w-100 d-block"
-                    src="<?php echo base_url('assets/img/sekolah/' . $item['gambar']); ?>"
-                    width = "300px"
-                    height = "300px"
-                    alt="<?php echo $item['nama']; ?>"
-                />
-                <div class="card-body info">
-                    <h4 class="card-title"><?php echo $item['nama']; ?></h4>
-                    
+                <div>
+                    <a class="carousel-control-prev" href="#carousel-1" role="button" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carousel-1" role="button" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                        <span class="visually-hidden">Next</span>
+                    </a>
+                </div>
+                <div class="carousel-indicators">
+                    <?php foreach ($content as $index => $item): ?>
+                        <button type="button" data-bs-target="#carousel-1" data-bs-slide-to="<?= $index; ?>" class="<?= ($index === 0) ? 'active' : ''; ?>"></button>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>
-    <?php endforeach; ?>
+    </section>
+    <hr class="my-4"> 
+
+    <?php endif; ?>
+<?php if (!empty($videotestimoni)): ?>
+<section class="clean-block slider dark">
+    <div class="container">
+        <div class="block-heading">
+            <h2 class="text-info">Video Testimoni</h2>
         </div>
-      </section>
-      <hr class="my-4"> <!-- Garis pemisah antar section -->
-
-      <section class="clean-block">
-        <div class="container">
-          <div class="block-heading">
-            <h2 class="text-info">Sponsor</h2>
-           
-          </div>
-          <div class="row justify-content-center">
-          <?php foreach ($sponsor as $i): ?>
-
-            <div class="col-sm-6 col-lg-4">
-              <div class="card text-center clean-card">
-                <img
-                  class="card-img-top w-100 d-block"
-                  src="<?php echo base_url('assets/img/sponsor/'.$i['gambar']);?>"
-                />
-                <div class="card-body info">
-                  <h4 class="card-title"><?php echo $i['nama'];?></h4>
-                  <div class="icons">
-                    <a href="#"></a><a href="#"></a><a href="#"></a>
-                  </div>
+        <div class="row justify-content-center">
+            <?php foreach ($videotestimoni as $video): ?>
+                <div class="col-12 col-md-6">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <!-- Menggunakan class 'ratio' untuk memastikan rasio 16:9 yang responsif -->
+                            <div class="ratio ratio-16x9">
+                                <iframe src="https://www.youtube.com/embed/<?= $video['link']; ?>" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
                 </div>
-              </div>
-            </div>
             <?php endforeach; ?>
-            
-          </div>
         </div>
-      </section>
+    </div>
+</section>
+<hr class="my-4"> 
+<?php endif; ?>
+
+
+
+
+    <?php if (!empty($sekolah)): ?>
+    <section class="clean-block">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text-info">Daftar Sekolah</h2>
+            </div>
+            <div class="row justify-content-center">
+            <?php foreach ($sekolah as $item): ?>
+                <div class="col-sm-5 col-lg-3">
+                    <div class="card text-center clean-card">
+                        <img
+                            class="card-img-top w-100 d-block"
+                            src="<?php echo base_url('assets/img/sekolah/' . $item['gambar']); ?>"
+                            width="300px"
+                            height="300px"
+                            alt="<?php echo $item['nama']; ?>"
+                        />
+                        <div class="card-body info">
+                            <h4 class="card-title"><?php echo $item['nama']; ?></h4>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+            </div>
+        </div>
+    </section>
+    <hr class="my-4">
+    <?php endif; ?>
+
+    
+
+    <?php if (!empty($sponsor)): ?>
+    <section class="clean-block">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text-info">Sponsor</h2>
+            </div>
+            <div class="row justify-content-center">
+            <?php foreach ($sponsor as $i): ?>
+                <div class="col-sm-6 col-lg-4">
+                    <div class="card text-center clean-card">
+                        <img class="card-img-top w-100 d-block" src="<?php echo base_url('assets/img/sponsor/'.$i['gambar']);?>" />
+                        <div class="card-body info">
+                            <h4 class="card-title"><?php echo $i['nama'];?></h4>
+                            <div class="icons">
+                                <a href="#"></a><a href="#"></a><a href="#"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+            </div>
+        </div>
+    </section>
+    <hr class="my-4">
+    <?php endif; ?>
+   
+    <?php if (!empty($media)): ?>
+    <section class="clean-block">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text-info">Media Partner</h2>
+            </div>
+            <div class="row justify-content-center">
+            <?php foreach ($media as $i): ?>
+                <div class="col-sm-6 col-lg-4">
+                    <div class="card text-center clean-card">
+                        <img class="card-img-top w-100 d-block" src="<?php echo base_url('assets/img/media/'.$i['gambar']);?>" />
+                        <div class="card-body info">
+                            <h4 class="card-title"><?php echo $i['nama'];?></h4>
+                            <div class="icons">
+                                <a href="#"></a><a href="#"></a><a href="#"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+            </div>
+        </div>
+    </section>
+    <hr class="my-4">
+    <?php endif; ?>
+    <?php if (!empty($kampus)): ?>
+    <section class="clean-block">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text-info">Kampus Partner</h2>
+            </div>
+            <div class="row justify-content-center">
+            <?php foreach ($kampus as $i): ?>
+                <div class="col-sm-6 col-lg-4">
+                    <div class="card text-center clean-card">
+                        <img class="card-img-top w-100 d-block" src="<?php echo base_url('assets/img/kampus/'.$i['gambar']);?>" />
+                        <div class="card-body info">
+                            <h4 class="card-title"><?php echo $i['nama'];?></h4>
+                            <div class="icons">
+                                <a href="#"></a><a href="#"></a><a href="#"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+            </div>
+        </div>
+    </section>
+    <hr class="my-4">
+    <?php endif; ?>
     </main>
+    
+    <hr class="my-4">
 
     <style>
         .custom-img-size {
@@ -449,7 +508,7 @@ Dengan komitmen untuk terus meningkatkan kualitas dan pengalaman acara, TRIOP be
 
 <script>
 // Set the date we're counting down to
-var countDownDate = new Date("Jan 15, 2025 00:00:00").getTime();
+var countDownDate = new Date("Jan 19, 2025 00:00:00").getTime();
 
 // Update the count down every 1 second
 var x = setInterval(function() {

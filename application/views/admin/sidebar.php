@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <div id="layoutSidenav">
     <div id="layoutSidenav_nav">
         <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
@@ -27,7 +28,7 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-image"></i></div>
                     Content
                     </a>
-                    <div class="sb-sidenav-menu-heading">Video Youtube</div>
+                    <div class="sb-sidenav-menu-heading">Video</div>
 
                     <?php
                     if ($title == 'Video Pertandingan') {
@@ -38,7 +39,18 @@
                     }
                     ?>
                     <div class="sb-nav-link-icon"><i class="fas fa-video"></i></div>
-                    Video Youtube
+                    Video Pertandingan
+                    </a>
+                    <?php
+                    if ($title == 'Video Testimoni') {
+                        //arahih ke controller admin
+                        echo '<a class="nav-link active" href="' . base_url('admin/video_testimoni') . '">';
+                    } else {
+                        echo '<a class="nav-link" href="' . base_url('admin/video_testimoni') . '">';
+                    }
+                    ?>
+                    <div class="sb-nav-link-icon"><i class="fas fa-video"></i></div>
+                    Video Testimoni
                     </a>
                     <?php
                     if ($title == 'Video Sejarah') {
@@ -106,7 +118,29 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-dollar"></i></div>
                     Sponsor Pertandingan
                     </a> 
+                    <?php
+                    if ($title == 'Media') {
+                        //arahih ke controller admin
+                        echo '<a class="nav-link active" href="' . base_url('admin/media') . '">';
+                    } else {
+                        echo '<a class="nav-link" href="' . base_url('admin/media') . '">';
+                    }
+                    ?>
+                    <div class="sb-nav-link-icon"><i class="fas fa-dollar"></i></div>
+                    Media Partner
 
+                    </a> 
+                    <?php
+                    if ($title == 'Kampus') {
+                        //arahih ke controller admin
+                        echo '<a class="nav-link active" href="' . base_url('admin/kampus') . '">';
+                    } else {
+                        echo '<a class="nav-link" href="' . base_url('admin/kampus') . '">';
+                    }
+                    ?>
+                    <div class="sb-nav-link-icon"><i class="fas fa-dollar"></i></div>
+                    Kampus Partner
+                    </a> 
                      <div class="sb-sidenav-menu-heading">Pendaftaran</div>
 
                     <?php
@@ -144,7 +178,7 @@
                         echo '<a class="nav-link" href="' . base_url('admin/instagram') . '">';
                     }
                     ?>
-                    <div class="sb-nav-link-icon"><i class="fas fa-phone"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fab fa-instagram"></i></div>
                     Instagram
                     </a>                    
                     <div class="sb-sidenav-menu-heading">Akun</div>
