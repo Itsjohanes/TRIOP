@@ -89,6 +89,38 @@
                     </div>
                 </div>
 
+                 <div class="col-xl-3 col-md-6">
+                    <div class="card bg-warning text-white mb-4">
+                        <div class="card-body">Total Media Partner</div>
+                        <div class="card-footer d-flex align-items-center justify-content-between">
+                            <?php echo $jumlahMedia; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Total Berita -->
+                <div class="col-xl-3 col-md-6">
+                    <div class="card bg-primary text-white mb-4">
+                        <div class="card-body">Total Kampus</div>
+                        <div class="card-footer d-flex align-items-center justify-content-between">
+                            <?php echo $jumlahKampus; ?>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Total Sponsor -->
+                <div class="col-xl-3 col-md-6">
+                    <div class="card bg-success text-white mb-4">
+                        <div class="card-body">Total Testimoni</div>
+                        <div class="card-footer d-flex align-items-center justify-content-between">
+                            <?php echo $jumlahTestimoni; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             </div>
         </div>
     </main>

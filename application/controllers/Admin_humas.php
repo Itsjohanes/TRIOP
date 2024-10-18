@@ -55,6 +55,9 @@ class Admin_humas extends CI_Controller
     $data['jumlahSponsor'] = $this->db->get('tb_sponsor')->num_rows();
     $data['jumlahPendaftaran'] = $this->db->get('tb_pendaftaran')->num_rows();
     $data['jumlahContent'] = $this->db->get('tb_content')->num_rows();
+    $data['jumlahKampus'] = $this->db->get('tb_kampus')->num_rows();
+    $data['jumlahMedia'] = $this->db->get('tb_media')->num_rows();
+    $data['jumlahTestimoni'] = $this->db->get('tb_videotestimoni')->num_rows();
     $this->load->view('admin_humas/header', $data);
     $this->load->view('admin_humas/sidebar');
     $this->load->view('admin_humas/dashboard');

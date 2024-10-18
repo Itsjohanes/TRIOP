@@ -83,6 +83,36 @@
                         </div>
                     </div>
                 </div>
+                <!-- Total Sekolah -->
+                <div class="col-xl-4 col-md-6 mb-4">
+                    <div class="card bg-warning text-white">
+                        <div class="card-body">Total Testimoni</div>
+                        <div class="card-footer d-flex align-items-center justify-content-between">
+                            <?php echo $jumlahTestimoni; ?>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Total Pendaftaran -->
+                <div class="col-xl-4 col-md-6 mb-4">
+                    <div class="card bg-primary text-white">
+                        <div class="card-body">Total Media Partner</div>
+                        <div class="card-footer d-flex align-items-center justify-content-between">
+                            <?php echo $jumlahMedia; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-4 col-md-6 mb-4">
+                    <div class="card bg-success text-white">
+                        <div class="card-body">Total Kampus Partner</div>
+                        <div class="card-footer d-flex align-items-center justify-content-between">
+                            <?php echo $jumlahKampus; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
             </div>
         </div>
     </main>
