@@ -24,7 +24,7 @@ class Admin_pendaftaran extends CI_Controller
   {
     parent::__construct();
     $this->load->library('Cetak_pdf');
-    //auths();
+    auths();
     $this->load->model('Video_model'); 
     $this->load->model('Instagram_model');
     $this->load->model('Berita_model'); 

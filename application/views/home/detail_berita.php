@@ -50,7 +50,7 @@
                     <!-- News Title -->
                     <h1><?= $berita['judul']; ?></h1>
                     <!-- News Image -->
-                    <img src="<?= base_url('assets/img/berita/') . $berita['gambar']; ?>" alt="<?= $berita['judul']; ?>" class="img-fluid mb-4">
+                    <img src="<?= base_url('assets/img/berita/') . $berita['gambar']; ?>" alt="<?= $berita['judul']; ?>" class="img-fluid mb-4 d-block mx-auto">
                     <!-- Full News Content -->
                     
                 </div>

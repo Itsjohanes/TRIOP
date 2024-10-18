@@ -57,10 +57,6 @@
   </div>
 </footer>
 
-<a href="https://wa.me/6281934172542" class="whatsapp-float" target="_blank">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
-</a>
-
 <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center bg-light text-dark">
   <i class="fas fa-chevron-up"></i>
 </a>
@@ -69,26 +65,7 @@
 <script src="https://kit.fontawesome.com/40ffee17c2.js" crossorigin="anonymous"></script>
 
 <style>
-  .whatsapp-float {
-    position: fixed;
-    width: 60px;
-    height: 60px;
-    bottom: 20px;
-    right: 20px;
-    background-color: #25d366;
-    color: #FFF;
-    border-radius: 50px;
-    text-align: center;
-    font-size: 30px;
-    z-index: 100;
-    box-shadow: 2px 2px 5px #999;
-  }
-
-  .whatsapp-float img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-  }
+ 
 
   .scroll-top {
     position: fixed;

@@ -95,7 +95,7 @@ class Home extends CI_Controller
     $data['menu'] = "Pendaftaran";
     $this->load->view('home/header', $data);
         // Retrieve the registration status from the database
-    $status = $this->db->get_where('pendaftaran_status', ['id' => 1])->row_array()['status'];
+    $status = $this->db->get_where('tb_aktifpendaftaran', ['id_aktifpendaftaran' => 1])->row_array()['status'];
     
     // Load the appropriate view based on the status
     $this->load->view('home/header', $data);
@@ -113,14 +113,21 @@ class Home extends CI_Controller
     $nama = $this->input->post('nama');
     $sekolah = $this->input->post('sekolah');
     $nomor = $this->input->post('nomor');
+<<<<<<< HEAD
     $bukti = $_FILES['bukti']['name']; // Nama file asli
     $bukti_tmp = $_FILES['bukti']['tmp_name']; // Lokasi file sementara
+=======
+    $bukti = $_FILES['bukti']['name']; // Get the file's original name
+    $bukti_tmp = $_FILES['bukti']['tmp_name']; // Get the file's temporary path
+    $bukti_size = $_FILES['bukti']['size']; // Get the file's size
+>>>>>>> 9c0efecc484e3bf88c567b51a5ad2d326420693d
 
     if ($bukti) {
         // Cek tipe file yang diizinkan
         $allowed_types = ['jpg', 'jpeg', 'png'];
         $ext = pathinfo($bukti, PATHINFO_EXTENSION); // Dapatkan ekstensi file
 
+<<<<<<< HEAD
         if (in_array(strtolower($ext), $allowed_types)) {
             // Set folder tujuan
             $upload_path = 'assets/img/pendaftaran/';
@@ -140,10 +147,36 @@ class Home extends CI_Controller
                 redirect('home/pendaftaran');
             } else {
                 $this->session->set_flashdata('category_error', 'Gagal mengupload bukti');
+=======
+        // Check file size (maximum 5MB)
+        if ($bukti_size <= 5242880) { // 5MB in bytes
+            if (in_array(strtolower($ext), $allowed_types)) {
+                // Generate an encrypted file name
+                $encrypted_name = md5(time() . $bukti) . '.' . $ext;
+                $upload_path = 'assets/img/pendaftaran/' . $encrypted_name;
+
+                // Move uploaded file to the destination directory
+                if (move_uploaded_file($bukti_tmp, $upload_path)) {
+                    $data = [
+                        'nama' => $nama,
+                        'sekolah' => $sekolah,
+                        'nomor' => $nomor,
+                        'bukti' => $encrypted_name // Save encrypted file name
+                    ];
+                    $this->db->insert('tb_pendaftaran', $data);
+                    $this->session->set_flashdata('category_success', 'Pendaftaran Berhasil');
+                    redirect('home/pendaftaran');
+                } else {
+                    $this->session->set_flashdata('category_error', 'Gagal menyimpan file');
+                    redirect('home/pendaftaran');
+                }
+            } else {
+                $this->session->set_flashdata('category_error', 'Tipe file tidak didukung');
+>>>>>>> 9c0efecc484e3bf88c567b51a5ad2d326420693d
                 redirect('home/pendaftaran');
             }
         } else {
-            $this->session->set_flashdata('category_error', 'Tipe file tidak didukung');
+            $this->session->set_flashdata('category_error', 'Ukuran file terlalu besar (maksimal 5MB)');
             redirect('home/pendaftaran');
         }
     } else {

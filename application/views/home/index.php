@@ -31,12 +31,33 @@
           background-attachment: scroll;
         "
       >
-        <div class="text">
-		  <h2 style="background-color: black; color: white;">TRIOP SMA TRINITAS 2025</h2>
-		  <p style="background-color: black; color: white;">
-		    Pertandingan Basket Tingkat SMP dan SMA Se-Bandung Raya
-		  </p>
-		</div>
+    <div class="text">
+        <h2 style="background-color: black; color: white;">TRIOP SMA TRINITAS 2025</h2>
+        <p style="background-color: black; color: white;">
+            Pertandingan Basket Tingkat SMP dan SMA Se-Bandung Raya
+        </p>
+
+      <div id="countdown" class="countdown-container">
+        <div class="countdown-item">
+            <span id="days" class="countdown-number"></span>
+            <span class="countdown-label">Days</span>
+        </div>
+        <div class="countdown-item">
+            <span id="hours" class="countdown-number"></span>
+            <span class="countdown-label">Hours</span>
+        </div>
+        <div class="countdown-item">
+            <span id="minutes" class="countdown-number"></span>
+            <span class="countdown-label">Minutes</span>
+        </div>
+        <div class="countdown-item">
+            <span id="seconds" class="countdown-number"></span>
+            <span class="countdown-label">Seconds</span>
+        </div>
+    </div>
+    </div>
+
+
 
       </section>
 
@@ -375,7 +396,88 @@ Dengan komitmen untuk terus meningkatkan kualitas dan pengalaman acara, TRIOP be
             }
         }
 
+    /* Container untuk countdown */
+       /* Container untuk countdown */
+    .countdown-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: black;
+        padding: 10px; /* Mengurangi padding */
+        border-radius: 10px;
+        margin-top: 20px;
+        color: white;
+        gap: 15px; /* Mengurangi jarak antar elemen */
+    }
 
+    /* Styling setiap item countdown */
+    .countdown-item {
+        text-align: center;
+        min-width: 60px; /* Lebar minimum item dikurangi */
+    }
 
+    /* Styling angka countdown */
+    .countdown-number {
+        display: block;
+        font-size: 32px; /* Mengurangi ukuran font angka */
+        font-weight: bold;
+        margin-bottom: 2px; /* Mengurangi jarak bawah */
+    }
+
+    /* Styling label (Days, Hours, Minutes, Seconds) */
+    .countdown-label {
+        font-size: 14px; /* Mengurangi ukuran font label */
+        font-weight: 500;
+        color: #f0f0f0;
+    }
+
+    /* Animasi untuk transisi countdown */
+    .countdown-number {
+        transition: transform 0.5s ease;
+    }
+
+    /* Memberikan animasi ketika angka berubah */
+    .countdown-number:active {
+        transform: scale(1.05); /* Mengurangi efek skala */
+    }
+
+    
 
 </style>
+
+
+
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("Jan 15, 2025 00:00:00").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+    
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+    
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // Output the result in an element
+  document.getElementById("days").innerHTML = days;
+  document.getElementById("hours").innerHTML = hours;
+  document.getElementById("minutes").innerHTML = minutes;
+  document.getElementById("seconds").innerHTML = seconds;
+
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("countdown").innerHTML = "Event has started!";
+  }
+}, 1000);
+</script>
+
+
