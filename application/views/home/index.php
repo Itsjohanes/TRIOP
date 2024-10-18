@@ -100,6 +100,22 @@ Kejuaraan ini menarik berbagai tim dari berbagai sekolah, yang bersaing dalam pe
 
 Dengan komitmen untuk terus meningkatkan kualitas dan pengalaman acara, TRIOP berfungsi sebagai simbol prestasi dan dedikasi SMA Trinitas dalam memajukan olahraga di tingkat pelajar</h6>
 
+    <section class="container my-5">
+    <div class="row">
+
+        <?php foreach ($videosejarah as $video): ?>
+        <div class="col-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <iframe class="w-100" height="315" src="https://www.youtube.com/embed/<?= $video['link'] ?>" title="<?= $video['judul'] ?>" allowfullscreen></iframe>
+                    <h5 class="mt-3"><?= $video['judul'] ?></h5>
+                    <p class="text-muted">Tahun: <?= $video['tahun'] ?></p>
+                </div>
+            </div>
+        </div>
+        <?php endforeach; ?>
+    </div>
+  </section>
     <?php if (!empty($jadwal)): ?>
     <section class="clean-block slider dark">
         <div class="block-heading">
