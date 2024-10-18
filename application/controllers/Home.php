@@ -1,37 +1,18 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-// Don't forget include/define REST_Controller path
-
-/**
- *
- * Controller Home
- *
- * This controller for ...
- *
- * @package   CodeIgniter
- * @category  Controller CI
- * @author    Johannes Alexander Putra <johannesap@upi.edu>
- * @link      https://github.com/Itsjohanes
- * @param     ...
- * @return    ...
- *
- */
 
 class Home extends CI_Controller
 {
-
   public function __construct()
   {
     parent::__construct();
-    $this->load->helper('tanggal'); // Load helper tanggal
-
+    $this->load->helper('tanggal');
   }
 
   public function index()
   {
     $data['title'] = "Trinitas Open-Home";
     $data['menu'] = "Home";
-    //ambil data sekolah
     $data['sekolah'] = $this->db->get('tb_sekolah')->result_array();
     $data['sponsor'] = $this->db->get('tb_sponsor')->result_array();
     $data['content'] = $this->db->get('tb_content')->result_array();
@@ -39,185 +20,162 @@ class Home extends CI_Controller
 
     $this->db->select('tb_jadwal.*, s1.nama as sekolah1, s1.gambar as gambar_sekolah1, s2.nama as sekolah2, s2.gambar as gambar_sekolah2');
     $this->db->from('tb_jadwal');
-    $this->db->join('tb_sekolah s1', 'tb_jadwal.id_sekolah1 = s1.id_sekolah', 'left'); // Relasi untuk id_sekolah1
-    $this->db->join('tb_sekolah s2', 'tb_jadwal.id_sekolah2 = s2.id_sekolah', 'left'); // Relasi untuk id_sekolah2
+    $this->db->join('tb_sekolah s1', 'tb_jadwal.id_sekolah1 = s1.id_sekolah', 'left');
+    $this->db->join('tb_sekolah s2', 'tb_jadwal.id_sekolah2 = s2.id_sekolah', 'left');
     $this->db->order_by('tb_jadwal.tanggal', 'ASC');
     $this->db->where('tb_jadwal.utama', 1);
     $data['jadwal'] = $this->db->get()->result_array();
+
     $this->load->view('home/header', $data);
     $this->load->view('home/index', $data);
     $this->load->view('home/footer', $data);
   }
-  public function berita(){
+
+  public function berita()
+  {
     $data['title'] = "Trinitas Open-Berita";
     $data['menu'] = "Berita";
     $this->db->order_by('id_berita', 'DESC');
     $data['berita'] = $this->db->get('tb_berita')->result_array();
+
     $this->load->view('home/header', $data);
     $this->load->view('home/berita', $data);
     $this->load->view('home/footer', $data);
   }
-  public function detail_berita($id){
+
+  public function detail_berita($id)
+  {
     $data['title'] = "Trinitas Open-Detail Berita";
     $data['menu'] = "Berita";
     $data['berita'] = $this->db->get_where('tb_berita', ['id_berita' => $id])->row_array();
+
     $this->load->view('home/header', $data);
     $this->load->view('home/detail_berita', $data);
     $this->load->view('home/footer', $data);
   }
-  public function video(){
+
+  public function video()
+  {
     $data['title'] = "Trinitas Open-Video";
     $data['menu'] = "Video Pertandingan";
-    //Menarik tb_video
-    //order desc
     $this->db->order_by('id_video', 'DESC');
     $data['video'] = $this->db->get('tb_video')->result_array();
+
     $this->load->view('home/header', $data);
     $this->load->view('home/video', $data);
     $this->load->view('home/footer', $data);
   }
-  public function jadwal(){
+
+  public function jadwal()
+  {
     $data['title'] = "Trinitas Open-Jadwal";
     $data['menu'] = "Jadwal Pertandingan";
     $this->db->select('tb_jadwal.*, s1.nama as sekolah1, s1.gambar as gambar_sekolah1, s2.nama as sekolah2, s2.gambar as gambar_sekolah2');
     $this->db->from('tb_jadwal');
-    $this->db->join('tb_sekolah s1', 'tb_jadwal.id_sekolah1 = s1.id_sekolah', 'left'); // Relasi untuk id_sekolah1
-    $this->db->join('tb_sekolah s2', 'tb_jadwal.id_sekolah2 = s2.id_sekolah', 'left'); // Relasi untuk id_sekolah2
+    $this->db->join('tb_sekolah s1', 'tb_jadwal.id_sekolah1 = s1.id_sekolah', 'left');
+    $this->db->join('tb_sekolah s2', 'tb_jadwal.id_sekolah2 = s2.id_sekolah', 'left');
     $this->db->order_by('tb_jadwal.tanggal', 'ASC');
 
     $data['jadwal'] = $this->db->get()->result_array();
+
     $this->load->view('home/header', $data);
     $this->load->view('home/jadwal', $data);
     $this->load->view('home/footer', $data);
   }
-  public function pendaftaran(){
+
+  public function pendaftaran()
+  {
     $data['title'] = "Trinitas Open-Pendaftaran";
     $data['menu'] = "Pendaftaran";
-    $this->load->view('home/header', $data);
-        // Retrieve the registration status from the database
+
+    // Retrieve registration status
     $status = $this->db->get_where('tb_aktifpendaftaran', ['id_aktifpendaftaran' => 1])->row_array()['status'];
-    
-    // Load the appropriate view based on the status
-    $this->load->view('home/header', $data);
-    
+
     if ($status == 1) {
-        // If status is 1, load the registration form view
-        $this->load->view('home/pendaftaran', $data);
+      // Open registration form
+      $this->load->view('home/pendaftaran', $data);
     } else {
-        // If status is 0, load the 'registration closed' view
-        $this->load->view('home/pendaftaran_belum', $data);
+      // Registration closed view
+      $this->load->view('home/pendaftaran_belum', $data);
     }
+
     $this->load->view('home/footer', $data);
   }
-   public function submit_pendaftaran(){
+
+  public function submit_pendaftaran()
+  {
     $nama = $this->input->post('nama');
     $sekolah = $this->input->post('sekolah');
     $nomor = $this->input->post('nomor');
-<<<<<<< HEAD
-    $bukti = $_FILES['bukti']['name']; // Nama file asli
-    $bukti_tmp = $_FILES['bukti']['tmp_name']; // Lokasi file sementara
-=======
-    $bukti = $_FILES['bukti']['name']; // Get the file's original name
-    $bukti_tmp = $_FILES['bukti']['tmp_name']; // Get the file's temporary path
-    $bukti_size = $_FILES['bukti']['size']; // Get the file's size
->>>>>>> 9c0efecc484e3bf88c567b51a5ad2d326420693d
+    
+    $bukti = $_FILES['bukti']['name'];
+    $bukti_tmp = $_FILES['bukti']['tmp_name'];
+    $bukti_size = $_FILES['bukti']['size'];
 
     if ($bukti) {
-        // Cek tipe file yang diizinkan
-        $allowed_types = ['jpg', 'jpeg', 'png'];
-        $ext = pathinfo($bukti, PATHINFO_EXTENSION); // Dapatkan ekstensi file
+      $allowed_types = ['jpg', 'jpeg', 'png'];
+      $ext = pathinfo($bukti, PATHINFO_EXTENSION);
 
-<<<<<<< HEAD
-        if (in_array(strtolower($ext), $allowed_types)) {
-            // Set folder tujuan
-            $upload_path = 'assets/img/pendaftaran/';
-            $new_bukti_name = uniqid() . '.' . $ext; // Buat nama file unik untuk menghindari duplikasi
-            $destination = $upload_path . $new_bukti_name; // Path lengkap tujuan file
+      if ($bukti_size <= 5242880 && in_array(strtolower($ext), $allowed_types)) {
+        $new_bukti_name = uniqid() . '.' . $ext;
+        $upload_path = 'assets/img/pendaftaran/' . $new_bukti_name;
 
-            // Pindahkan file dari folder sementara ke folder tujuan
-            if (move_uploaded_file($bukti_tmp, $destination)) {
-                $data = [
-                    'nama' => $nama,
-                    'sekolah' => $sekolah,
-                    'nomor' => $nomor,
-                    'bukti' => $new_bukti_name // Simpan nama file ke database
-                ];
-                $this->db->insert('tb_pendaftaran', $data);
-                $this->session->set_flashdata('category_success', 'Pendaftaran Berhasil');
-                redirect('home/pendaftaran');
-            } else {
-                $this->session->set_flashdata('category_error', 'Gagal mengupload bukti');
-=======
-        // Check file size (maximum 5MB)
-        if ($bukti_size <= 5242880) { // 5MB in bytes
-            if (in_array(strtolower($ext), $allowed_types)) {
-                // Generate an encrypted file name
-                $encrypted_name = md5(time() . $bukti) . '.' . $ext;
-                $upload_path = 'assets/img/pendaftaran/' . $encrypted_name;
+        if (move_uploaded_file($bukti_tmp, $upload_path)) {
+          $data = [
+            'nama' => $nama,
+            'sekolah' => $sekolah,
+            'nomor' => $nomor,
+            'bukti' => $new_bukti_name
+          ];
 
-                // Move uploaded file to the destination directory
-                if (move_uploaded_file($bukti_tmp, $upload_path)) {
-                    $data = [
-                        'nama' => $nama,
-                        'sekolah' => $sekolah,
-                        'nomor' => $nomor,
-                        'bukti' => $encrypted_name // Save encrypted file name
-                    ];
-                    $this->db->insert('tb_pendaftaran', $data);
-                    $this->session->set_flashdata('category_success', 'Pendaftaran Berhasil');
-                    redirect('home/pendaftaran');
-                } else {
-                    $this->session->set_flashdata('category_error', 'Gagal menyimpan file');
-                    redirect('home/pendaftaran');
-                }
-            } else {
-                $this->session->set_flashdata('category_error', 'Tipe file tidak didukung');
->>>>>>> 9c0efecc484e3bf88c567b51a5ad2d326420693d
-                redirect('home/pendaftaran');
-            }
+          $this->db->insert('tb_pendaftaran', $data);
+          $this->session->set_flashdata('category_success', 'Pendaftaran Berhasil');
+          redirect('home/pendaftaran');
         } else {
-            $this->session->set_flashdata('category_error', 'Ukuran file terlalu besar (maksimal 5MB)');
-            redirect('home/pendaftaran');
+          $this->session->set_flashdata('category_error', 'Gagal mengupload bukti');
         }
+      } else {
+        $this->session->set_flashdata('category_error', 'Ukuran file terlalu besar atau tipe file tidak didukung');
+      }
     } else {
-        $this->session->set_flashdata('category_error', 'Pendaftaran Gagal');
-        redirect('home/pendaftaran');
+      $this->session->set_flashdata('category_error', 'Pendaftaran Gagal');
     }
-}
 
-  public function berkas(){
+    redirect('home/pendaftaran');
+  }
+
+  public function berkas()
+  {
     $data['title'] = "Trinitas Open-Berkas";
     $data['menu'] = "Berkas";
     $data['berkas'] = $this->db->get('tb_berkas')->result_array();
+
     $this->load->view('home/header', $data);
     $this->load->view('home/berkas', $data);
     $this->load->view('home/footer', $data);
   }
-  public function instagram(){
+
+  public function instagram()
+  {
     $data['title'] = "Trinitas Open-Instagram";
     $data['menu'] = "Instagram";
-    //ambil data dari tb_instagram order desc by id_instagram
     $this->db->order_by('id_instagram', 'DESC');
     $data['instagram'] = $this->db->get('tb_instagram')->result_array();
+
     $this->load->view('home/header', $data);
     $this->load->view('home/instagram', $data);
     $this->load->view('home/footer', $data);
   }
-  public function content(){
+
+  public function content()
+  {
     $data['title'] = "Trinitas Open-Content";
     $data['menu'] = "Content";
-    //ambil data dari tb_dokumentasi order desc by id_dokumentasi
     $this->db->order_by('id_content', 'DESC');
     $data['content'] = $this->db->get('tb_content')->result_array();
+
     $this->load->view('home/header', $data);
     $this->load->view('home/content', $data);
     $this->load->view('home/footer', $data);
   }
-
-  
-  
 }
-
-
-/* End of file Auth.php */
-/* Location: ./application/controllers/Auth.php */
